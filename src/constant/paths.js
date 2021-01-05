@@ -20,5 +20,10 @@ export const sidebarMenu = [
       name: "Şikayet ve İstek",
       url: "/sug-com",
     },
+    {
+      id: 4,
+      name: "Market",
+      url: "/market",
+    },
   ];
   

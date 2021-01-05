@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 // ant design style
 import { Layout, Menu } from "antd";
 // ant design icons
-import {
-  UserOutlined,
-} from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 // paths
 import { sidebarMenu } from "../../constant/paths";
+//style
+import  "./Sidebar.css";
 
 const { Sider } = Layout;
 
@@ -25,9 +25,13 @@ function Sidebar() {
         }}
       >
         <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["0"]}>
+        <Menu mode="inline" defaultSelectedKeys={["0"]}>
           {sidebarMenu.map((menu) => (
-            <Menu.Item key={menu.id} icon={<UserOutlined />}>
+            <Menu.Item
+              key={menu.id}
+              icon={<UserOutlined />}
+              style={{ backgroundClip: "red" }}
+            >
               <Link to={menu.url} key={menu.id}>
                 {menu.name}
               </Link>

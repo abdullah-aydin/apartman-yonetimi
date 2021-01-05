@@ -1,5 +1,5 @@
 .card-wrapper {
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
 }
 
 .card {
@@ -7,6 +7,9 @@
   border-radius: 15px;
 }
 
+.card_col {
+  margin-bottom: 24px;
+}
 .card > div:first-child {
   border-bottom: none;
 }
@@ -31,17 +34,17 @@
   align-items: center;
   text-align: center;
 }
-.card_charts_col{
-    display: flex;
+.card_charts_col {
+  display: flex;
 }
-.card_charts_p{
-    color: darkgray;
+.card_charts_p {
+  color: darkgray;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   margin-left: 30px;
 }
 
-.card_charts_noti{
+.card_charts_noti {
   display: grid;
 }

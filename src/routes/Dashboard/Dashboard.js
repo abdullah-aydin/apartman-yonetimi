@@ -1,8 +1,9 @@
+// ant design
 import { Card, Col, Row } from "antd";
+//components
 import ColumnChart from "../../components/ColumnChat";
-
+//styles
 import "./Dashboard.css";
-const style = { background: "#0092ff", padding: "8px 0" };
 
 function Dashboard() {
   return (
@@ -10,7 +11,7 @@ function Dashboard() {
       {/* AYLIK FATURA KISMI */}
       <div className="card-wrapper">
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-          <Col xl={6} lg={6} md={12} sm={6} xs={12}>
+          <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
             <Card bordered={true} className="card">
               <Row>
                 <Col flex={3.5}>
@@ -24,7 +25,7 @@ function Dashboard() {
               </Row>
             </Card>
           </Col>
-          <Col xl={6} lg={6} md={12} sm={6} xs={12}>
+          <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
             <Card bordered={true} className="card">
               <Row>
                 <Col flex={3.5}>
@@ -38,7 +39,7 @@ function Dashboard() {
               </Row>
             </Card>
           </Col>
-          <Col xl={6} lg={6} md={12} sm={6} xs={12}>
+          <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
             <Card bordered={true} className="card">
               <Row>
                 <Col flex={3.5}>
@@ -52,7 +53,7 @@ function Dashboard() {
               </Row>
             </Card>
           </Col>
-          <Col xl={6} lg={6} md={12} sm={6} xs={12}>
+          <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
             <Card bordered={true} className="card">
               <Row>
                 <Col flex={3.5}>
@@ -71,7 +72,7 @@ function Dashboard() {
       {/* ./ AYLIK FATURA KISMI */}
       <div className="site-card-wrapper">
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-          <Col xl={18} lg={18} md={24} sm={24} xs={24}>
+          <Col xl={12} lg={12} md={16} sm={16} xs={16}>
             <Card bordered={true} className="card">
               <Row>
                 <Col xl={24} lg={24} md={24} sm={24} xs={24}>
@@ -91,6 +92,13 @@ function Dashboard() {
                   <ColumnChart />
                 </Col>
               </Row>
+            </Card>
+          </Col>
+          <Col xl={6} lg={6} md={24} sm={24} xs={24} className="card_charts_noti" >
+            <Card bordered={true} className="card">
+              <Col xl={24} lg={24} md={24} sm={24} xs={24}>
+                <h1>Duyurular</h1>
+              </Col>
             </Card>
           </Col>
           <Col xl={6} lg={6} md={24} sm={24} xs={24} className="card_charts_noti" >

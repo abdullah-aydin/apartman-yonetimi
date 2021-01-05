@@ -15,6 +15,9 @@ function Main() {
   return (
     <Content style={{ margin: "24px 16px 0" }}>
       <Switch>
+
+
+
         <Route path="/dashboard">
           <div
             className="site-layout-background"
@@ -23,6 +26,9 @@ function Main() {
             <Dashboard />
           </div>
         </Route>
+
+
+
         <Route path="/chat">
           <div
             className="site-layout-background"
@@ -31,6 +37,10 @@ function Main() {
             <Chat />
           </div>
         </Route>
+
+
+
+
         <Route path="/announcement">
           <div
             className="site-layout-background"
@@ -39,6 +49,10 @@ function Main() {
             <Announcement />
           </div>
         </Route>
+
+
+
+
         <Route path="/sug-com">
           <div
             className="site-layout-background"
@@ -47,6 +61,21 @@ function Main() {
             <SugCom />
           </div>
         </Route>
+
+
+        <Route path="/market">
+          <div
+            className="site-layout-background"
+            style={{ padding: 24, minHeight: 360 }}
+          >
+            <h1>burası market</h1>
+          </div>
+        </Route>
+
+
+
+
+
       </Switch>
     </Content>
   );
