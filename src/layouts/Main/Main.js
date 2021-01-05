@@ -6,8 +6,10 @@ import Dashboard from "../../routes/Dashboard";
 import Chat from "../../routes/Chat";
 import Announcement from "../../routes/Announcement";
 import SugCom from "../../routes/SugCom";
+
 //style
 import "./Main.css";
+import Market from "../../routes/Market/Market";
 
 const { Content } = Layout;
 
@@ -69,6 +71,9 @@ function Main() {
             style={{ padding: 24, minHeight: 360 }}
           >
             <h1>burası market</h1>
+
+            <Market/>
+            
           </div>
         </Route>
 
