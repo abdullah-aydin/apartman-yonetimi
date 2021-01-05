@@ -2,23 +2,23 @@ export const sidebarMenu = [
     {
       id: 0,
       name: "Anasayfa",
-      url: "/anasayfa",
+      url: "/dashboard",
       icon: "asdşasdkalsd"
     },
     {
       id: 1,
       name: "Sohbet Odası",
-      url: "/sohbet-odasi",
+      url: "/chat",
     },
     {
       id: 2,
       name: "Duyuru",
-      url: "/duyuru",
+      url: "/announcement",
     },
     {
       id: 3,
       name: "Şikayet ve İstek",
-      url: "/sikayet-ve-istek",
+      url: "/sug-com",
     },
   ];
   

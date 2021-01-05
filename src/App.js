@@ -6,9 +6,9 @@ import "./index.css";
 import "antd/dist/antd.css";
 import { Layout } from "antd";
 // components
-import Sidebar from "./components/Sidebar";
-import Navbar from "./components/Navbar";
-import Main from "./components/Main";
+import Sidebar from "./layouts/Sidebar";
+import Navbar from "./layouts/Navbar";
+import Main from "./layouts/Main";
 
 function App() {
   return (
