@@ -20,10 +20,5 @@ export const sidebarMenu = [
       name: "Şikayet ve İstek",
       url: "/sikayet-ve-istek",
     },
-    {
-      id: 4,
-      name: "selam",
-      url: "/selam",
-    },
   ];
   

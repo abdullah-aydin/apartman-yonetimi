@@ -1,11 +1,13 @@
+//router
+import { Link } from "react-router-dom";
 // ant design style
 import { Layout, Menu } from "antd";
 // ant design icons
 import {
-  UploadOutlined,
   UserOutlined,
-  VideoCameraOutlined,
 } from "@ant-design/icons";
+// paths
+import { sidebarMenu } from "../../constant/paths";
 
 const { Sider } = Layout;
 
@@ -23,19 +25,14 @@ function Sidebar() {
         }}
       >
         <div className="logo" />
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]}>
-          <Menu.Item key="1" icon={<UserOutlined />}>
-            nav 1
-          </Menu.Item>
-          <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-            nav 2
-          </Menu.Item>
-          <Menu.Item key="3" icon={<UploadOutlined />}>
-            nav 3
-          </Menu.Item>
-          <Menu.Item key="4" icon={<UserOutlined />}>
-            nav 4
-          </Menu.Item>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={["0"]}>
+          {sidebarMenu.map((menu) => (
+            <Menu.Item key={menu.id} icon={<UserOutlined />}>
+              <Link to={menu.url} key={menu.id}>
+                {menu.name}
+              </Link>
+            </Menu.Item>
+          ))}
         </Menu>
       </Sider>
     </>
