@@ -8,7 +8,7 @@ function Market() {
     <>
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
 
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="card_col">
+        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
           <Card
             className="card_market"
             hoverable
@@ -26,7 +26,7 @@ function Market() {
           </Card>
         </Col>
 
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="card_col">
+        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
           <Card
             className="card_market"
             hoverable
@@ -44,7 +44,7 @@ function Market() {
           </Card>
         </Col>
 
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="card_col">
+        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
           <Card
             className="card_market"
             hoverable
@@ -61,7 +61,7 @@ function Market() {
             </Row>
           </Card>
         </Col>
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="card_col">
+        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
           <Card
             className="card_market"
             hoverable
@@ -78,7 +78,7 @@ function Market() {
             </Row>
           </Card>
         </Col>
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="card_col">
+        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
           <Card
             className="card_market"
             hoverable
@@ -95,7 +95,7 @@ function Market() {
             </Row>
           </Card>
         </Col>
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="card_col">
+        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
           <Card
             className="card_market"
             hoverable
@@ -112,7 +112,7 @@ function Market() {
             </Row>
           </Card>
         </Col>
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="card_col">
+        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
           <Card
             className="card_market"
             hoverable
@@ -129,7 +129,7 @@ function Market() {
             </Row>
           </Card>
         </Col>
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="card_col">
+        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
           <Card
             className="card_market"
             hoverable
