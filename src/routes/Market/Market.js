@@ -1,38 +1,45 @@
+import { useState } from "react";
 import "./Market.css";
-
+// TODO:"DATAYI İMPORT ET"
 import { Card, Col, Row } from "antd";
 
 function Market() {
   const { Meta } = Card;
+  const [product, setProduct] = useState(["içecekler"]);
+  console.log(product);
   return (
     <>
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+        {/* TODO:"DATAYI MAP İLE DÖN" */}
 
+        {/* BURDAN */}
         <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
           <Card
             className="card_market"
             hoverable
-            
             cover={
-                <img className="card_img"
+              <img
+                className="card_img"
                 alt="example"
                 src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/1-Icecek-Kategorisi-2020-1_256x.png?v=1607096839%20256w"
               />
             }
           >
             <Row>
-            <Meta title="İçecekler" className="card_category_name" />
+              <Meta title="İçecekler" className="card_category_name" />
             </Row>
           </Card>
         </Col>
+        {/* BURAYA */}
 
         <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
           <Card
             className="card_market"
             hoverable
-            
+            onClick={() => setProduct("2.kategori")}
             cover={
-                <img className="card_img" 
+              <img
+                className="card_img"
                 alt="example"
                 src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/2-Snacks-Kategorisi-2020-1_256x.png?v=1607096876%20256w"
               />
@@ -48,9 +55,9 @@ function Market() {
           <Card
             className="card_market"
             hoverable
-            
             cover={
-               <img className="card_img"
+              <img
+                className="card_img"
                 alt="example"
                 src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/3-Lebensmittel-Kategorisi-2020-1_256x.png?v=1607096918"
               />
@@ -65,9 +72,9 @@ function Market() {
           <Card
             className="card_market"
             hoverable
-            
             cover={
-               <img className="card_img"
+              <img
+                className="card_img"
                 alt="example"
                 src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/4-Dondurma-Kategorisi-2020-1_256x.png?v=1607096932"
               />
@@ -82,9 +89,9 @@ function Market() {
           <Card
             className="card_market"
             hoverable
-            
             cover={
-               <img className="card_img"
+              <img
+                className="card_img"
                 alt="example"
                 src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/5-Baby-Kategorisi-2020-1_256x.png?v=1607096947"
               />
@@ -99,9 +106,9 @@ function Market() {
           <Card
             className="card_market"
             hoverable
-            
             cover={
-               <img className="card_img"
+              <img
+                className="card_img"
                 alt="example"
                 src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/6-Hygiene-Kategorisi-2020-1_256x.png?v=1607096965"
               />
@@ -116,9 +123,9 @@ function Market() {
           <Card
             className="card_market"
             hoverable
-            
             cover={
-               <img className="card_img"
+              <img
+                className="card_img"
                 alt="example"
                 src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/7-Tierbedarf-Kategorisi-2020-1_256x.png?v=1607096980"
               />
@@ -133,9 +140,9 @@ function Market() {
           <Card
             className="card_market"
             hoverable
-            
             cover={
-               <img className="card_img"
+              <img
+                className="card_img"
                 alt="example"
                 src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/8-Adult-Kategorisi-2020-1_256x.png?v=1607096997"
               />
@@ -145,6 +152,12 @@ function Market() {
               <Meta title="Cinsellik" className="card_category_name" />
             </Row>
           </Card>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
+          <h1>hello</h1>
         </Col>
       </Row>
     </>
