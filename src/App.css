@@ -1,3 +1,7 @@
 #layout__root {
   height: 100%;
 }
+
+.ant-layout {
+  background: #EEEEEE;
+}

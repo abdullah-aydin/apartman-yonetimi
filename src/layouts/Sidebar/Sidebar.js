@@ -24,6 +24,7 @@ function Sidebar() {
           console.log(collapsed, type);
         }}
       >
+        
         <div className="logo" />
         <Menu mode="inline" defaultSelectedKeys={["0"]}>
           {sidebarMenu.map((menu) => (

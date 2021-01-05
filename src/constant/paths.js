@@ -7,21 +7,26 @@ export const sidebarMenu = [
     },
     {
       id: 1,
+      name: "Analiz",
+      url: "/analytcs",
+    },
+    {
+      id: 2,
       name: "Sohbet Odası",
       url: "/chat",
     },
     {
-      id: 2,
+      id: 3,
       name: "Duyuru",
       url: "/announcement",
     },
     {
-      id: 3,
+      id: 4,
       name: "Şikayet ve İstek",
       url: "/sug-com",
     },
     {
-      id: 4,
+      id: 5,
       name: "Market",
       url: "/market",
     },
