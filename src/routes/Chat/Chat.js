@@ -1,10 +1,12 @@
+import { useState, useRef } from "react";
+import InputEmoji from "react-input-emoji";
 // ant design
-import { Card, Col, Row, Tabs, Input, Avatar, Image } from "antd";
+import { Card, Col, Row, Tabs, Avatar, Button, Image, Tooltip } from "antd";
 // ant design icons
 import {
   AppleOutlined,
   AndroidOutlined,
-  UserOutlined,
+  SendOutlined,
 } from "@ant-design/icons";
 //styles
 import "./Chat.css";
@@ -41,7 +43,7 @@ const messages = [
     userName: "abdullah",
   },
   {
-    message: "iyi",
+    message: "iyiasdasdasdasdasd",
     userName: "abdullah",
   },
 
@@ -53,6 +55,16 @@ const messages = [
 ];
 
 function Chat() {
+  const [text, setText] = useState("");
+  const inputEl = useRef(null);
+  console.log(text);
+  function handleOnEnter(text) {
+    console.log("enter", text);
+    console.log();
+    inputEl.current.value = "";
+    setText("");
+  }
+
   return (
     <Tabs defaultActiveKey="1" className="tabs">
       <TabPane
@@ -96,14 +108,30 @@ function Chat() {
                           </strong>
                         )}
                         {message.message}
+                        <span className="message_date">17.34</span>
                       </p>
                     </div>
                   ))}
                 </div>
-                <Input
-                  placeholder="bir mesaj yazın"
-                  className="message_input"
-                />
+                <div className="message_footer">
+                  <InputEmoji
+                    value={text}
+                    onChange={setText}
+                    cleanOnEnter
+                    onEnter={handleOnEnter}
+                    placeholder="bir şeyler yazın"
+                  />
+
+                  <Tooltip title="mesajı gönder">
+                    <Button
+                      ref={inputEl}
+                      disabled={text === ""}
+                      onClick={() => handleOnEnter(text)}
+                      icon={<SendOutlined />}
+                      className="sende_message"
+                    />
+                  </Tooltip>
+                </div>
               </Col>
             </Card>
           </Col>

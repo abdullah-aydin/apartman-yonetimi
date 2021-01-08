@@ -36,12 +36,14 @@
 .message {
   position: relative;
   font-size: 15px;
-  padding: 10px;
+  padding: 10px 10px 2px;
   border-radius: 10px;
   width: fit-content;
   background-color: bisque;
   margin-right: 30px;
   margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
   /* margin-left: 30px; */
 }
 
@@ -54,15 +56,46 @@
   background-color: #dcf8c6;
 }
 
-.message_input {
-  margin-top: 25px;
-}
-
 .message_wrapper {
   display: flex;
   margin-bottom: 10px;
 }
 
+.message_date {
+  margin-left: auto;
+  font-size: x-small;
+}
+
 .message_avatar {
   margin-right: 10px;
+}
+
+.react-emoji {
+  flex-direction: row-reverse;
+}
+
+.react-input-emoji--button {
+  padding: 0;
+}
+
+.react-emoji-picker--wrapper {
+  left: 0;
+}
+
+.react-input-emoji--container {
+  margin-right: 10px;
+}
+
+.message_footer {
+  display: flex;
+  margin-top: 25px;
+}
+.sende_message {
+  border: none;
+  margin: auto;
+}
+.sende_message > span > svg {
+  width: 24px;
+  height: 24px;
+  color: #858585;
 }
