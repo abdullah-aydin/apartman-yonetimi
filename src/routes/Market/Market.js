@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./Market.css";
-import { Button, Card, Col, Row } from "antd";
+import { Button, Card, Col, Row, Badge } from "antd";
+// ant desgin icons
+import { ShoppingCartOutlined } from "@ant-design/icons";
 import { products, categorys } from "../../constant/data";
 // firebase
 // import db from "../../firebase";
@@ -67,7 +69,6 @@ function Market() {
     setProductItems(data);
   }, [select]);
 
-
   const categorytList = categorys.map((category, index) => (
     <Col
       xl={3}
@@ -122,6 +123,14 @@ function Market() {
 
   return (
     <>
+      <div className="container_title">
+        <h1>Anasayfa</h1>
+        <Badge count={5}>
+          <ShoppingCartOutlined />
+        </Badge>
+      </div>
+      <hr className="container_hr"/>
+
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>{categorytList}</Row>
 
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>{productList}</Row>

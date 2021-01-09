@@ -25,6 +25,8 @@ function Main() {
             className="site-layout-background"
             style={{ padding: 24, minHeight: 360 }}
           >
+            <h1>Anasayfa</h1>
+            <hr/>
             <Dashboard />
           </div>
         </Route>
@@ -36,6 +38,8 @@ function Main() {
             className="site-layout-background"
             style={{ padding: 24, minHeight: 360 }}
           >
+            <h1>Anasayfa</h1>
+            <hr/>
             <Chat />
           </div>
         </Route>
@@ -48,6 +52,8 @@ function Main() {
             className="site-layout-background"
             style={{ padding: 24, minHeight: 360 }}
           >
+            <h1>Anasayfa</h1>
+            <hr/>
             <Announcement />
           </div>
         </Route>
@@ -60,6 +66,8 @@ function Main() {
             className="site-layout-background"
             style={{ padding: 24, minHeight: 360 }}
           >
+            <h1>Anasayfa</h1>
+            <hr/>
             <SugCom />
           </div>
         </Route>
@@ -71,7 +79,6 @@ function Main() {
             style={{ padding: 24, minHeight: 360 }}
           >
             
-
             <Market/>
             
           </div>

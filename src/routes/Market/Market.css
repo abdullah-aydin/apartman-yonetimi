@@ -68,3 +68,21 @@ background-color: #3b4cb8;
 .ant-card-meta-title{
 display: flex;
 }
+
+.container_title{
+  display: flex;
+  justify-content: space-between;
+}
+.container_title > h1{
+  margin-bottom: 0;
+}
+.ant-badge{
+  margin: auto 10px;
+}
+.ant-badge > span > svg{
+  width: 30px;
+  height: 30px;
+}
+.container_hr{
+  margin-bottom: 20px;
+}
