@@ -2,13 +2,12 @@
 import { Link } from "react-router-dom";
 // ant design style
 import { Layout, Menu } from "antd";
-// ant design icons
-import { UserOutlined, HomeOutlined } from "@ant-design/icons";
 // paths
 import { sidebarMenu } from "../../constant/paths";
 //style
 import "./Sidebar.css";
-
+//logo 
+import logo from "../../assets/images/logo.png"
 const { Sider } = Layout;
 
 function Sidebar() {
@@ -24,7 +23,9 @@ function Sidebar() {
           console.log(collapsed, type);
         }}
       >
-        <div className="logo" />
+        <div className="logo">
+          <img src={logo} alt="" />
+        </div>
         <Menu mode="inline" defaultSelectedKeys={["0"]}>
           {sidebarMenu.map((menu) => (
             <Menu.Item
