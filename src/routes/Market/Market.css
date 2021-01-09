@@ -30,3 +30,41 @@
   margin-top: 15px;
   justify-content: center;
 }
+
+/* ÜRÜNLER İÇİN CSS BAŞLANGIÇ*/
+
+.market_product_col{
+  margin-top: 10%;
+}
+.card_product_img{
+  width: 256px !important;
+  height: 256px  !important;
+}
+
+.card_market_product{
+width: 256px;
+border-radius: 20px;
+
+}
+
+.card_product_img{
+  border-radius: 20px;
+}
+.market_buy_button{
+  color: #3b4cb8;
+  border-radius: 10px;
+  flex-direction: column;
+  display: flex;
+  
+  float: right;
+}
+
+.market_buy_button:hover{
+color: white;
+background-color: #3b4cb8;
+
+}
+
+.ant-card-meta-title{
+display: flex;
+}

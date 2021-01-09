@@ -1,167 +1,71 @@
 import { useState } from "react";
 import "./Market.css";
 // TODO:"DATAYI İMPORT ET"
-import { Card, Col, Row } from "antd";
-
-function Market() {
+import { Button, Card, Col, Row } from "antd";
+import {products,categorys} from "../../constant/data"
   const { Meta } = Card;
-  const [product, setProduct] = useState(["içecekler"]);
-  console.log(product);
+ 
+
+  function Market() {
+    
+    {
+      /*
+    const [product, setProduct] = useState(["içecekler"]);
+    console.log(product);*/
+    }
+ 
+
+  const categorytList = categorys.map((category,index) => (
+    <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col" key={category.id}>
+      <Card
+        className="card_market"
+        hoverable
+        cover={<img className="card_img" alt="example" src={category.img} />}
+      >
+        <Row>
+          <Meta title={category.title} className="card_category_name" />
+          
+        </Row>
+      </Card>
+    </Col>
+  ));
+
+  
+const productList = products.map((product,index)=>(
+ <Col xl={4} lg={4} md={16} sm={16} xs={16} className="market_product_col" key={index}>
+  
+  <Card
+   
+   className="card_market_product"
+    hoverable
+    cover={<img alt="example" className="card_product_img" src={product.img} />}
+  >
+    
+    <Meta className="card_product_name"  title={product.title} description={`${product.price} TL`} />
+    <Button className="market_buy_button" >Sepete Ekle</Button>
+  
+  </Card>
+  
+  </Col>
+));
+
+     
+
   return (
     <>
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-        {/* TODO:"DATAYI MAP İLE DÖN" */}
-
-        {/* BURDAN */}
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
-          <Card
-            className="card_market"
-            hoverable
-            cover={
-              <img
-                className="card_img"
-                alt="example"
-                src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/1-Icecek-Kategorisi-2020-1_256x.png?v=1607096839%20256w"
-              />
-            }
-          >
-            <Row>
-              <Meta title="İçecekler" className="card_category_name" />
-            </Row>
-          </Card>
-        </Col>
-        {/* BURAYA */}
-
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
-          <Card
-            className="card_market"
-            hoverable
-            onClick={() => setProduct("2.kategori")}
-            cover={
-              <img
-                className="card_img"
-                alt="example"
-                src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/2-Snacks-Kategorisi-2020-1_256x.png?v=1607096876%20256w"
-              />
-            }
-          >
-            <Row>
-              <Meta title="Atıştırmalık" className="card_category_name" />
-            </Row>
-          </Card>
-        </Col>
-
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
-          <Card
-            className="card_market"
-            hoverable
-            cover={
-              <img
-                className="card_img"
-                alt="example"
-                src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/3-Lebensmittel-Kategorisi-2020-1_256x.png?v=1607096918"
-              />
-            }
-          >
-            <Row>
-              <Meta title="Temel Gıda" className="card_category_name" />
-            </Row>
-          </Card>
-        </Col>
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
-          <Card
-            className="card_market"
-            hoverable
-            cover={
-              <img
-                className="card_img"
-                alt="example"
-                src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/4-Dondurma-Kategorisi-2020-1_256x.png?v=1607096932"
-              />
-            }
-          >
-            <Row>
-              <Meta title="Dondurma" className="card_category_name" />
-            </Row>
-          </Card>
-        </Col>
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
-          <Card
-            className="card_market"
-            hoverable
-            cover={
-              <img
-                className="card_img"
-                alt="example"
-                src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/5-Baby-Kategorisi-2020-1_256x.png?v=1607096947"
-              />
-            }
-          >
-            <Row>
-              <Meta title="Bebek" className="card_category_name" />
-            </Row>
-          </Card>
-        </Col>
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
-          <Card
-            className="card_market"
-            hoverable
-            cover={
-              <img
-                className="card_img"
-                alt="example"
-                src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/6-Hygiene-Kategorisi-2020-1_256x.png?v=1607096965"
-              />
-            }
-          >
-            <Row>
-              <Meta title="Hijyen" className="card_category_name" />
-            </Row>
-          </Card>
-        </Col>
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
-          <Card
-            className="card_market"
-            hoverable
-            cover={
-              <img
-                className="card_img"
-                alt="example"
-                src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/7-Tierbedarf-Kategorisi-2020-1_256x.png?v=1607096980"
-              />
-            }
-          >
-            <Row>
-              <Meta title="Evcil Hayvan" className="card_category_name" />
-            </Row>
-          </Card>
-        </Col>
-        <Col xl={3} lg={3} md={12} sm={12} xs={12} className="market_col">
-          <Card
-            className="card_market"
-            hoverable
-            cover={
-              <img
-                className="card_img"
-                alt="example"
-                src="https://cdn.shopify.com/s/files/1/0516/5423/0205/files/8-Adult-Kategorisi-2020-1_256x.png?v=1607096997"
-              />
-            }
-          >
-            <Row>
-              <Meta title="Cinsellik" className="card_category_name" />
-            </Row>
-          </Card>
-        </Col>
+        {categorytList}
+     
       </Row>
-
-      <Row>
-        <Col>
-          <h1>hello</h1>
-        </Col>
+    
+      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+      
+      {productList}
       </Row>
+   
+     
     </>
-  );
+  )
 }
 
 export default Market;
