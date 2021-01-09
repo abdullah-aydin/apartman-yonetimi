@@ -72,8 +72,8 @@ function Market() {
   const categorytList = categorys.map((category, index) => (
     <Col
       xl={3}
-      lg={3}
-      md={12}
+      lg={6}
+      md={8}
       sm={12}
       xs={12}
       className="market_col"
