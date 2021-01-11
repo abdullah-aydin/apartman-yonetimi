@@ -5,7 +5,7 @@ import { Tabs } from "antd";
 import { AppleOutlined, AndroidOutlined } from "@ant-design/icons";
 //styles
 import "./Chat.css";
-import ChatBody from "./ChatBody";
+import ChatBody from "./components/ChatBody";
 
 const { TabPane } = Tabs;
 

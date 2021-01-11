@@ -2,18 +2,17 @@ import { useState, useEffect, useRef } from "react";
 //input emoji
 import InputEmoji from "react-input-emoji";
 // ant design
-import { Card, Col, Row, Avatar, Button, Image, Tooltip } from "antd";
+import { Card, Col, Row, Button, Tooltip } from "antd";
 // ant design icons
 import { SendOutlined } from "@ant-design/icons";
 //styles
-import "./Chat.css";
+import "../Chat.css";
 //firebase
-import db from "../../firebase";
-// moment
-import moment from "moment";
-import "moment/locale/tr"; //for a turkish date format
+import db from "../../../firebase";
 //component
-import Loading from "../../components/Loading";
+import Loading from "../../../components/Loading";
+import MessageOthers from "./MessageOthers";
+import MessageOwner from "./MessageOwner";
 
 function ChatBody({ room }) {
   const [chatMessages, setChatMessages] = useState([]);
@@ -36,7 +35,7 @@ function ChatBody({ room }) {
       );
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 1500);
   }, [numberRoom]);
 
   //message adding to database
@@ -90,32 +89,8 @@ function ChatBody({ room }) {
                       key={index}
                       ref={messageRef}
                     >
-                      {!msg.owner && (
-                        <>
-                          <Avatar
-                            className="message_avatar"
-                            src={
-                              <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                            }
-                          />
-                          <p className="message">
-                            <strong style={{ display: "flex" }}>
-                              {msg.userName}
-                            </strong>
-                            {msg.message}
-                            <span className="message_date">
-                              {moment(msg.date?.seconds * 1000).format("LT")}
-                            </span>
-                          </p>
-                        </>
-                      )}
-
-                      <p className="message chat_receiver">
-                        {msg.message}
-                        <span className="message_date">
-                          {moment(msg.date?.seconds * 1000).format("LT")}
-                        </span>
-                      </p>
+                      {msg.owner && <MessageOwner msg={msg} />}
+                      {!msg.owner && <MessageOthers msg={msg} />}
                     </div>
                   )
                 )}

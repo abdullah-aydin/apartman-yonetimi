@@ -5,6 +5,8 @@ import "./index.css";
 // ant design style
 import "antd/dist/antd.css";
 import { Layout } from "antd";
+//moment
+import "moment/locale/tr"; //for a turkish date format
 // components
 import Sidebar from "./layouts/Sidebar";
 import Navbar from "./layouts/Navbar";
