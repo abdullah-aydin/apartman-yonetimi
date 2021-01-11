@@ -1,4 +1,9 @@
-import firebase from "firebase";
+import firebase from 'firebase/app';
+import 'firebase/auth';        // for authentication
+import 'firebase/database';    // for realtime database
+import 'firebase/firestore';   // for cloud firestore
+
+
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_APIKEY,

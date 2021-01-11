@@ -40,15 +40,17 @@
   border-radius: 10px;
   width: fit-content;
   background-color: bisque;
-  margin-right: 30px;
+  margin-right: 2.5vw;
   margin-bottom: 0;
   display: flex;
   flex-direction: column;
+  word-break: break-all;
+  max-width: 450px;
   /* margin-left: 30px; */
 }
 
 .message_body {
-  overflow-y: scroll;
+  overflow-y: overlay;
 }
 
 .chat_receiver {
@@ -75,7 +77,7 @@
 }
 
 .react-input-emoji--button {
-  padding: 0;
+  padding: 0 !important;
 }
 
 .react-emoji-picker--wrapper {
@@ -90,11 +92,11 @@
   display: flex;
   margin-top: 25px;
 }
-.sende_message {
+.send_message {
   border: none;
   margin: auto;
 }
-.sende_message > span > svg {
+.send_message > span > svg {
   width: 24px;
   height: 24px;
   color: #858585;
