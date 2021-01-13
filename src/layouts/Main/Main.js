@@ -35,20 +35,9 @@ function Main() {
             className="site-layout-background"
             style={{ padding: 24, minHeight: 360 }}
           >
-            <h1>Anasayfa</h1>
+            <h1>Sohbet Odası</h1>
             <hr />
             <Chat />
-          </div>
-        </Route>
-
-        <Route path="/announcement">
-          <div
-            className="site-layout-background"
-            style={{ padding: 24, minHeight: 360 }}
-          >
-            <h1>Anasayfa</h1>
-            <hr />
-            <Announcement />
           </div>
         </Route>
 
@@ -57,7 +46,7 @@ function Main() {
             className="site-layout-background"
             style={{ padding: 24, minHeight: 360 }}
           >
-            <h1>Anasayfa</h1>
+            <h1>Şikayet ve İstek</h1>
             <hr />
             <SugCom />
           </div>

@@ -17,6 +17,7 @@ function TableSugCom() {
     db.collection("users")
       .doc("903rfcO6sbX7hJISg1ND")
       .collection("sugcom")
+      .orderBy("date", "desc")
       .onSnapshot((snapshot) =>
         setSugCom(snapshot.docs.map((doc) => ({ ...doc.data(), key: doc.id })))
       );
@@ -67,11 +68,11 @@ function TableSugCom() {
       title: "Tarih",
       dataIndex: "date",
       key: "date",
-      sorter: (a, b) => a.seconds - b.seconds,
+      // sorter: (a, b) => console.log(a.seconds * 1000),
       render: (a) => (
         <span>{moment(a.seconds * 1000).format("DD.MM.YYYY")}</span>
       ),
-      sortDirections: ["descend"],
+      sortDirections: ["ascend"],
     },
     {
       title: "Konu Başlığı",

@@ -3,5 +3,9 @@
 }
 
 .ant-layout {
-  background: #EEEEEE;
+  background: #eeeeee;
+}
+
+.ant-layout-content {
+  margin: 0 !important;
 }
