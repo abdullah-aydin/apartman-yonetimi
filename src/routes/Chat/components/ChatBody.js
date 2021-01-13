@@ -66,6 +66,7 @@ function ChatBody({ room }) {
       });
     }
   });
+  
 
   return (
     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
