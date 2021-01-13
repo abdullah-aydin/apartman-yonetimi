@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import "./Market.css";
-import { Button, Card, Col, Row, Badge } from "antd";
+import { Button, Card, Col, Row, Badge, Drawer } from "antd";
 // ant desgin icons
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { products, categorys } from "../../constant/data";
+
+import MarketDrawer from "./components/MarketDrawer";
 // firebase
 // import db from "../../firebase";
 
@@ -12,6 +14,13 @@ const { Meta } = Card;
 function Market() {
   const [productItems, setProductItems] = useState([]);
   const [select, setSelect] = useState(0);
+  const [visible, setVisible] = useState(false);
+ const [title, setTitle] = useState("Atıştırmalık");
+  const [items, setItems] = useState([]);
+
+  const onClose = () => {
+    setVisible(false);
+  };
 
   useEffect(() => {
     let data = [];
@@ -49,18 +58,13 @@ function Market() {
         });
         break;
       case 6:
-        categorys.forEach((e) => {
+        products.forEach((e) => {
           e.categoryId === 6 && data.push(e);
         });
         break;
       case 7:
         products.forEach((e) => {
           e.categoryId === 7 && data.push(e);
-        });
-        break;
-      case 8:
-        products.forEach((e) => {
-          e.categoryId === 8 && data.push(e);
         });
         break;
       default:
@@ -85,6 +89,7 @@ function Market() {
         cover={<img className="card_img" alt="example" src={category.img} />}
         onClick={() => {
           setSelect(category.id);
+          setTitle(category.title);
         }}
       >
         <Row>
@@ -101,7 +106,7 @@ function Market() {
       md={16}
       sm={16}
       xs={16}
-      className="market_product_col"
+      
       key={index}
     >
       <Card
@@ -114,26 +119,46 @@ function Market() {
         <Meta
           className="card_product_name"
           title={product.title}
-          description={`${product.price} TL`}
+          description={`${product.price}  TL`}
         />
-        <Button className="market_buy_button">Sepete Ekle</Button>
+        <Button
+          className="market_buy_button"
+          onClick={() => setItems([...items, product])}
+        >
+          Sepete Ekle
+        </Button>
       </Card>
     </Col>
   ));
 
   return (
     <>
+    <div className="market_container">
       <div className="container_title">
-        <h1>Anasayfa</h1>
-        <Badge count={5}>
-          <ShoppingCartOutlined />
-        </Badge>
+        <h1 className="Market_title">Market</h1>
+       
+          <Badge className="market_badge" count={items.length}   onClick={() => setVisible(true)}>
+            <ShoppingCartOutlined />
+          </Badge>
+        
       </div>
-      <hr className="container_hr"/>
+      <hr className="container_hr" />
 
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>{categorytList}</Row>
 
-      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>{productList}</Row>
+      <div className="market_product_col">
+        <h1>{title}</h1>
+      </div>
+      <hr className="container_hr" />
+      
+
+      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+    
+        
+        {productList}</Row>
+
+      <MarketDrawer visible={visible} onClose={onClose} items={items} />
+      </div>
     </>
   );
 }
