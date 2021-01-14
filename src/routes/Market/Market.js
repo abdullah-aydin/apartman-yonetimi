@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Market.css";
 import { Button, Card, Col, Row, Badge, Drawer } from "antd";
+import { useHistory } from "react-router-dom";
 // ant desgin icons
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { products, categorys } from "../../constant/data";
@@ -8,6 +9,7 @@ import { products, categorys } from "../../constant/data";
 import MarketDrawer from "./components/MarketDrawer";
 // firebase
 // import db from "../../firebase";
+
 
 const { Meta } = Card;
 
@@ -24,6 +26,10 @@ function Market() {
 
   useEffect(() => {
     let data = [];
+
+
+  
+
 
     // shows the content of the selected items
     switch (select) {
@@ -131,19 +137,38 @@ function Market() {
     </Col>
   ));
 
+  const history = useHistory();
+
+    // go to new-sug-com page
+    const newshoppinglist = () => {
+      return history.push(`/shopping-list`);
+    };
+
   return (
     <>
     <div className="market_container">
       <div className="container_title">
         <h1 className="Market_title">Market</h1>
        
+       <diV className="market_badge_shoppinglist">
+
+       <Button className="shoppinglist_button"
+            type="default"
+            shape="round"
+            size="large"
+            onClick={newshoppinglist}
+          >
+            Siparişlerim
+          </Button>
           <Badge className="market_badge" count={items.length}   onClick={() => setVisible(true)}>
             <ShoppingCartOutlined />
           </Badge>
         
+          </diV>
+         
       </div>
       <hr className="container_hr" />
-
+    
       <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>{categorytList}</Row>
 
       <div className="market_product_col">

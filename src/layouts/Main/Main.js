@@ -7,6 +7,7 @@ import Chat from "../../routes/Chat";
 import Announcement from "../../routes/Announcement";
 import SugCom from "../../routes/SugCom";
 import FormSugCom from "../../routes/SugCom/components/FormSugCom";
+import ShoppingList from "../../routes/Market/components/ShoppingList"
 
 //style
 import "./Main.css";
@@ -71,6 +72,17 @@ function Main() {
             <Market />
           </div>
         </Route>
+
+        <Route path="/shopping-list">
+          <div
+            className="site-layout-background"
+            style={{ padding: 24, minHeight: 360 }}
+          >
+            <h1>SİPARİŞLERİM</h1>
+            <ShoppingList />
+          </div>
+        </Route>
+
       </Switch>
     </Content>
   );

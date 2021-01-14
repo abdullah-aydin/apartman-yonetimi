@@ -112,3 +112,18 @@ width: 350px !important;
   justify-content: space-between;
 
 }
+
+.market_badge_shoppinglist{
+  display: flex;
+  justify-content: space-between;
+  
+
+}
+
+.shoppinglist_table{
+  padding-top: 35px;
+  
+
+
+
+}
