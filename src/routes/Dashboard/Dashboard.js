@@ -1,11 +1,28 @@
+import { useState, useEffect } from "react";
 // ant design
 import { Card, Col, Row } from "antd";
 //components
 import ColumnChart from "../../components/ColumnChat";
 //styles
 import "./Dashboard.css";
+//firebase
+import db from "../../firebase";
 
 function Dashboard() {
+  const [bills, setBills] = useState([]);
+
+  useEffect(() => {
+    db.collection("users")
+      .doc("903rfcO6sbX7hJISg1ND")
+      .collection("bill")
+      .onSnapshot((snapshot) =>
+      setBills(snapshot.docs.map((doc) => doc.data()))
+      );
+  }, []);
+
+  console.log(bills[0])
+
+
   return (
     <>
       {/* AYLIK FATURA KISMI */}
