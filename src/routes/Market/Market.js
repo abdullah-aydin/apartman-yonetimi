@@ -10,26 +10,26 @@ import MarketDrawer from "./components/MarketDrawer";
 // firebase
 // import db from "../../firebase";
 
-
 const { Meta } = Card;
 
 function Market() {
   const [productItems, setProductItems] = useState([]);
   const [select, setSelect] = useState(0);
   const [visible, setVisible] = useState(false);
- const [title, setTitle] = useState("Atıştırmalık");
+  const [title, setTitle] = useState("Atıştırmalık");
   const [items, setItems] = useState([]);
 
   const onClose = () => {
     setVisible(false);
   };
 
+  const itemsAdd = (product) => {
+    setItems([...items, product]);
+  };
+  console.log(items);
+
   useEffect(() => {
     let data = [];
-
-
-  
-
 
     // shows the content of the selected items
     switch (select) {
@@ -106,15 +106,7 @@ function Market() {
   ));
 
   const productList = productItems.map((product, index) => (
-    <Col
-      xl={4}
-      lg={4}
-      md={16}
-      sm={16}
-      xs={16}
-      
-      key={index}
-    >
+    <Col xl={4} lg={4} md={16} sm={16} xs={16} key={index}>
       <Card
         className="card_market_product"
         hoverable
@@ -127,10 +119,7 @@ function Market() {
           title={product.title}
           description={`${product.price}  TL`}
         />
-        <Button
-          className="market_buy_button"
-          onClick={() => setItems([...items, product])}
-        >
+        <Button className="market_buy_button" onClick={() => itemsAdd(product)}>
           Sepete Ekle
         </Button>
       </Card>
@@ -139,50 +128,48 @@ function Market() {
 
   const history = useHistory();
 
-    // go to new-sug-com page
-    const newshoppinglist = () => {
-      return history.push(`/shopping-list`);
-    };
+  // go to new-sug-com page
+  const newshoppinglist = () => {
+    return history.push(`/shopping-list`);
+  };
 
   return (
     <>
-    <div className="market_container">
-      <div className="container_title">
-        <h1 className="Market_title">Market</h1>
-       
-       <diV className="market_badge_shoppinglist">
+      <div className="market_container">
+        <div className="container_title">
+          <h1 className="Market_title">Market</h1>
 
-       <Button className="shoppinglist_button"
-            type="default"
-            shape="round"
-            size="large"
-            onClick={newshoppinglist}
-          >
-            Siparişlerim
-          </Button>
-          <Badge className="market_badge" count={items.length}   onClick={() => setVisible(true)}>
-            <ShoppingCartOutlined />
-          </Badge>
-        
-          </diV>
-         
-      </div>
-      <hr className="container_hr" />
-    
-      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>{categorytList}</Row>
+          <div className="market_badge_shoppinglist">
+            <Button
+              className="shoppinglist_button"
+              type="default"
+              shape="round"
+              size="large"
+              onClick={newshoppinglist}
+            >
+              Siparişlerim
+            </Button>
+            <Badge
+              className="market_badge"
+              count={items.length}
+              onClick={() => setVisible(true)}
+            >
+              <ShoppingCartOutlined />
+            </Badge>
+          </div>
+        </div>
+        <hr className="container_hr" />
 
-      <div className="market_product_col">
-        <h1>{title}</h1>
-      </div>
-      <hr className="container_hr" />
-      
+        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>{categorytList}</Row>
 
-      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-    
-        
-        {productList}</Row>
+        <div className="market_product_col">
+          <h1>{title}</h1>
+        </div>
+        <hr className="container_hr" />
 
-      <MarketDrawer visible={visible} onClose={onClose} items={items} />
+        <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>{productList}</Row>
+
+        <MarketDrawer visible={visible} onClose={onClose} items={items} />
       </div>
     </>
   );

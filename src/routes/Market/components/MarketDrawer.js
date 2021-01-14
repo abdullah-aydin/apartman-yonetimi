@@ -1,18 +1,7 @@
 import { Drawer, Button, Radio, Space, InputNumber } from "antd";
 
 function MarketDrawer({ visible, onClose, items }) {
-  
-    const splineData = items.reduce((acc, obj) => {
-    let existObj = acc.find((item) => item.id === obj.id);
-    if (existObj) {
-      existObj.count = parseInt(existObj.count) + parseInt(obj.count);
-      return acc;
-    }
-    acc.push(obj);
-    return acc;
-  }, []);
 
-  console.log(items);
 
   function onChange(value) {
     console.log("changed", value);
@@ -28,9 +17,9 @@ function MarketDrawer({ visible, onClose, items }) {
         visible={visible}
         key="right"
       >
-        {items.map((item, index) => (
-          <div className="marketdrawer_count">
-            <p key={index}>{item.title} </p>
+        {/* {items.map((item, index) => (
+          <div className="marketdrawer_count" key={index}>
+            <p>{item.title} </p>
             <InputNumber
               min={1}
               max={10}
@@ -41,7 +30,7 @@ function MarketDrawer({ visible, onClose, items }) {
         ))}
         {items.length === 0 && (
           <p className="Market_drawer_sepet"> Henüz Sepete Ürün Eklemediniz!</p>
-        )}
+        )} */}
       </Drawer>
     </>
   );
