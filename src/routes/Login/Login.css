@@ -1,0 +1,19 @@
+.login_root {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+.login_body {
+  display: flex;
+}
+/* 
+.logo_login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.login_layout {
+} */

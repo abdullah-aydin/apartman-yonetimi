@@ -11,17 +11,23 @@ import "moment/locale/tr"; //for a turkish date format
 import Sidebar from "./layouts/Sidebar";
 import Navbar from "./layouts/Navbar";
 import Main from "./layouts/Main";
+import Login from "./routes/Login/Login";
 
 function App() {
+  const user = false;
   return (
     <Layout id="layout__root">
-      <Router>
-        <Sidebar />
-        <Layout>
-          <Navbar />
-          <Main />
-        </Layout>
-      </Router>
+      {!user ? (
+        <Login />
+      ) : (
+        <Router>
+          <Sidebar />
+          <Layout>
+            <Navbar />
+            <Main />
+          </Layout>
+        </Router>
+      )}
     </Layout>
   );
 }
