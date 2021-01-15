@@ -101,29 +101,24 @@
   justify-content: flex-end;
 }
 
-.ant-drawer-content-wrapper{
-width: 350px !important;
-  
+.ant-drawer-content-wrapper {
+  width: 350px !important;
 }
 
-.marketdrawer_count{
-
+.marketdrawer_count {
   display: flex;
   justify-content: space-between;
-
 }
 
-.market_badge_shoppinglist{
+.marketdrawer_p {
+  margin: auto 0px;
+}
+
+.market_badge_shoppinglist {
   display: flex;
   justify-content: space-between;
-  
-
 }
 
-.shoppinglist_table{
+.shoppinglist_table {
   padding-top: 35px;
-  
-
-
-
 }

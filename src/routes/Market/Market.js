@@ -24,9 +24,28 @@ function Market() {
   };
 
   const itemsAdd = (product) => {
-    setItems([...items, product]);
+    if (items.length === 0) {
+      return setItems([product]);
+    }
+
+    let updated = false;
+    items.map(
+      (item) =>
+        item.id === product.id &&
+        (setItems(
+          items.map((newItem) =>
+            newItem.id === product.id
+              ? {
+                  ...newItem,
+                  count: newItem.count + 1,
+                }
+              : newItem
+          )
+        ),
+        (updated = true))
+    );
+    !updated && setItems([...items, product]);
   };
-  console.log(items);
 
   useEffect(() => {
     let data = [];
@@ -169,7 +188,12 @@ function Market() {
 
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>{productList}</Row>
 
-        <MarketDrawer visible={visible} onClose={onClose} items={items} />
+        <MarketDrawer
+          visible={visible}
+          onClose={onClose}
+          items={items}
+          setItems={setItems}
+        />
       </div>
     </>
   );
