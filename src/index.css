@@ -3,6 +3,9 @@ body {
   font-family: "Poppins", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%; 
+  background: #f0f2f5;
 }
 #root {
   height: 100vh;
@@ -13,9 +16,12 @@ code {
 }
 
 .logo {
-  height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
+}
+
+.logo img {
+  width: 100%;
 }
 
 .site-layout-sub-header-background {

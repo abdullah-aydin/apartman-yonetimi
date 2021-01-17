@@ -45,6 +45,8 @@
 .card_market_product {
   width: 256px;
   border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 1rem;
 }
 
 .card_product_img {
@@ -121,4 +123,8 @@
 
 .shoppinglist_table {
   padding-top: 35px;
+}
+
+.market_container .ant-row {
+  justify-content: center;
 }
