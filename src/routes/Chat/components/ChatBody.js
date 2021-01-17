@@ -17,6 +17,7 @@ import MessageOwner from "./MessageOwner";
 function ChatBody({ room }) {
   const [chatMessages, setChatMessages] = useState([]);
   const [meetingMessages, setMeetingMessages] = useState([]);
+  const [bottom, setBottom] = useState(true);
   const [text, setText] = useState("");
   const messageRef = useRef();
   const numberRoom = parseInt(room);
@@ -58,7 +59,7 @@ function ChatBody({ room }) {
 
   //for a chat screen scroll to bottom
   useEffect(() => {
-    if (messageRef.current) {
+    if (bottom && messageRef.current) {
       messageRef.current.scrollIntoView({
         behavior: "smooth",
         block: "end",
@@ -66,7 +67,14 @@ function ChatBody({ room }) {
       });
     }
   });
-  
+
+  const handleScroll = (event) => {
+    const target = event.target;
+    // **** +10 padding ****
+    target.scrollHeight - target.scrollTop <= target.clientHeight + 10
+      ? setBottom(true)
+      : setBottom(false);
+  };
 
   return (
     <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
@@ -82,7 +90,7 @@ function ChatBody({ room }) {
           >
             {loading && <Loading />}
             {!loading && (
-              <div className="message_body">
+              <div className="message_body" onScroll={handleScroll}>
                 {(numberRoom === 1 ? chatMessages : meetingMessages).map(
                   (msg, index) => (
                     <div
