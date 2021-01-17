@@ -14,7 +14,7 @@ import Main from "./layouts/Main";
 import Login from "./routes/Login/Login";
 
 function App() {
-  const user = false;
+  const user = true;
   return (
     <Layout id="layout__root">
       {!user ? (
