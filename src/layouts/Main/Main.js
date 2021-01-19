@@ -78,7 +78,6 @@ function Main() {
             className="site-layout-background"
             style={{ padding: 24, minHeight: 360 }}
           >
-            <h1>SİPARİŞLERİM</h1>
             <ShoppingList />
           </div>
         </Route>

@@ -103,7 +103,7 @@ function Market() {
       xl={3}
       lg={6}
       md={8}
-      sm={12}
+      sm={8}
       xs={12}
       className="market_col"
       key={category.id}
@@ -116,16 +116,13 @@ function Market() {
           setSelect(category.id);
           setTitle(category.title);
         }}
-      >
-        <Row>
-          <Meta title={category.title} className="card_category_name" />
-        </Row>
-      </Card>
+      ></Card>
+      <Meta title={category.title} className="card_category_name"   />
     </Col>
   ));
 
   const productList = productItems.map((product, index) => (
-    <Col xl={4} lg={4} md={16} sm={16} xs={16} key={index}>
+    <Col xl={6} lg={8} md={8} sm={12} xs={16} key={index}>
       <Card
         className="card_market_product"
         hoverable
@@ -194,7 +191,6 @@ function Market() {
           items={items}
           setItems={setItems}
         />
-       
       </div>
     </>
   );

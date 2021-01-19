@@ -6,7 +6,7 @@
   /*overflow: hidden;*/
 }
 
-.ant-card-cover img {
+.card_img {
   width: 7rem;
   height: 7rem;
 }
@@ -14,7 +14,8 @@
 .market_col {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  flex-direction: column;
+  align-items: center;
 }
 
 .card_img {
@@ -24,12 +25,13 @@
 .card_category_name {
   display: flex;
   justify-content: center;
+  margin: 10px;
 }
 
 .market_col > div:nth-child(1) > div:nth-child(2) {
-  display: flex;
+  /* display: flex;
   margin-top: 10px;
-  justify-content: center;
+  justify-content: center; */
 }
 
 /* ÜRÜNLER İÇİN CSS BAŞLANGIÇ*/
@@ -38,12 +40,12 @@
   margin-top: 7%;
 }
 .card_product_img {
-  width: 256px !important;
-  height: 256px !important;
+  /* max-width: 256px !important; */
+  max-height: 256px !important;
 }
 
 .card_market_product {
-  width: 256px;
+  /* width: 256px; */
   border-radius: 20px;
   overflow: hidden;
   margin-bottom: 1rem;
@@ -68,6 +70,7 @@
 
 .ant-card-meta-title {
   display: flex;
+  /* color: #3b4cb8; */
 }
 
 .container_title {
