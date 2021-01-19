@@ -117,7 +117,7 @@ function Market() {
           setTitle(category.title);
         }}
       ></Card>
-      <Meta title={category.title} className="card_category_name"   />
+      <Meta title={category.title} className="card_category_name" />
     </Col>
   ));
 
@@ -187,6 +187,7 @@ function Market() {
 
         <MarketDrawer
           visible={visible}
+          setVisible={setVisible}
           onClose={onClose}
           items={items}
           setItems={setItems}
