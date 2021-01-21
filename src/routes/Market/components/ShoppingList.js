@@ -1,10 +1,6 @@
-import React from "react";
-import "../Market.css";
 import { useState, useEffect } from "react";
-// ant design icon
-import { DeleteOutlined } from "@ant-design/icons";
-//hook-form
-import { useForm, Controller } from "react-hook-form";
+//styles
+import "../Market.css";
 // router
 import { useHistory } from "react-router-dom";
 // ant design
@@ -20,13 +16,25 @@ import {
   Table,
   Tooltip,
 } from "antd";
+//firebase
+import db from "../../../firebase";
 
 import moment from "moment";
 
 function ShoppingList() {
-  const [sugCom, setSugCom] = useState([]);
-  const { handleSubmit, control } = useForm();
+  const [orders, setOrders] = useState([]);
 
+  // orders data fetch from firebase
+  useEffect(() => {
+    db.collection("users")
+      .doc("903rfcO6sbX7hJISg1ND")
+      .collection("orders")
+      .onSnapshot((snapshot) =>
+        setOrders(snapshot.docs.map((doc) => console.log(doc.data())))
+      );
+  }, [orders]);
+
+  console.log(orders);
   const history = useHistory();
 
   const backshoppinglist = () => {
@@ -102,11 +110,11 @@ function ShoppingList() {
       <Table
         className="shoppinglist_table"
         columns={columns}
-        dataSource={sugCom}
+        dataSource={orders}
         pagination={{ position: ["bottomRight"] }}
         expandable={{
-          expandedRowRender: (data) => expandedRow(data),
-          rowExpandable: (data) => data.status[0] === false,
+          // expandedRowRender: (data) => expandedRow(data),
+          // rowExpandable: (data) => data.status[0] === false,
         }}
       />
     </div>

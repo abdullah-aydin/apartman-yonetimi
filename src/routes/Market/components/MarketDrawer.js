@@ -5,9 +5,11 @@ import { Drawer, InputNumber, Tooltip, Button, Row, Col } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 //firebase
 import db from "../../../firebase";
+import ConfirmModal from "../../../components/ConfirmModal";
 
 function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
   const [marketItems, setMarketItems] = useState(items);
+  const [modalVisible, setModalVisible] = useState(false);
   let totalPrice = 0;
 
   useEffect(() => {
@@ -40,7 +42,7 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
       .doc("903rfcO6sbX7hJISg1ND")
       .collection("orders")
       .add({
-        orderList,
+        ...orderList,
       })
       .then((e) => console.log("ürünler eklendi"))
       .catch((e) => console.error(e))
@@ -49,7 +51,9 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
         setItems([]);
       });
   };
-  
+
+  const modalIsVisible = () => setModalVisible(!modalVisible);
+
   return (
     <>
       <Drawer
@@ -112,7 +116,7 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
                   shape="round "
                   size="medium"
                   style={{ backgroundColor: "#3dc410", color: "white" }}
-                  onClick={() => orderList(marketItems)}
+                  onClick={() => modalIsVisible(true)}
                 >
                   Siparişi Tamamla
                 </Button>
@@ -124,6 +128,11 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
           <p className="Market_drawer_sepet"> Henüz Sepete Ürün Eklemediniz!</p>
         )}
       </Drawer>
+      <ConfirmModal
+        modalVisible={modalVisible}
+        modalIsVisible={modalIsVisible}
+        confirmFunction={() => orderList(marketItems)}
+      />
     </>
   );
 }
