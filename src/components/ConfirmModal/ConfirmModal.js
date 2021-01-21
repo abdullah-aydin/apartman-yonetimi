@@ -1,20 +1,27 @@
 //ant design
 import { Modal } from "antd";
 
-function ConfirmModal({ modalVisible, modalIsVisible, confirmFunction }) {
+function ConfirmModal({
+  modalVisible,
+  modalIsVisible,
+  confirmFunction,
+  title,
+  subtitle,
+}) {
   return (
     <Modal
-      title="20px to Top"
+      getContainer={false}
+      title={title}
       visible={modalVisible}
-      onOk={() => {
-        confirmFunction();
-        modalIsVisible(false);
+      zIndex={1001}
+      onOk={confirmFunction}
+      okText="Onaylıyorum"
+      cancelText="Vazgeç"
+      onCancel={() => {
+        modalIsVisible(!modalVisible);
       }}
-      onCancel={() => modalIsVisible(!modalVisible)}
     >
-      <p>some contents...</p>
-      <p>some contents...</p>
-      <p>some contents...</p>
+      <p>{subtitle}</p>
     </Modal>
   );
 }

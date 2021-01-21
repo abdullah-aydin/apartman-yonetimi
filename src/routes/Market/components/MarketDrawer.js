@@ -9,14 +9,21 @@ import ConfirmModal from "../../../components/ConfirmModal";
 
 function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
   const [marketItems, setMarketItems] = useState(items);
+  // confirm modal
   const [modalVisible, setModalVisible] = useState(false);
+  const modalIsVisible = () => setModalVisible(!modalVisible);
+
   let totalPrice = 0;
+  let itemCount = 0;
 
   useEffect(() => {
     setMarketItems(items);
   }, [items]);
 
-  items.map((item) => (totalPrice += item.price * item.count));
+  items.map((item) => {
+    totalPrice += item.price * item.count;
+    itemCount += item.count;
+  });
 
   const onChange = (id, cnt) => {
     setItems(
@@ -36,6 +43,7 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
     setItems(newList);
   };
 
+  // order list saved to db
   const orderList = (orderList) => {
     //order adding to database
     db.collection("users")
@@ -47,12 +55,11 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
       .then((e) => console.log("ürünler eklendi"))
       .catch((e) => console.error(e))
       .finally(() => {
+        setModalVisible(!modalVisible);
         setVisible(false);
         setItems([]);
       });
   };
-
-  const modalIsVisible = () => setModalVisible(!modalVisible);
 
   return (
     <>
@@ -103,7 +110,7 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
           <>
             <Row>
               <Col span={16}>
-                <h4>{`Toplam ${marketItems.length} ürün`}</h4>
+                <h4>{`Toplam ${itemCount} ürün`}</h4>
               </Col>
               <Col span={8}>
                 <h4>{`Fiyat: ${totalPrice} ₺`}</h4>
@@ -132,6 +139,8 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
         modalVisible={modalVisible}
         modalIsVisible={modalIsVisible}
         confirmFunction={() => orderList(marketItems)}
+        title={"Siparişinizi onaylıyor musunuz?"}
+        subtitle={`Toplam ${itemCount} ürün ve bu ürünlerin toplam fiyatı ${totalPrice} ₺`}
       />
     </>
   );
