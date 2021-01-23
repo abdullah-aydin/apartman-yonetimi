@@ -2,9 +2,7 @@ import { useState, useEffect, useRef } from "react";
 //input emoji
 import InputEmoji from "react-input-emoji";
 // ant design
-import { Card, Col, Row, Button, Tooltip } from "antd";
-// ant design icons
-import { SendOutlined } from "@ant-design/icons";
+import { Card, Col, Row } from "antd";
 //styles
 import "../Chat.css";
 //firebase

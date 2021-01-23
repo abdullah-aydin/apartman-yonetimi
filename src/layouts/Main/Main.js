@@ -1,13 +1,12 @@
 // router
-import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 // ant design style
 import { Layout } from "antd";
 import Dashboard from "../../routes/Dashboard";
 import Chat from "../../routes/Chat";
-import Announcement from "../../routes/Announcement";
 import SugCom from "../../routes/SugCom";
 import FormSugCom from "../../routes/SugCom/components/FormSugCom";
-import ShoppingList from "../../routes/Market/components/ShoppingList"
+import ShoppingList from "../../routes/Market/components/ShoppingList";
 
 //style
 import "./Main.css";
@@ -16,7 +15,6 @@ import Market from "../../routes/Market/Market";
 const { Content } = Layout;
 
 function Main() {
-  
   return (
     <Content style={{ margin: "24px 16px 0" }}>
       <Switch>
@@ -81,8 +79,6 @@ function Main() {
             <ShoppingList />
           </div>
         </Route>
-
-       
       </Switch>
     </Content>
   );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Market.css";
-import { Button, Card, Col, Row, Badge, Drawer } from "antd";
+import { Button, Card, Col, Row, Badge } from "antd";
 import { useHistory } from "react-router-dom";
 // ant desgin icons
 import { ShoppingCartOutlined } from "@ant-design/icons";

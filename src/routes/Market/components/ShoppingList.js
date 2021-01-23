@@ -5,14 +5,9 @@ import "../Market.css";
 import { useHistory } from "react-router-dom";
 // ant design
 import {
-  Card,
-  Col,
-  Row,
+  
   Button,
-  Input,
-  Select,
   Tag,
-  Space,
   Table,
   Tooltip,
 } from "antd";
@@ -41,9 +36,7 @@ function ShoppingList() {
     return history.push(`/market`);
   };
 
-  const expandedRow = (data) => {
-    return <></>;
-  };
+
 
   const columns = [
     {

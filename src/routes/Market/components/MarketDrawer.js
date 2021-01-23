@@ -20,7 +20,7 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
     setMarketItems(items);
   }, [items]);
 
-  items.map((item) => {
+  items.forEach((item) => {
     totalPrice += item.price * item.count;
     itemCount += item.count;
   });

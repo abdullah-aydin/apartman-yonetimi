@@ -1,8 +1,11 @@
-import React from "react";
+// hook-form
 import { useForm, Controller } from "react-hook-form";
-import { Card, Col, Row, Button, Input, Select } from "antd";
+// ant design
+import { Card, Col, Row, Button, Input } from "antd";
+// styles
 import logo from "../../assets/images/logo.png";
 import "./Login.css";
+
 function Login() {
   const { handleSubmit, control } = useForm();
   const submit = (e) => {
@@ -21,46 +24,44 @@ function Login() {
             xs={24}
             className="sugcom_section"
           >
-          
-                <div className="logo_login">
-                  <img src={logo} alt="" />
-                </div>
+            <div className="logo_login">
+              <img src={logo} alt="" />
+            </div>
 
-                <form onSubmit={handleSubmit(submit)}>
-                  <div className="login_layout">
-                    <label>E-posta</label>
-                    <Controller
-                      placeholder="konu başlığını yazınız..."
-                      as={Input}
-                      required
-                      defaultValue={""}
-                      control={control}
-                      name="eposta"
-                    />
-                  </div>
+            <form onSubmit={handleSubmit(submit)}>
+              <div className="login_layout">
+                <label>E-posta</label>
+                <Controller
+                  placeholder="konu başlığını yazınız..."
+                  as={Input}
+                  required
+                  defaultValue={""}
+                  control={control}
+                  name="eposta"
+                />
+              </div>
 
-                  <div className="login_layout">
-                    <label>Parola</label>
-                    <Controller
-                      placeholder="konu başlığını yazınız..."
-                      as={Input.Password}
-                      required
-                      defaultValue={""}
-                      control={control}
-                      name="parola"
-                    />
-                  </div>
-                  <Button
-                    type="primary"
-                    shape="round"
-                    size="large"
-                    htmlType="submit"
-                    className="form_button"
-                  >
-                    Giriş
-                  </Button>
-                </form>
-            
+              <div className="login_layout">
+                <label>Parola</label>
+                <Controller
+                  placeholder="konu başlığını yazınız..."
+                  as={Input.Password}
+                  required
+                  defaultValue={""}
+                  control={control}
+                  name="parola"
+                />
+              </div>
+              <Button
+                type="primary"
+                shape="round"
+                size="large"
+                htmlType="submit"
+                className="form_button"
+              >
+                Giriş
+              </Button>
+            </form>
           </Col>
         </Card>
       </Col>
