@@ -50,7 +50,10 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
       .doc("903rfcO6sbX7hJISg1ND")
       .collection("orders")
       .add({
-        ...orderList,
+        orders: [...orderList],
+        date: new Date(),
+        delivered: [false],
+        totalPrice: totalPrice,
       })
       .then((e) => console.log("ürünler eklendi"))
       .catch((e) => console.error(e))

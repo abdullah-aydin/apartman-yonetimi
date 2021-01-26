@@ -4,16 +4,12 @@ import "../Market.css";
 // router
 import { useHistory } from "react-router-dom";
 // ant design
-import {
-  
-  Button,
-  Tag,
-  Table,
-  Tooltip,
-} from "antd";
+import { Button, Tag, Table, Tooltip } from "antd";
+// ant design icon
+import { DeleteOutlined } from "@ant-design/icons";
 //firebase
 import db from "../../../firebase";
-
+//moment
 import moment from "moment";
 
 function ShoppingList() {
@@ -25,49 +21,38 @@ function ShoppingList() {
       .doc("903rfcO6sbX7hJISg1ND")
       .collection("orders")
       .onSnapshot((snapshot) =>
-        setOrders(snapshot.docs.map((doc) => console.log(doc.data())))
+        setOrders(snapshot.docs.map((doc) => ({ ...doc.data(), key: doc.id })))
       );
-  }, [orders]);
+  }, []);
 
-  console.log(orders);
   const history = useHistory();
 
   const backshoppinglist = () => {
     return history.push(`/market`);
   };
 
-
-
   const columns = [
     {
       title: "Tarih",
       dataIndex: "date",
       key: "date",
-      // sorter: (a, b) => console.log(a.seconds * 1000),
+      sorter: (a, b) => console.log(a.seconds * 1000),
       render: (a) => (
         <span>{moment(a.seconds * 1000).format("DD.MM.YYYY")}</span>
       ),
       sortDirections: ["ascend"],
     },
     {
-      title: "Toplam Tutar",
-      dataIndex: "title",
-      key: "title",
-      render: (text) => <span>{text}</span>,
-    },
-
-    {
       title: "Sipariş Durumu",
-      key: "status",
-      dataIndex: "status",
+      key: "delivered",
+      dataIndex: "delivered",
       render: (tags) => (
         <>
           {tags.map((tag) => {
-            let color = tag ? "geekblue" : "green";
-
+            let color = tag === false ? "geekblue" : "green";
             return (
               <Tag color={color} key={tag}>
-                {tag ? "Devam ediyor" : "Tamamlandı"}
+                {tag === false ? "Devam ediyor" : "Teslim edildi"}
               </Tag>
             );
           })}
@@ -75,11 +60,45 @@ function ShoppingList() {
       ),
     },
     {
+      title: "Toplam Tutar",
+      dataIndex: "totalPrice",
+      key: "totalPrice",
+      render: (text) => <span>{`${text} ₺`}</span>,
+    },
+    {
       title: "İşlem Yap",
       key: "delete",
-      render: (text) => <Tooltip title="Sil"></Tooltip>,
+      render: (text) => (
+        <Tooltip title="Sil">
+          <Button
+            type="text"
+            danger
+            shape="circle"
+            icon={<DeleteOutlined />}
+            // onClick={() => deleteSugCom(text.key)}
+          />
+        </Tooltip>
+      ),
     },
   ];
+
+  // expanded row menu
+  const expandedRow = (data) => {
+    console.log(data);
+    return (
+      <>
+        <h3>Satın Aldığınız Ürünler</h3>
+        <ul>
+          {data.orders.map((order) => (
+            <li>{`${order.title} (${order.count} adet) - ${
+              order.price * order.count
+            } ₺`}</li>
+          ))}
+        </ul>
+        <h4>{`Toplam Fiyatı: ${data.totalPrice} ₺`}</h4>
+      </>
+    );
+  };
 
   return (
     <div className="shoppinglist_container">
@@ -106,8 +125,8 @@ function ShoppingList() {
         dataSource={orders}
         pagination={{ position: ["bottomRight"] }}
         expandable={{
-          // expandedRowRender: (data) => expandedRow(data),
-          // rowExpandable: (data) => data.status[0] === false,
+          expandedRowRender: (data) => expandedRow(data),
+          rowExpandable: (data) => data.delivered !== [],
         }}
       />
     </div>
