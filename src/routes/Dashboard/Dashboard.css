@@ -7,6 +7,32 @@
   border-radius: 15px;
 }
 
+.cardOne {
+  background: #C9FFBF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #ff9a9e , #fad0c4);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #ff9a9e, #fad0c4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+}
+
+.cardTwo {
+  background: #70e1f5;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #ffecd2, #fcb69f);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #ffecd2, #fcb69f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.cardThree {
+  background: #A770EF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #a1c4fd  , #c2e9fb  );  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #a1c4fd  , #c2e9fb  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.cardFour {
+  background: #12c2e9;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #96deda  , #50c9c3  );  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #96deda  , #50c9c3  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
 .card_col {
   margin-bottom: 24px;
 }
@@ -23,10 +49,10 @@
   margin: 0;
 }
 .card_p {
-  color: darkgray;
+  color: #000000;
 }
 .card_percantage {
-  color: yellowgreen;
+  color: #ffffff;
   font-size: xx-large;
   height: 100%;
   display: flex;

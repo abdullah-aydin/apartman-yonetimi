@@ -48,7 +48,7 @@ function Dashboard() {
       <div className="card-wrapper">
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
-            <Card bordered={true} className="card">
+            <Card bordered={true} className="card cardOne">
               <Row>
                 <Col flex={3.5}>
                   <h2 className="card_title">
@@ -67,7 +67,7 @@ function Dashboard() {
           </Col>
 
           <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
-            <Card bordered={true} className="card">
+            <Card bordered={true} className="card cardTwo">
               <Row>
                 <Col flex={3.5}>
                   <h2 className="card_title">259 TL</h2>
@@ -81,7 +81,7 @@ function Dashboard() {
             </Card>
           </Col>
           <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
-            <Card bordered={true} className="card">
+            <Card bordered={true} className="card cardThree">
               <Row>
                 <Col flex={3.5}>
                   <h2 className="card_title">259 TL</h2>
@@ -95,7 +95,7 @@ function Dashboard() {
             </Card>
           </Col>
           <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
-            <Card bordered={true} className="card">
+            <Card bordered={true} className="card cardFour">
               <Row>
                 <Col flex={3.5}>
                   <h2 className="card_title">259 TL</h2>
