@@ -27,19 +27,39 @@ function Dashboard() {
 
   const avarage = (dt) => {
     if (dt) {
-      const last_data = Object.values(dt).pop();
-      const datas = Object.values(dt);
-      let avrg;
-      datas.pop(); //last data deleted
-      let total_prise = 0;
-      datas.forEach((d) => (total_prise += d.price));
+      const allMonthBills = Object.values(dt);
+      allMonthBills.pop(); //last data deleted
 
-      avrg = total_prise / datas.length;
+      const lastBill = Object.values(dt).pop();
 
-      return { avrg: avrg.toFixed(2), last_data: last_data };
+      let totalPrice = 0;
+
+      allMonthBills.forEach((d) => (totalPrice += d.price));
+
+      let avrg = totalPrice / allMonthBills.length;
+
+      return { avrg: avrg.toFixed(2), lastBill: lastBill };
     }
 
-    return { avrg: 0, last_data: 0 };
+    return { avrg: 0, lastBill: 0 };
+  };
+
+  const thisMonthPrice = (count) => {
+    let price = avarage(bills[count]?.data).lastBill.price;
+    return price;
+  };
+
+  const averagePrice = (count) => {
+    let price = avarage(bills[count]?.data).avrg;
+    return price;
+  };
+
+  const percantage = (count) => {
+    let per = (
+      ((thisMonthPrice(count) - averagePrice(count)) / thisMonthPrice(count)) *
+      100
+    ).toFixed(1);
+    return per;
   };
 
   return (
@@ -51,16 +71,12 @@ function Dashboard() {
             <Card bordered={true} className="card cardOne">
               <Row>
                 <Col flex={3.5}>
-                  <h2 className="card_title">
-                    {avarage(bills[0]?.data).last_data.price} TL
-                  </h2>
+                  <h2 className="card_title">{thisMonthPrice(0)} TL</h2>
                   <h3 className="card_detail">Aylık Elektrik Faturası</h3>
-                  <p className="card_p">
-                    Aylık ortalama {avarage(bills[0]?.data).avrg} TL
-                  </p>
+                  <p className="card_p">Aylık ortalama {averagePrice(0)} TL</p>
                 </Col>
                 <Col flex={1.5}>
-                  <h2 className="card_percantage">7% </h2>
+                  <h2 className="card_percantage">{percantage(0)} % </h2>
                 </Col>
               </Row>
             </Card>

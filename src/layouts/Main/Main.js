@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 // ant design style
 import { Layout } from "antd";
 import Dashboard from "../../routes/Dashboard";
+import Analytics from "../../routes/Analytics";
 import Chat from "../../routes/Chat";
 import SugCom from "../../routes/SugCom";
 import FormSugCom from "../../routes/SugCom/components/FormSugCom";
@@ -26,6 +27,16 @@ function Main() {
             <h1>Anasayfa</h1>
             <hr />
             <Dashboard />
+          </div>
+        </Route>
+        <Route path="/analytics">
+          <div
+            className="site-layout-background"
+            style={{ padding: 24, minHeight: 360 }}
+          >
+            <h1>Gider Tablosu</h1>
+            <hr />
+            <Analytics />
           </div>
         </Route>
 

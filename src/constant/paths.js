@@ -16,8 +16,8 @@ export const sidebarMenu = [
   },
   {
     id: 1,
-    name: "Analiz",
-    url: "/analytcs",
+    name: "Gider Tablosu",
+    url: "/analytics",
     icon: <LineChartOutlined />,
   },
   {
