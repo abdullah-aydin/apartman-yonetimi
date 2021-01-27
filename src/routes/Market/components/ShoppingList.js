@@ -36,7 +36,7 @@ function ShoppingList() {
       title: "Tarih",
       dataIndex: "date",
       key: "date",
-      sorter: (a, b) => console.log(a.seconds * 1000),
+      // sorter: (a, b) => console.log(a.seconds * 1000),
       render: (a) => (
         <span>{moment(a.seconds * 1000).format("DD.MM.YYYY")}</span>
       ),
@@ -84,7 +84,6 @@ function ShoppingList() {
 
   // expanded row menu
   const expandedRow = (data) => {
-    console.log(data);
     return (
       <>
         <h3>Satın Aldığınız Ürünler</h3>
