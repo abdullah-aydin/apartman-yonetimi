@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 // ant design
 import { Card, Col, Row } from "antd";
-//components
-import ColumnChart from "../../components/ColumnChat";
+// ant design icon
+import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
 //styles
 import "./Dashboard.css";
 //firebase
@@ -10,6 +10,7 @@ import db from "../../firebase";
 
 function Dashboard() {
   const [bills, setBills] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     db.collection("users")
@@ -23,17 +24,30 @@ function Dashboard() {
           }))
         )
       );
+
+    db.collection("users")
+      .doc("903rfcO6sbX7hJISg1ND")
+      .collection("orders")
+      .onSnapshot((snapshot) =>
+        setOrders(snapshot.docs.map((doc) => doc.data()))
+      );
   }, []);
+  console.log(orders);
 
   const avarage = (dt) => {
     if (dt) {
       const allMonthBills = Object.values(dt);
-      allMonthBills.pop(); //last data deleted
 
-      const lastBill = Object.values(dt).pop();
+      // dt items sorts from first date to last date
+      allMonthBills.sort(function (a, b) {
+        if (a.date > b.date) return 1;
+        if (a.date < b.date) return -1;
+        return 0;
+      });
+
+      const lastBill = allMonthBills.pop();
 
       let totalPrice = 0;
-
       allMonthBills.forEach((d) => (totalPrice += d.price));
 
       let avrg = totalPrice / allMonthBills.length;
@@ -71,12 +85,28 @@ function Dashboard() {
             <Card bordered={true} className="card cardOne">
               <Row>
                 <Col flex={3.5}>
-                  <h2 className="card_title">{thisMonthPrice(0)} TL</h2>
+                  <h2 className="card_title">{thisMonthPrice(0)} ₺</h2>
                   <h3 className="card_detail">Aylık Elektrik Faturası</h3>
-                  <p className="card_p">Aylık ortalama {averagePrice(0)} TL</p>
+                  <p className="card_p">
+                    Aylık ortalama <b>{averagePrice(0)} ₺</b>
+                  </p>
                 </Col>
                 <Col flex={1.5}>
-                  <h2 className="card_percantage">{percantage(0)} % </h2>
+                  {percantage(0) > 0 ? (
+                    <h2
+                      className="card_percantage negative"
+                    >
+                      <CaretUpOutlined />
+                      {percantage(0)}%
+                    </h2>
+                  ) : (
+                    <h2
+                      className="card_percantage positive"
+                    >
+                      <CaretDownOutlined />
+                      {percantage(0)}%
+                    </h2>
+                  )}
                 </Col>
               </Row>
             </Card>
@@ -86,12 +116,28 @@ function Dashboard() {
             <Card bordered={true} className="card cardTwo">
               <Row>
                 <Col flex={3.5}>
-                  <h2 className="card_title">259 TL</h2>
-                  <h3 className="card_detail">Aylık Elektrik Faturası</h3>
-                  <p className="card_p">Aylık ortalama 200 TL</p>
+                  <h2 className="card_title">{thisMonthPrice(1)} ₺</h2>
+                  <h3 className="card_detail">Aylık Doğalgaz Faturası</h3>
+                  <p className="card_p">
+                    Aylık ortalama <b>{averagePrice(1)} ₺</b>
+                  </p>
                 </Col>
                 <Col flex={1.5}>
-                  <h2 className="card_percantage">7% </h2>
+                  {percantage(1) > 0 ? (
+                    <h2
+                      className="card_percantage negative"
+                    >
+                      <CaretUpOutlined />
+                      {percantage(1)}%
+                    </h2>
+                  ) : (
+                    <h2
+                      className="card_percantage positive"
+                    >
+                      <CaretDownOutlined />
+                      {percantage(1)}%
+                    </h2>
+                  )}
                 </Col>
               </Row>
             </Card>
@@ -100,12 +146,28 @@ function Dashboard() {
             <Card bordered={true} className="card cardThree">
               <Row>
                 <Col flex={3.5}>
-                  <h2 className="card_title">259 TL</h2>
-                  <h3 className="card_detail">Aylık Elektrik Faturası</h3>
-                  <p className="card_p">Aylık ortalama 200 TL</p>
+                  <h2 className="card_title">{thisMonthPrice(2)} ₺</h2>
+                  <h3 className="card_detail">Aylık Su Faturası</h3>
+                  <p className="card_p">
+                    Aylık ortalama <b>{averagePrice(2)} ₺</b>
+                  </p>
                 </Col>
                 <Col flex={1.5}>
-                  <h2 className="card_percantage">7% </h2>
+                  {percantage(2) > 0 ? (
+                    <h2
+                      className="card_percantage negative"
+                    >
+                      <CaretUpOutlined />
+                      {percantage(2)}%
+                    </h2>
+                  ) : (
+                    <h2
+                      className="card_percantage positive"
+                    >
+                      <CaretDownOutlined />
+                      {percantage(2)}%
+                    </h2>
+                  )}
                 </Col>
               </Row>
             </Card>
@@ -115,7 +177,7 @@ function Dashboard() {
               <Row>
                 <Col flex={3.5}>
                   <h2 className="card_title">259 TL</h2>
-                  <h3 className="card_detail">Aylık Elektrik Faturası</h3>
+                  <h3 className="card_detail">Aylık Market Gideri</h3>
                   <p className="card_p">Aylık ortalama 200 TL</p>
                 </Col>
                 <Col flex={1.5}>
@@ -129,28 +191,6 @@ function Dashboard() {
       {/* ./ AYLIK FATURA KISMI */}
       <div className="site-card-wrapper">
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-          <Col xl={12} lg={12} md={16} sm={16} xs={16}>
-            <Card bordered={true} className="card">
-              <Row>
-                <Col xl={24} lg={24} md={24} sm={24} xs={24}>
-                  <h3 className="card_detail">Aylık Toplam Gider</h3>
-                  <Row>
-                    <Col>
-                      <h2 className="card_title">259 TL</h2>
-                    </Col>
-                    <Col className="card_charts_col">
-                      <p className="card_charts_p">
-                        Geçen ay harcanılan toplam tutar 200 TL
-                      </p>
-                    </Col>
-                  </Row>
-                </Col>
-                <Col xl={24} lg={24} md={24} sm={24} xs={24}>
-                  <ColumnChart />
-                </Col>
-              </Row>
-            </Card>
-          </Col>
           <Col
             xl={6}
             lg={6}
