@@ -6,7 +6,7 @@ import { Card, Col, Row } from "antd";
 //styles
 import "../Chat.css";
 //firebase
-import db from "../../../firebase";
+import db from "../../../config/firebase";
 //component
 import Loading from "../../../components/Loading";
 import MessageOthers from "./MessageOthers";

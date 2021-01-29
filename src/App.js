@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 import "./App.css";
 //router
 import { BrowserRouter as Router } from "react-router-dom";
@@ -14,10 +16,11 @@ import Main from "./layouts/Main";
 import Login from "./routes/Login/Login";
 
 function App() {
-  const user = true;
+  const { userState } = useContext(AuthContext);
+  
   return (
     <Layout id="layout__root">
-      {!user ? (
+      {!userState ? (
         <Login />
       ) : (
         <Router>

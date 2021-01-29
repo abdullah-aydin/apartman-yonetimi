@@ -7,7 +7,7 @@ import { Card, Col, Row, Button, Input, Select } from "antd";
 //styles
 import "../SugCom.css";
 //firebase
-import db from "../../../firebase";
+import db from "../../../config/firebase";
 
 const { Option } = Select;
 const { TextArea } = Input;

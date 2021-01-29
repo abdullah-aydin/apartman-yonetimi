@@ -8,7 +8,7 @@ import { Button, Tag, Table, Tooltip } from "antd";
 // ant design icon
 import { DeleteOutlined } from "@ant-design/icons";
 //firebase
-import db from "../../../firebase";
+import db from "../../../config/firebase";
 //moment
 import moment from "moment";
 

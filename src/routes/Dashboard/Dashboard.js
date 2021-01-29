@@ -6,7 +6,7 @@ import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
 //styles
 import "./Dashboard.css";
 //firebase
-import db from "../../firebase";
+import db from "../../config/firebase";
 
 function Dashboard() {
   const [bills, setBills] = useState([]);
@@ -32,7 +32,7 @@ function Dashboard() {
         setOrders(snapshot.docs.map((doc) => doc.data()))
       );
   }, []);
-  console.log(orders);
+  // console.log(orders);
 
   const avarage = (dt) => {
     if (dt) {

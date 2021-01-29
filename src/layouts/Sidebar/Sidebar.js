@@ -6,8 +6,8 @@ import { Layout, Menu } from "antd";
 import { sidebarMenu } from "../../constant/paths";
 //style
 import "./Sidebar.css";
-//logo 
-import logo from "../../assets/images/logo.png"
+//logo
+import logo from "../../assets/images/logo.png";
 const { Sider } = Layout;
 
 function Sidebar() {
@@ -17,10 +17,10 @@ function Sidebar() {
         breakpoint="lg"
         collapsedWidth="0"
         onBreakpoint={(broken) => {
-          console.log(broken);
+          // console.log(broken);
         }}
         onCollapse={(collapsed, type) => {
-          console.log(collapsed, type);
+          // console.log(collapsed, type);
         }}
       >
         <div className="logo">

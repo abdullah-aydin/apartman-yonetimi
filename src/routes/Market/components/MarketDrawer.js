@@ -4,7 +4,7 @@ import { Drawer, InputNumber, Tooltip, Button, Row, Col } from "antd";
 // ant design icon
 import { DeleteOutlined } from "@ant-design/icons";
 //firebase
-import db from "../../../firebase";
+import db from "../../../config/firebase";
 import ConfirmModal from "../../../components/ConfirmModal";
 
 function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
