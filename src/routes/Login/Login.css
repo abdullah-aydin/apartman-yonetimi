@@ -7,6 +7,7 @@
 
 .login_body {
   display: flex;
+  border-radius: 40px;
 }
 .login_layout {
   margin: 10px 0;

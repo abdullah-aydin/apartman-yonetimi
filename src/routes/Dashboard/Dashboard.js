@@ -10,7 +10,7 @@ import db from "../../config/firebase";
 
 function Dashboard() {
   const [bills, setBills] = useState([]);
-  const [orders, setOrders] = useState([]);
+  // const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     db.collection("users")
@@ -25,12 +25,12 @@ function Dashboard() {
         )
       );
 
-    db.collection("users")
-      .doc("903rfcO6sbX7hJISg1ND")
-      .collection("orders")
-      .onSnapshot((snapshot) =>
-        setOrders(snapshot.docs.map((doc) => doc.data()))
-      );
+    // db.collection("users")
+    //   .doc("903rfcO6sbX7hJISg1ND")
+    //   .collection("orders")
+    //   .onSnapshot((snapshot) =>
+    //     setOrders(snapshot.docs.map((doc) => doc.data()))
+    //   );
   }, []);
   // console.log(orders);
 
@@ -76,102 +76,59 @@ function Dashboard() {
     return per;
   };
 
+  const billsCards = [
+    {
+      title: "Elektrik",
+      className: "cardOne",
+      no: 0,
+    },
+    {
+      title: "Doğalgaz",
+      className: "cardTwo",
+      no: 1,
+    },
+    {
+      title: "Su",
+      className: "cardThree",
+      no: 2,
+    },
+  ];
+
   return (
     <>
       {/* AYLIK FATURA KISMI */}
       <div className="card-wrapper">
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-          <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
-            <Card bordered={true} className="card cardOne">
-              <Row>
-                <Col flex={3.5}>
-                  <h2 className="card_title">{thisMonthPrice(0)} ₺</h2>
-                  <h3 className="card_detail">Aylık Elektrik Faturası</h3>
-                  <p className="card_p">
-                    Aylık ortalama <b>{averagePrice(0)} ₺</b>
-                  </p>
-                </Col>
-                <Col flex={1.5}>
-                  {percantage(0) > 0 ? (
-                    <h2
-                      className="card_percantage negative"
-                    >
-                      <CaretUpOutlined />
-                      {percantage(0)}%
-                    </h2>
-                  ) : (
-                    <h2
-                      className="card_percantage positive"
-                    >
-                      <CaretDownOutlined />
-                      {percantage(0)}%
-                    </h2>
-                  )}
-                </Col>
-              </Row>
-            </Card>
-          </Col>
-
-          <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
-            <Card bordered={true} className="card cardTwo">
-              <Row>
-                <Col flex={3.5}>
-                  <h2 className="card_title">{thisMonthPrice(1)} ₺</h2>
-                  <h3 className="card_detail">Aylık Doğalgaz Faturası</h3>
-                  <p className="card_p">
-                    Aylık ortalama <b>{averagePrice(1)} ₺</b>
-                  </p>
-                </Col>
-                <Col flex={1.5}>
-                  {percantage(1) > 0 ? (
-                    <h2
-                      className="card_percantage negative"
-                    >
-                      <CaretUpOutlined />
-                      {percantage(1)}%
-                    </h2>
-                  ) : (
-                    <h2
-                      className="card_percantage positive"
-                    >
-                      <CaretDownOutlined />
-                      {percantage(1)}%
-                    </h2>
-                  )}
-                </Col>
-              </Row>
-            </Card>
-          </Col>
-          <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
-            <Card bordered={true} className="card cardThree">
-              <Row>
-                <Col flex={3.5}>
-                  <h2 className="card_title">{thisMonthPrice(2)} ₺</h2>
-                  <h3 className="card_detail">Aylık Su Faturası</h3>
-                  <p className="card_p">
-                    Aylık ortalama <b>{averagePrice(2)} ₺</b>
-                  </p>
-                </Col>
-                <Col flex={1.5}>
-                  {percantage(2) > 0 ? (
-                    <h2
-                      className="card_percantage negative"
-                    >
-                      <CaretUpOutlined />
-                      {percantage(2)}%
-                    </h2>
-                  ) : (
-                    <h2
-                      className="card_percantage positive"
-                    >
-                      <CaretDownOutlined />
-                      {percantage(2)}%
-                    </h2>
-                  )}
-                </Col>
-              </Row>
-            </Card>
-          </Col>
+          {billsCards.map((card) => (
+            <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
+              <Card bordered={true} className={`card ${card.className}`}>
+                <Row>
+                  <Col flex={3.5}>
+                    <h2 className="card_title">{thisMonthPrice(card.no)} ₺</h2>
+                    <h3 className="card_detail">
+                      {`Aylık ${card.title} Faturası `}
+                    </h3>
+                    <p className="card_p">
+                      Aylık ortalama <b>{averagePrice(card.no)} ₺</b>
+                    </p>
+                  </Col>
+                  <Col flex={1.5}>
+                    {percantage(card.no) > 0 ? (
+                      <h2 className="card_percantage negative">
+                        <CaretUpOutlined />
+                        {percantage(card.no)}%
+                      </h2>
+                    ) : (
+                      <h2 className="card_percantage positive">
+                        <CaretDownOutlined />
+                        {percantage(card.no)}%
+                      </h2>
+                    )}
+                  </Col>
+                </Row>
+              </Card>
+            </Col>
+          ))}
           <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
             <Card bordered={true} className="card cardFour">
               <Row>
