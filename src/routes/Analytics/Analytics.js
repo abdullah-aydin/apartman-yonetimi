@@ -6,7 +6,11 @@ import ColumnChart from "../../components/ColumnChat";
 //firebase
 import db from "../../config/firebase";
 //styles
-import "./Analytics.css"
+import "./Analytics.css";
+//icons
+import { RiFireFill } from "react-icons/ri";
+import { IoWater } from "react-icons/io5";
+import { GiElectric } from "react-icons/gi";
 
 function Analytics() {
   const [bills, setBills] = useState([]);
@@ -52,31 +56,51 @@ function Analytics() {
     {
       title: "Elektrik",
       no: 0,
+      icon: <GiElectric />,
     },
     {
       title: "Doğalgaz",
       no: 1,
+      icon: <RiFireFill />,
     },
     {
       title: "Su",
       no: 2,
+      icon: <IoWater />,
     },
   ];
 
   return (
-    <div className="site-card-wrapper">
-      {billsChart.map((bill) => (
-        <Row className="analytics_body">
-          <Col xl={12} lg={12} md={16} sm={16} xs={16}>
-            <Card bordered={true} className="card">
+    <div>
+      <Row
+        gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
+        className="analytics_body"
+      >
+        {billsChart.map((bill) => (
+          <Col
+            xl={12}
+            lg={12}
+            md={24}
+            sm={24}
+            xs={24}
+            className="analytics_col"
+          >
+            <Card className="card">
               <h2 className="analytics_title">
-                {`Aylara Göre Toplam ${bill.title} Faturaları`}
+                {`${bill.title} Faturaları`}
               </h2>
+              <div className="analytics_description">
+                <div className="analytics_icon">{bill.icon}</div>
+                <div className="analytics_total_bill">
+                  <p>Toplam Harcama</p>
+                  <b>1500 TL</b>
+                </div>
+              </div>
               <ColumnChart data={averagePrice(bill.no)} />
             </Card>
           </Col>
-        </Row>
-      ))}
+        ))}
+      </Row>
     </div>
   );
 }

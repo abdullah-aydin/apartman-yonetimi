@@ -4,7 +4,6 @@ function ColumnChart({ data }) {
   console.log(data);
   const options = {
     chart: {
-      type: "bar",
       height: 350,
       toolbar: {
         show: false,
@@ -22,9 +21,7 @@ function ColumnChart({ data }) {
       enabled: false,
     },
     stroke: {
-      show: true,
-      width: 2,
-      colors: ["transparent"],
+      curve: "smooth",
     },
     xaxis: {
       categories: [
@@ -42,11 +39,7 @@ function ColumnChart({ data }) {
         "12",
       ],
     },
-    yaxis: {
-      title: {
-        text: "₺ (Türk Lirası)",
-      },
-    },
+
     fill: {
       opacity: 1,
     },
@@ -70,7 +63,7 @@ function ColumnChart({ data }) {
       <Chart
         options={options}
         series={series}
-        type="bar"
+        type="area"
         height={350}
         style={{ width: "100%" }}
       />

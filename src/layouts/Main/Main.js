@@ -20,6 +20,7 @@ function Main() {
     <Content style={{ margin: "24px 16px 0" }}>
       <Switch>
         <Redirect exact from="/" to="/dashboard" />
+
         <Route path="/dashboard">
           <div
             className="site-layout-background"
@@ -30,6 +31,7 @@ function Main() {
             <Dashboard />
           </div>
         </Route>
+        
         <Route path="/analytics">
           <div
             className="site-layout-background"
