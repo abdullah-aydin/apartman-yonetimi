@@ -1,5 +1,5 @@
 // router
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 // ant design style
 import { Layout } from "antd";
 import Dashboard from "../../routes/Dashboard";
@@ -19,6 +19,7 @@ function Main() {
   return (
     <Content style={{ margin: "24px 16px 0" }}>
       <Switch>
+        <Redirect exact from="/" to="/dashboard" />
         <Route path="/dashboard">
           <div
             className="site-layout-background"
