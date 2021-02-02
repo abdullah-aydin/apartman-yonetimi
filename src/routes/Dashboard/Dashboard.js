@@ -10,7 +10,13 @@ import db from "../../config/firebase";
 
 function Dashboard() {
   const [bills, setBills] = useState([]);
-  // const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
+  const [market, setMarket] = useState({
+    currentMonthMarketPrice: 0,
+    totalMarketPrice: 0,
+    average: 0,
+    percantage: 0,
+  });
 
   useEffect(() => {
     db.collection("users")
@@ -25,14 +31,32 @@ function Dashboard() {
         )
       );
 
-    // db.collection("users")
-    //   .doc("903rfcO6sbX7hJISg1ND")
-    //   .collection("orders")
-    //   .onSnapshot((snapshot) =>
-    //     setOrders(snapshot.docs.map((doc) => doc.data()))
-    //   );
+    db.collection("users")
+      .doc("903rfcO6sbX7hJISg1ND")
+      .collection("orders")
+      .onSnapshot((snapshot) =>
+        setOrders(snapshot.docs.map((doc) => doc.data().totalPrice))
+      );
   }, []);
-  // console.log(orders);
+
+  useEffect(() => {
+    const currentMonthMarketPrice = orders.pop();
+
+    const totalMarketPrice = orders.reduce((a, b) => a + b, 0);
+    const average = totalMarketPrice / orders.length;
+    const percantage = parseInt(
+      (
+        ((currentMonthMarketPrice - average) / currentMonthMarketPrice) *
+        100
+      ).toFixed(1)
+    );
+
+    setMarket({
+      currentMonthMarketPrice: currentMonthMarketPrice,
+      average: average,
+      percantage: percantage,
+    });
+  }, [orders]);
 
   const avarage = (dt) => {
     if (dt) {
@@ -100,7 +124,15 @@ function Dashboard() {
       <div className="card-wrapper">
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           {billsCards.map((card) => (
-            <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
+            <Col
+              xl={6}
+              lg={6}
+              md={12}
+              sm={12}
+              xs={12}
+              className="card_col"
+              key={card.no}
+            >
               <Card bordered={true} className={`card ${card.className}`}>
                 <Row>
                   <Col flex={3.5}>
@@ -133,12 +165,26 @@ function Dashboard() {
             <Card bordered={true} className="card cardFour">
               <Row>
                 <Col flex={3.5}>
-                  <h2 className="card_title">259 TL</h2>
+                  <h2 className="card_title">
+                    {market.currentMonthMarketPrice} ₺
+                  </h2>
                   <h3 className="card_detail">Aylık Market Gideri</h3>
-                  <p className="card_p">Aylık ortalama 200 TL</p>
+                  <p className="card_p">
+                    Aylık ortalama <b>{market.average} ₺</b>
+                  </p>
                 </Col>
                 <Col flex={1.5}>
-                  <h2 className="card_percantage">7% </h2>
+                  {market.percantage > 0 ? (
+                    <h2 className="card_percantage negative">
+                      <CaretUpOutlined />
+                      {market.percantage}%
+                    </h2>
+                  ) : (
+                    <h2 className="card_percantage positive">
+                      <CaretDownOutlined />
+                      {market.percantage}%
+                    </h2>
+                  )}
                 </Col>
               </Row>
             </Card>
