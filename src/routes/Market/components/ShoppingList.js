@@ -13,17 +13,22 @@ import db from "../../../config/firebase";
 import moment from "moment";
 
 function ShoppingList() {
-  const [orders, setOrders] = useState([]);
+  const [orderList, setOrderList] = useState([]);
 
+  // setOrderList([...orderList, ...doc.data().orders])
   // orders data fetch from firebase
   useEffect(() => {
     db.collection("users")
       .doc("903rfcO6sbX7hJISg1ND")
       .collection("orders")
       .onSnapshot((snapshot) =>
-        setOrders(snapshot.docs.map((doc) => ({ ...doc.data(), key: doc.id })))
+        snapshot.docs.map((doc) => 
+          setOrderList(doc.data().orders)
+        )
       );
   }, []);
+
+  console.log(orderList);
 
   const history = useHistory();
 
@@ -88,7 +93,7 @@ function ShoppingList() {
       <>
         <h3>Satın Aldığınız Ürünler</h3>
         <ul>
-          {data.orders.map((order) => (
+          {data.orderList.map((order) => (
             <li>{`${order.title} (${order.count} adet) - ${
               order.price * order.count
             } ₺`}</li>
@@ -121,12 +126,14 @@ function ShoppingList() {
       <Table
         className="shoppinglist_table"
         columns={columns}
-        dataSource={orders}
+        dataSource={orderList}
         pagination={{ position: ["bottomRight"] }}
-        expandable={{
-          expandedRowRender: (data) => expandedRow(data),
-          rowExpandable: (data) => data.delivered !== [],
-        }}
+        expandable={
+          {
+            expandedRowRender: (data) => expandedRow(data),
+            rowExpandable: (data) => data.delivered !== [],
+          }
+        }
       />
     </div>
   );

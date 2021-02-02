@@ -4,14 +4,39 @@ import { Drawer, InputNumber, Tooltip, Button, Row, Col } from "antd";
 // ant design icon
 import { DeleteOutlined } from "@ant-design/icons";
 //firebase
+
 import db from "../../../config/firebase";
 import ConfirmModal from "../../../components/ConfirmModal";
+import firebase from "firebase/app";
+import moment from "moment";
+import uniqid from "uniqid";
 
 function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
   const [marketItems, setMarketItems] = useState(items);
   // confirm modal
   const [modalVisible, setModalVisible] = useState(false);
   const modalIsVisible = () => setModalVisible(!modalVisible);
+
+  const [orderss, setOrderss] = useState([]);
+
+  // const currentMonth = "2020-01";
+  const currentMonth = moment().format("YYYY-MM");
+
+  const dbRef = db
+    .collection("users")
+    .doc("903rfcO6sbX7hJISg1ND")
+    .collection("orders")
+    .doc(`${currentMonth}`);
+
+  // orders data fetch from firebase
+  useEffect(() => {
+    db.collection("users")
+      .doc("903rfcO6sbX7hJISg1ND")
+      .collection("orders")
+      .onSnapshot((snapshot) =>
+        setOrderss(snapshot.docs.map((doc) => ({ ...doc.data(), key: doc.id })))
+      );
+  }, []);
 
   let totalPrice = 0;
   let itemCount = 0;
@@ -43,25 +68,56 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
     setItems(newList);
   };
 
+  // We check if there is an area of this month in firebase
+  // if there is, count will be 1 & work array union method, else count will be 0 & work set method
+  let count = 0;
+  orderss.forEach((e) => {
+    e.key === currentMonth && count++;
+  });
+
   // order list saved to db
   const orderList = (orderList) => {
-    //order adding to database
-    db.collection("users")
-      .doc("903rfcO6sbX7hJISg1ND")
-      .collection("orders")
-      .add({
-        orders: [...orderList],
-        date: new Date(),
-        delivered: [false],
-        totalPrice: totalPrice,
-      })
-      .then((e) => console.log("ürünler eklendi"))
-      .catch((e) => console.error(e))
-      .finally(() => {
-        setModalVisible(!modalVisible);
-        setVisible(false);
-        setItems([]);
-      });
+    count >= 1
+      ? dbRef
+          .update({
+            orders: firebase.firestore.FieldValue.arrayUnion({
+              orderList: [...orderList],
+              date: new Date(),
+              delivered: [false],
+              totalPrice: totalPrice,
+              month: currentMonth,
+              key: uniqid(),
+            }),
+            totalPrice: firebase.firestore.FieldValue.increment(totalPrice),
+          })
+          .then((e) => console.log("ürünler eklendi"))
+          .catch((e) => console.error(e))
+          .finally(() => {
+            setModalVisible(!modalVisible);
+            setVisible(false);
+            setItems([]);
+          })
+      : dbRef
+          .set({
+            orders: [
+              {
+                orderList: [...orderList],
+                date: new Date(),
+                delivered: [false],
+                totalPrice: totalPrice,
+                month: currentMonth,
+                key: uniqid(),
+              },
+            ],
+            totalPrice: firebase.firestore.FieldValue.increment(totalPrice),
+          })
+          .then((e) => console.log("ürünler eklendi"))
+          .catch((e) => console.error(e))
+          .finally(() => {
+            setModalVisible(!modalVisible);
+            setVisible(false);
+            setItems([]);
+          });
   };
 
   return (
@@ -76,8 +132,8 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
       >
         <>
           {marketItems.map((item, index) => (
-            <>
-              <Row className="marketdrawer_count" key={index}>
+            <div key={index}>
+              <Row className="marketdrawer_count">
                 <Col span={16}>{`${index + 1}. ${item.title}`}</Col>
                 <Col span={6}>
                   <InputNumber
@@ -106,7 +162,7 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
                 <Col span={8}>{`Fiyat: ${item.count * item.price} ₺`}</Col>
               </Row>
               <hr />
-            </>
+            </div>
           ))}
         </>
         {items.length > 0 && (
