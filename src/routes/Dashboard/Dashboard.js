@@ -43,10 +43,10 @@ function Dashboard() {
     const currentMonthMarketPrice = orders.pop();
 
     const totalMarketPrice = orders.reduce((a, b) => a + b, 0);
-    const average = totalMarketPrice / orders.length;
+    const average = (totalMarketPrice / orders.length).toFixed(2);
     const percantage = parseInt(
       (
-        ((currentMonthMarketPrice - average) / currentMonthMarketPrice) *
+        ((currentMonthMarketPrice - average) / average) *
         100
       ).toFixed(1)
     );
@@ -94,7 +94,7 @@ function Dashboard() {
 
   const percantage = (count) => {
     let per = (
-      ((thisMonthPrice(count) - averagePrice(count)) / thisMonthPrice(count)) *
+      ((thisMonthPrice(count) - averagePrice(count)) / averagePrice(count)) *
       100
     ).toFixed(1);
     return per;

@@ -19,8 +19,8 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
 
   const [orderss, setOrderss] = useState([]);
 
-  const currentMonth = "2020-08";
-  // const currentMonth = moment().format("YYYY-MM");
+  // const currentMonth = "2020-08";
+  const currentMonth = moment().format("YYYY-MM");
 
   const dbRef = db
     .collection("users")
