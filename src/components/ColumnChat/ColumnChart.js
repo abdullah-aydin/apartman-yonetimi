@@ -1,7 +1,12 @@
 import Chart from "react-apexcharts";
 
 function ColumnChart({ data }) {
-  console.log(data);
+  const series = [
+    {
+      data: data ? data : [],
+    },
+  ];
+
   const options = {
     chart: {
       height: 350,
@@ -51,12 +56,6 @@ function ColumnChart({ data }) {
       },
     },
   };
-
-  const series = [
-    {
-      data: data,
-    },
-  ];
 
   return (
     <div id="bar">

@@ -11,6 +11,7 @@ import "./Analytics.css";
 import { RiFireFill } from "react-icons/ri";
 import { IoWater } from "react-icons/io5";
 import { GiElectric } from "react-icons/gi";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 function Analytics() {
   const [bills, setBills] = useState([]);
@@ -42,7 +43,7 @@ function Analytics() {
       });
 
       allMonthBills.forEach((d) => data.push(d.price));
-      console.log(data);
+
       return data;
     }
   };
@@ -68,6 +69,11 @@ function Analytics() {
       no: 2,
       icon: <IoWater />,
     },
+    {
+      title: "Market",
+      no: 3,
+      icon: <AiOutlineShoppingCart />,
+    },
   ];
 
   return (
@@ -84,11 +90,10 @@ function Analytics() {
             sm={24}
             xs={24}
             className="analytics_col"
+            key={bill.no}
           >
             <Card className="card">
-              <h2 className="analytics_title">
-                {`${bill.title} Faturaları`}
-              </h2>
+              <h2 className="analytics_title">{`${bill.title} Faturaları`}</h2>
               <div className="analytics_description">
                 <div className="analytics_icon">{bill.icon}</div>
                 <div className="analytics_total_bill">
