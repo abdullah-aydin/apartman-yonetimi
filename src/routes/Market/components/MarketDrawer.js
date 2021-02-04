@@ -1,42 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 //ant design
 import { Drawer, InputNumber, Tooltip, Button, Row, Col } from "antd";
 // ant design icon
 import { DeleteOutlined } from "@ant-design/icons";
+// context
+import { MarketContext } from "../../../context/MarketContext";
 //firebase
-
 import db from "../../../config/firebase";
-import ConfirmModal from "../../../components/ConfirmModal";
 import firebase from "firebase/app";
+// components
+import ConfirmModal from "../../../components/ConfirmModal";
+// additional packages
 import moment from "moment";
 import uniqid from "uniqid";
 
 function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
+  const { orders } = useContext(MarketContext);
   const [marketItems, setMarketItems] = useState(items);
   // confirm modal
   const [modalVisible, setModalVisible] = useState(false);
   const modalIsVisible = () => setModalVisible(!modalVisible);
-
-  const [orderss, setOrderss] = useState([]);
-
-  // const currentMonth = "2020-08";
+  
   const currentMonth = moment().format("YYYY-MM");
-
-  const dbRef = db
-    .collection("users")
-    .doc("903rfcO6sbX7hJISg1ND")
-    .collection("orders")
-    .doc(`${currentMonth}`);
-
-  // orders data fetch from firebase
-  useEffect(() => {
-    db.collection("users")
-      .doc("903rfcO6sbX7hJISg1ND")
-      .collection("orders")
-      .onSnapshot((snapshot) =>
-        setOrderss(snapshot.docs.map((doc) => ({ ...doc.data(), key: doc.id })))
-      );
-  }, []);
 
   let totalPrice = 0;
   let itemCount = 0;
@@ -68,56 +53,30 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
     setItems(newList);
   };
 
-  // We check if there is an area of this month in firebase
-  // if there is, count will be 1 & work array union method, else count will be 0 & work set method
-  let count = 0;
-  orderss.forEach((e) => {
-    e.key === currentMonth && count++;
-  });
-
   // order list saved to db
   const orderList = (orderList) => {
-    count >= 1
-      ? dbRef
-          .update({
-            orders: firebase.firestore.FieldValue.arrayUnion({
-              orderList: [...orderList],
-              date: new Date(),
-              delivered: [false],
-              totalPrice: totalPrice,
-              month: currentMonth,
-              key: uniqid(),
-            }),
-            totalPrice: firebase.firestore.FieldValue.increment(totalPrice),
-          })
-          .then((e) => console.log("ürünler eklendi"))
-          .catch((e) => console.error(e))
-          .finally(() => {
-            setModalVisible(!modalVisible);
-            setVisible(false);
-            setItems([]);
-          })
-      : dbRef
-          .set({
-            orders: [
-              {
-                orderList: [...orderList],
-                date: new Date(),
-                delivered: [false],
-                totalPrice: totalPrice,
-                month: currentMonth,
-                key: uniqid(),
-              },
-            ],
-            totalPrice: firebase.firestore.FieldValue.increment(totalPrice),
-          })
-          .then((e) => console.log("ürünler eklendi"))
-          .catch((e) => console.error(e))
-          .finally(() => {
-            setModalVisible(!modalVisible);
-            setVisible(false);
-            setItems([]);
-          });
+    db.collection("users")
+      .doc("903rfcO6sbX7hJISg1ND")
+      .collection("orders")
+      .doc(`${currentMonth}`)
+      .update({
+        totalPrice: firebase.firestore.FieldValue.increment(totalPrice),
+        orders: firebase.firestore.FieldValue.arrayUnion({
+          orderList: [...orderList],
+          date: new Date(),
+          delivered: [false],
+          totalPrice: totalPrice,
+          month: currentMonth,
+          key: uniqid(),
+        }),
+      })
+      .then((e) => console.log("ürünler eklendi"))
+      .catch((e) => console.error(e))
+      .finally(() => {
+        setModalVisible(!modalVisible);
+        setVisible(false);
+        setItems([]);
+      });
   };
 
   return (

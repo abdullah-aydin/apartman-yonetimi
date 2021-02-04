@@ -28,7 +28,6 @@ function ShoppingList() {
       );
   }, []);
 
-  console.log(orderList);
 
   const history = useHistory();
 

@@ -3,10 +3,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
+import { MarketProvider } from "./context/MarketContext";
 
 ReactDOM.render(
   <AuthProvider>
-    <App />
+    <MarketProvider>
+      <App />
+    </MarketProvider>
   </AuthProvider>,
   document.getElementById("root")
 );
