@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 // ant design
 import { Card, Col, Row } from "antd";
 // ant design icon
@@ -15,7 +15,14 @@ function Cards() {
     thisMonthPriceForCards,
     percantageForCards,
   } = useContext(BillsContext);
-  const { market } = useContext(MarketContext);
+  const { ordersPrice } = useContext(MarketContext);
+
+  const [market, setMarket] = useState({
+    currentMonthMarketPrice: 0,
+    totalMarketPrice: 0,
+    average: 0,
+    percantage: 0,
+  });
 
   const billsCards = [
     {
@@ -34,6 +41,24 @@ function Cards() {
       no: 2,
     },
   ];
+
+  useEffect(() => {
+    const orders = [...ordersPrice];
+
+    const currentMonthMarketPrice = orders.pop();
+
+    const totalMarketPrice = orders.reduce((a, b) => a + b, 0);
+    const average = (totalMarketPrice / orders.length).toFixed(2);
+    const percantage = parseInt(
+      (((currentMonthMarketPrice - average) / average) * 100).toFixed(1)
+    );
+
+    setMarket({
+      currentMonthMarketPrice: currentMonthMarketPrice,
+      average: average,
+      percantage: percantage,
+    });
+  }, [ordersPrice]);
 
   return (
     <div className="card-wrapper">

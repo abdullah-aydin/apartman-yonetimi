@@ -35,6 +35,10 @@ function ChatBody({ room }) {
     setTimeout(() => {
       setLoading(false);
     }, 1500);
+
+    return () => {
+      setChatMessages([]);
+    };
   }, [numberRoom]);
 
   //message adding to database

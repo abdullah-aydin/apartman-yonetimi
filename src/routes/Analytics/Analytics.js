@@ -12,30 +12,37 @@ import { GiElectric } from "react-icons/gi";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 // context
 import { BillsContext } from "../../context/BillsContext";
+import { MarketContext } from "../../context/MarketContext";
 
 function Analytics() {
   const { averagePriceForCharts } = useContext(BillsContext);
+  const { ordersPrice } = useContext(MarketContext);
 
+  // console.log(ordersPrice);
   const billsChart = [
     {
       title: "Elektrik",
       no: 0,
       icon: <GiElectric />,
+      data: averagePriceForCharts(0),
     },
     {
       title: "Doğalgaz",
       no: 1,
       icon: <RiFireFill />,
+      data: averagePriceForCharts(1),
     },
     {
       title: "Su",
       no: 2,
       icon: <IoWater />,
+      data: averagePriceForCharts(2),
     },
     {
       title: "Market",
       no: 3,
       icon: <AiOutlineShoppingCart />,
+      data: ordersPrice,
     },
   ];
 
@@ -64,7 +71,7 @@ function Analytics() {
                   <b>1500 TL</b>
                 </div>
               </div>
-              <ColumnChart data={averagePriceForCharts(bill.no)} />
+              <ColumnChart data={bill.data} />
             </Card>
           </Col>
         ))}
