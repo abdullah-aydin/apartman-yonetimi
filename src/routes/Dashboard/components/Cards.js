@@ -26,19 +26,36 @@ function Cards() {
 
   const billsCards = [
     {
+      key: 0,
       title: "Elektrik",
       className: "cardOne",
-      no: 0,
+      thisMonth: thisMonthPriceForCards(0),
+      averagePrice: averagePriceForCards(0),
+      percantage: percantageForCards(0),
     },
     {
+      key: 1,
       title: "Doğalgaz",
       className: "cardTwo",
-      no: 1,
+      thisMonth: thisMonthPriceForCards(1),
+      averagePrice: averagePriceForCards(1),
+      percantage: percantageForCards(1),
     },
     {
+      key: 2,
       title: "Su",
       className: "cardThree",
-      no: 2,
+      thisMonth: thisMonthPriceForCards(2),
+      averagePrice: averagePriceForCards(2),
+      percantage: percantageForCards(2),
+    },
+    {
+      key: 3,
+      title: "Market",
+      className: "cardFour",
+      thisMonth: market.currentMonthMarketPrice,
+      averagePrice: market.average,
+      percantage: market.percantage,
     },
   ];
 
@@ -71,31 +88,29 @@ function Cards() {
             sm={12}
             xs={12}
             className="card_col"
-            key={card.no}
+            key={card.key}
           >
             <Card bordered={true} className={`card ${card.className}`}>
               <Row>
                 <Col flex={3.5}>
-                  <h2 className="card_title">
-                    {thisMonthPriceForCards(card.no)} ₺
-                  </h2>
+                  <h2 className="card_title">{card.thisMonth} ₺</h2>
                   <h3 className="card_detail">
                     {`Aylık ${card.title} Faturası `}
                   </h3>
                   <p className="card_p">
-                    Aylık ortalama <b>{averagePriceForCards(card.no)} ₺</b>
+                    Aylık ortalama <b>{card.averagePrice} ₺</b>
                   </p>
                 </Col>
                 <Col flex={1.5}>
-                  {percantageForCards(card.no) > 0 ? (
+                  {card.percantage > 0 ? (
                     <h2 className="card_percantage negative">
                       <CaretUpOutlined />
-                      {percantageForCards(card.no)}%
+                      {card.percantage}%
                     </h2>
                   ) : (
                     <h2 className="card_percantage positive">
                       <CaretDownOutlined />
-                      {percantageForCards(card.no)}%
+                      {card.percantage}%
                     </h2>
                   )}
                 </Col>
@@ -103,34 +118,6 @@ function Cards() {
             </Card>
           </Col>
         ))}
-        <Col xl={6} lg={6} md={12} sm={12} xs={12} className="card_col">
-          <Card bordered={true} className="card cardFour">
-            <Row>
-              <Col flex={3.5}>
-                <h2 className="card_title">
-                  {market.currentMonthMarketPrice} ₺
-                </h2>
-                <h3 className="card_detail">Aylık Market Gideri</h3>
-                <p className="card_p">
-                  Aylık ortalama <b>{market.average} ₺</b>
-                </p>
-              </Col>
-              <Col flex={1.5}>
-                {market.percantage > 0 ? (
-                  <h2 className="card_percantage negative">
-                    <CaretUpOutlined />
-                    {market.percantage}%
-                  </h2>
-                ) : (
-                  <h2 className="card_percantage positive">
-                    <CaretDownOutlined />
-                    {market.percantage}%
-                  </h2>
-                )}
-              </Col>
-            </Row>
-          </Card>
-        </Col>
       </Row>
     </div>
   );
