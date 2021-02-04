@@ -8,7 +8,6 @@ export const MarketContext = createContext(null);
 export const MarketProvider = (props) => {
   const [orders, setOrders] = useState([]);
   const [ordersPrice, setOrdersPrice] = useState([]);
-  
 
   const currentMonth = moment().format("YYYY-MM");
 
@@ -18,7 +17,12 @@ export const MarketProvider = (props) => {
       .collection("orders")
       .onSnapshot((snapshot) => {
         setOrders(snapshot.docs.map((doc) => ({ ...doc.data(), key: doc.id })));
-        setOrdersPrice(snapshot.docs.map((doc) => doc.data().totalPrice));
+        setOrdersPrice(
+          snapshot.docs.map((doc) => ({
+            title: doc.id,
+            price: doc.data().totalPrice,
+          }))
+        );
       });
   }, []);
 

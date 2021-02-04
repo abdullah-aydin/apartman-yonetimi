@@ -18,29 +18,28 @@ function Analytics() {
   const { averagePriceForCharts } = useContext(BillsContext);
   const { ordersPrice } = useContext(MarketContext);
 
-  // console.log(ordersPrice);
   const billsChart = [
     {
+      id: 0,
       title: "Elektrik",
-      no: 0,
       icon: <GiElectric />,
       data: averagePriceForCharts(0),
     },
     {
+      id: 1,
       title: "Doğalgaz",
-      no: 1,
       icon: <RiFireFill />,
       data: averagePriceForCharts(1),
     },
     {
+      id: 2,
       title: "Su",
-      no: 2,
       icon: <IoWater />,
       data: averagePriceForCharts(2),
     },
     {
+      id: 3,
       title: "Market",
-      no: 3,
       icon: <AiOutlineShoppingCart />,
       data: ordersPrice,
     },
@@ -60,7 +59,7 @@ function Analytics() {
             sm={24}
             xs={24}
             className="analytics_col"
-            key={bill.no}
+            key={bill.id}
           >
             <Card className="card">
               <h2 className="analytics_title">{`${bill.title} Faturaları`}</h2>
@@ -71,7 +70,7 @@ function Analytics() {
                   <b>1500 TL</b>
                 </div>
               </div>
-              <ColumnChart data={bill.data} />
+              <ColumnChart chartData={bill.data} />
             </Card>
           </Col>
         ))}

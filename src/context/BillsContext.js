@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import db from "../config/firebase";
+import moment from "moment";
 
 export const BillsContext = createContext(null);
 
@@ -33,15 +34,19 @@ export const BillsProvider = (props) => {
         return 0;
       });
 
-      allMonthBills.forEach((d) => data.push(d.price));
-
-      return data;
+      allMonthBills.forEach((d) =>
+        data.push({
+          title: moment(d.date?.seconds * 1000).format("YYYY-MM"),
+          price: d.price,
+        })
+      );
     }
+    return data;
   };
 
   const averagePriceForCharts = (count) => {
-    let price = avarageForCharts(bills[count]?.data);
-    return price;
+    let data = avarageForCharts(bills[count]?.data);
+    return data;
   };
 
   // ./ FOR CHARTS //
@@ -83,7 +88,8 @@ export const BillsProvider = (props) => {
 
   const percantageForCards = (count) => {
     let per = (
-      ((thisMonthPriceForCards(count) - averagePriceForCards(count)) / averagePriceForCards(count)) *
+      ((thisMonthPriceForCards(count) - averagePriceForCards(count)) /
+        averagePriceForCards(count)) *
       100
     ).toFixed(1);
     return per;

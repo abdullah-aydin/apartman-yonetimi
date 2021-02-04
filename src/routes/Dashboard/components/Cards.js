@@ -61,17 +61,18 @@ function Cards() {
 
   useEffect(() => {
     const orders = [...ordersPrice];
-
     const currentMonthMarketPrice = orders.pop();
 
-    const totalMarketPrice = orders.reduce((a, b) => a + b, 0);
+
+    const totalMarketPrice = orders.reduce((a, b) => a + b.price, 0);
+
     const average = (totalMarketPrice / orders.length).toFixed(2);
     const percantage = parseInt(
-      (((currentMonthMarketPrice - average) / average) * 100).toFixed(1)
+      (((currentMonthMarketPrice?.price - average) / average) * 100).toFixed(1)
     );
 
     setMarket({
-      currentMonthMarketPrice: currentMonthMarketPrice,
+      currentMonthMarketPrice: currentMonthMarketPrice?.price,
       average: average,
       percantage: percantage,
     });

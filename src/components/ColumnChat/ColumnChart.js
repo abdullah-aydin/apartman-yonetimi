@@ -1,9 +1,66 @@
 import Chart from "react-apexcharts";
 
-function ColumnChart({ data }) {
+function ColumnChart({ chartData }) {
+  let title = [];
+  let price = [];
+
+  const monthName = (date) => {
+    const month = date.split("-")[1];
+    const monthName = [
+      "Ocak",
+      "Şubat",
+      "Mart",
+      "Nisan",
+      "Mayıs",
+      "Haziran",
+      "Temmuz",
+      "Ağustos",
+      "Eylül",
+      "Ekim",
+      "Kasım",
+      "Aralık",
+    ];
+    switch (month) {
+      case "01":
+        return monthName[0];
+      case "02":
+        return monthName[1];
+      case "03":
+        return monthName[2];
+      case "04":
+        return monthName[3];
+      case "05":
+        return monthName[4];
+      case "06":
+        return monthName[5];
+      case "07":
+        return monthName[6];
+      case "08":
+        return monthName[7];
+      case "09":
+        return monthName[8];
+      case "10":
+        return monthName[9];
+      case "11":
+        return monthName[10];
+      case "12":
+        return monthName[11];
+
+      default:
+        return "Ay";
+    }
+  };
+
+  if (chartData.length > 0) {
+    chartData.forEach((dt) => {
+      title.push(monthName(dt.title));
+      price.push(dt.price);
+    });
+  }
+
   const series = [
     {
-      data: data ? data : [],
+      data: price,
     },
   ];
 
@@ -29,20 +86,7 @@ function ColumnChart({ data }) {
       curve: "smooth",
     },
     xaxis: {
-      categories: [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-      ],
+      categories: title,
     },
 
     fill: {
