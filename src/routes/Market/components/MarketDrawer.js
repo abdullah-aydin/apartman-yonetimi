@@ -1,10 +1,8 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 //ant design
 import { Drawer, InputNumber, Tooltip, Button, Row, Col } from "antd";
 // ant design icon
 import { DeleteOutlined } from "@ant-design/icons";
-// context
-import { MarketContext } from "../../../context/MarketContext";
 //firebase
 import db from "../../../config/firebase";
 import firebase from "firebase/app";
@@ -15,7 +13,6 @@ import moment from "moment";
 import uniqid from "uniqid";
 
 function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
-  const { orders } = useContext(MarketContext);
   const [marketItems, setMarketItems] = useState(items);
   // confirm modal
   const [modalVisible, setModalVisible] = useState(false);

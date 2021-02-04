@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 // ant design
 import { Card, Col, Row } from "antd";
 // ant design icon
@@ -7,98 +7,13 @@ import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
 import "./Dashboard.css";
 //firebase
 import db from "../../config/firebase";
+// context
+import { BillsContext } from "../../context/BillsContext";
+import { MarketContext } from "../../context/MarketContext";
 
 function Dashboard() {
-  const [bills, setBills] = useState([]);
-  const [orders, setOrders] = useState([]);
-  const [market, setMarket] = useState({
-    currentMonthMarketPrice: 0,
-    totalMarketPrice: 0,
-    average: 0,
-    percantage: 0,
-  });
-
-  useEffect(() => {
-    db.collection("users")
-      .doc("903rfcO6sbX7hJISg1ND")
-      .collection("bill")
-      .onSnapshot((snapshot) =>
-        setBills(
-          snapshot.docs.map((doc) => ({
-            bill: doc.id,
-            data: doc.data(),
-          }))
-        )
-      );
-
-    db.collection("users")
-      .doc("903rfcO6sbX7hJISg1ND")
-      .collection("orders")
-      .onSnapshot((snapshot) =>
-        setOrders(snapshot.docs.map((doc) => doc.data().totalPrice))
-      );
-  }, []);
-
-  useEffect(() => {
-    const currentMonthMarketPrice = orders.pop();
-
-    const totalMarketPrice = orders.reduce((a, b) => a + b, 0);
-    const average = (totalMarketPrice / orders.length).toFixed(2);
-    const percantage = parseInt(
-      (
-        ((currentMonthMarketPrice - average) / average) *
-        100
-      ).toFixed(1)
-    );
-
-    setMarket({
-      currentMonthMarketPrice: currentMonthMarketPrice,
-      average: average,
-      percantage: percantage,
-    });
-  }, [orders]);
-
-  const avarage = (dt) => {
-    if (dt) {
-      const allMonthBills = Object.values(dt);
-
-      // dt items sorts from first date to last date
-      allMonthBills.sort(function (a, b) {
-        if (a.date > b.date) return 1;
-        if (a.date < b.date) return -1;
-        return 0;
-      });
-
-      const lastBill = allMonthBills.pop();
-
-      let totalPrice = 0;
-      allMonthBills.forEach((d) => (totalPrice += d.price));
-
-      let avrg = totalPrice / allMonthBills.length;
-
-      return { avrg: avrg.toFixed(2), lastBill: lastBill };
-    }
-
-    return { avrg: 0, lastBill: 0 };
-  };
-
-  const thisMonthPrice = (count) => {
-    let price = avarage(bills[count]?.data).lastBill.price;
-    return price;
-  };
-
-  const averagePrice = (count) => {
-    let price = avarage(bills[count]?.data).avrg;
-    return price;
-  };
-
-  const percantage = (count) => {
-    let per = (
-      ((thisMonthPrice(count) - averagePrice(count)) / averagePrice(count)) *
-      100
-    ).toFixed(1);
-    return per;
-  };
+  const { averagePriceForCards, thisMonthPriceForCards, percantageForCards } = useContext(BillsContext);
+  const { market } = useContext(MarketContext);
 
   const billsCards = [
     {
@@ -136,24 +51,24 @@ function Dashboard() {
               <Card bordered={true} className={`card ${card.className}`}>
                 <Row>
                   <Col flex={3.5}>
-                    <h2 className="card_title">{thisMonthPrice(card.no)} ₺</h2>
+                    <h2 className="card_title">{thisMonthPriceForCards(card.no)} ₺</h2>
                     <h3 className="card_detail">
                       {`Aylık ${card.title} Faturası `}
                     </h3>
                     <p className="card_p">
-                      Aylık ortalama <b>{averagePrice(card.no)} ₺</b>
+                      Aylık ortalama <b>{averagePriceForCards(card.no)} ₺</b>
                     </p>
                   </Col>
                   <Col flex={1.5}>
-                    {percantage(card.no) > 0 ? (
+                    {percantageForCards(card.no) > 0 ? (
                       <h2 className="card_percantage negative">
                         <CaretUpOutlined />
-                        {percantage(card.no)}%
+                        {percantageForCards(card.no)}%
                       </h2>
                     ) : (
                       <h2 className="card_percantage positive">
                         <CaretDownOutlined />
-                        {percantage(card.no)}%
+                        {percantageForCards(card.no)}%
                       </h2>
                     )}
                   </Col>
