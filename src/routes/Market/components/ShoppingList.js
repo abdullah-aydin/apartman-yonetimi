@@ -1,35 +1,38 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 //styles
 import "../Market.css";
 // router
 import { useHistory } from "react-router-dom";
 // ant design
-import { Button, Tag, Table, Tooltip } from "antd";
-// ant design icon
-import { DeleteOutlined } from "@ant-design/icons";
-//firebase
-import db from "../../../config/firebase";
+import { Button, Tag, Table, Row, Col } from "antd";
+//context
+import { MarketContext } from "../../../context/MarketContext";
 //moment
 import moment from "moment";
 
 function ShoppingList() {
-  const [orderList, setOrderList] = useState([]);
-
-  // setOrderList([...orderList, ...doc.data().orders])
-  // orders data fetch from firebase
-  useEffect(() => {
-    db.collection("users")
-      .doc("903rfcO6sbX7hJISg1ND")
-      .collection("orders")
-      .onSnapshot((snapshot) =>
-        snapshot.docs.map((doc) => 
-          setOrderList(doc.data().orders)
-        )
-      );
-  }, []);
-
+  const [list, setList] = useState([]);
+  const { previousOrders } = useContext(MarketContext);
 
   const history = useHistory();
+
+  useEffect(() => {
+    let data = [];
+    for (let i = 0; i < previousOrders.length; i++) {
+      for (let j = 0; j < previousOrders[i].length; j++) {
+        const element = previousOrders[i][j];
+        data.push(element);
+      }
+    }
+    // orders sorting new to old
+    data.sort(function (a, b) {
+      if (a.date.seconds > b.date.seconds) return -1;
+      if (a.date.seconds < b.date.seconds) return 1;
+      return 0;
+    });
+
+    setList(data);
+  }, [previousOrders]);
 
   const backshoppinglist = () => {
     return history.push(`/market`);
@@ -40,11 +43,12 @@ function ShoppingList() {
       title: "Tarih",
       dataIndex: "date",
       key: "date",
-      // sorter: (a, b) => console.log(a.seconds * 1000),
+      sorter: (a, b) => a.date.seconds - b.date.seconds,
       render: (a) => (
         <span>{moment(a.seconds * 1000).format("DD.MM.YYYY")}</span>
       ),
-      sortDirections: ["ascend"],
+      sortDirections: ["descend"],
+      // defaultSortOrder: ["descend"],
     },
     {
       title: "Sipariş Durumu",
@@ -68,21 +72,6 @@ function ShoppingList() {
       dataIndex: "totalPrice",
       key: "totalPrice",
       render: (text) => <span>{`${text} ₺`}</span>,
-    },
-    {
-      title: "İşlem Yap",
-      key: "delete",
-      render: (text) => (
-        <Tooltip title="Sil">
-          <Button
-            type="text"
-            danger
-            shape="circle"
-            icon={<DeleteOutlined />}
-            // onClick={() => deleteSugCom(text.key)}
-          />
-        </Tooltip>
-      ),
     },
   ];
 
@@ -121,19 +110,19 @@ function ShoppingList() {
         </div>
       </div>
       <hr className="container_hr" />
-
-      <Table
-        className="shoppinglist_table"
-        columns={columns}
-        dataSource={orderList}
-        pagination={{ position: ["bottomRight"] }}
-        expandable={
-          {
-            expandedRowRender: (data) => expandedRow(data),
-            rowExpandable: (data) => data.delivered !== [],
-          }
-        }
-      />
+      <Row className="shoppinglist_row">
+        <Col xl={16} lg={18} md={24} sm={24} xs={24}>
+          <Table
+            columns={columns}
+            dataSource={list}
+            pagination={{ position: ["bottomRight"] }}
+            expandable={{
+              expandedRowRender: (data) => expandedRow(data),
+              rowExpandable: (data) => data.delivered !== [],
+            }}
+          />
+        </Col>
+      </Row>
     </div>
   );
 }

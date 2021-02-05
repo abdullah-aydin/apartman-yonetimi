@@ -124,8 +124,9 @@
   justify-content: space-between;
 }
 
-.shoppinglist_table {
-  padding-top: 35px;
+.shoppinglist_row {
+  justify-content: center;
+  overflow-x: scroll;
 }
 
 .market_container .ant-row {
