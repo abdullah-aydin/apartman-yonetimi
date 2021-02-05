@@ -1,6 +1,6 @@
 import Chart from "react-apexcharts";
 
-function ColumnChart({ chartData }) {
+function ColumnChart({ chartData, color }) {
   let title = [];
   let price = [];
 
@@ -60,6 +60,7 @@ function ColumnChart({ chartData }) {
 
   const series = [
     {
+      name: "Fiyat:",
       data: price,
     },
   ];
@@ -80,18 +81,22 @@ function ColumnChart({ chartData }) {
       },
     },
     dataLabels: {
-      enabled: false,
+      style: {
+        colors: color,
+      },
     },
+    fill: {
+      colors: color,
+    },
+    colors: color,
     stroke: {
       curve: "smooth",
     },
+
     xaxis: {
       categories: title,
     },
 
-    fill: {
-      opacity: 1,
-    },
     tooltip: {
       y: {
         formatter: function (val) {

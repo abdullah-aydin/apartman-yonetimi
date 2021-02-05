@@ -16,32 +16,40 @@ import { MarketContext } from "../../context/MarketContext";
 
 function Analytics() {
   const { averagePriceForCharts } = useContext(BillsContext);
-  const { ordersPrice } = useContext(MarketContext);
+  const { ordersPrice, totalPayment } = useContext(MarketContext);
 
   const billsChart = [
     {
       id: 0,
-      title: "Elektrik",
-      icon: <GiElectric />,
-      data: averagePriceForCharts(0),
+      title: "Su",
+      icon: <IoWater />,
+      data: averagePriceForCharts(2).data,
+      total: averagePriceForCharts(2).totalPayment,
+      color: ["#77abf6"],
     },
     {
       id: 1,
       title: "Doğalgaz",
       icon: <RiFireFill />,
-      data: averagePriceForCharts(1),
+      data: averagePriceForCharts(1).data,
+      total: averagePriceForCharts(1).totalPayment,
+      color: ["#f28686"],
     },
     {
       id: 2,
-      title: "Su",
-      icon: <IoWater />,
-      data: averagePriceForCharts(2),
+      title: "Elektrik",
+      icon: <GiElectric />,
+      data: averagePriceForCharts(0).data,
+      total: averagePriceForCharts(0).totalPayment,
+      color: ["#8fcd48"],
     },
     {
       id: 3,
       title: "Market",
       icon: <AiOutlineShoppingCart />,
       data: ordersPrice,
+      total: totalPayment,
+      color: ["#67c2b6"],
     },
   ];
 
@@ -64,13 +72,15 @@ function Analytics() {
             <Card className="card">
               <h2 className="analytics_title">{`${bill.title} Faturaları`}</h2>
               <div className="analytics_description">
-                <div className="analytics_icon">{bill.icon}</div>
+                <div className={`analytics_icon icon_${bill.id + 1}`}>
+                  {bill.icon}
+                </div>
                 <div className="analytics_total_bill">
                   <p>Toplam Harcama</p>
-                  <b>1500 TL</b>
+                  <b>{bill.total} TL</b>
                 </div>
               </div>
-              <ColumnChart chartData={bill.data} />
+              <ColumnChart chartData={bill.data} color={bill.color} />
             </Card>
           </Col>
         ))}

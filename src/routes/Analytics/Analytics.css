@@ -30,3 +30,24 @@
 .analytics_total_bill > p {
   margin: 0;
 }
+
+.analytics_icon > svg {
+  height: 40px;
+  width: 40px;
+  padding: 5px;
+  color: white;
+  border-radius: 7px;
+}
+
+.icon_1 > svg {
+  background-color: #77abf6;
+}
+.icon_2 > svg {
+  background-color: #f28686;
+}
+.icon_3 > svg {
+  background-color: #8fcd48;
+}
+.icon_4 > svg {
+  background-color: #67c2b6;
+}

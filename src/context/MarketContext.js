@@ -11,6 +11,11 @@ export const MarketProvider = (props) => {
 
   const currentMonth = moment().format("YYYY-MM");
 
+  console.log(ordersPrice);
+
+
+  const totalPayment = ordersPrice.reduce((a, b) => a + b.price, 0);
+
   useEffect(() => {
     db.collection("users")
       .doc("903rfcO6sbX7hJISg1ND")
@@ -47,6 +52,7 @@ export const MarketProvider = (props) => {
       value={{
         orders,
         ordersPrice,
+        totalPayment
       }}
     >
       {props.children}

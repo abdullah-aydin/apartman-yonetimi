@@ -1,8 +1,11 @@
 import { useContext, useState, useEffect } from "react";
 // ant design
 import { Card, Col, Row } from "antd";
-// ant design icon
-import { CaretUpOutlined, CaretDownOutlined } from "@ant-design/icons";
+// icons
+import { RiFireFill } from "react-icons/ri";
+import { IoWater } from "react-icons/io5";
+import { GiElectric } from "react-icons/gi";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 // context
 import { BillsContext } from "../../../context/BillsContext";
 import { MarketContext } from "../../../context/MarketContext";
@@ -26,33 +29,38 @@ function Cards() {
 
   const billsCards = [
     {
-      key: 0,
-      title: "Elektrik",
+      id: 0,
+      title: "Su",
       className: "cardOne",
-      thisMonth: thisMonthPriceForCards(0),
-      averagePrice: averagePriceForCards(0),
-      percantage: percantageForCards(0),
+      icon: <IoWater />,
+      thisMonth: thisMonthPriceForCards(2),
+      averagePrice: averagePriceForCards(2),
+      percantage: percantageForCards(2),
     },
+
     {
-      key: 1,
+      id: 1,
       title: "Doğalgaz",
       className: "cardTwo",
+      icon: <RiFireFill />,
       thisMonth: thisMonthPriceForCards(1),
       averagePrice: averagePriceForCards(1),
       percantage: percantageForCards(1),
     },
     {
-      key: 2,
-      title: "Su",
+      id: 2,
+      title: "Elektrik",
       className: "cardThree",
-      thisMonth: thisMonthPriceForCards(2),
-      averagePrice: averagePriceForCards(2),
-      percantage: percantageForCards(2),
+      icon: <GiElectric />,
+      thisMonth: thisMonthPriceForCards(0),
+      averagePrice: averagePriceForCards(0),
+      percantage: percantageForCards(0),
     },
     {
-      key: 3,
+      id: 3,
       title: "Market",
       className: "cardFour",
+      icon: <AiOutlineShoppingCart />,
       thisMonth: market.currentMonthMarketPrice,
       averagePrice: market.average,
       percantage: market.percantage,
@@ -62,7 +70,6 @@ function Cards() {
   useEffect(() => {
     const orders = [...ordersPrice];
     const currentMonthMarketPrice = orders.pop();
-
 
     const totalMarketPrice = orders.reduce((a, b) => a + b.price, 0);
 
@@ -80,7 +87,7 @@ function Cards() {
 
   return (
     <div className="card-wrapper">
-      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+      <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className="card_row">
         {billsCards.map((card) => (
           <Col
             xl={6}
@@ -89,30 +96,44 @@ function Cards() {
             sm={12}
             xs={12}
             className="card_col"
-            key={card.key}
+            key={card.id}
           >
             <Card bordered={true} className={`card ${card.className}`}>
-              <Row>
-                <Col flex={3.5}>
-                  <h2 className="card_title">{card.thisMonth} ₺</h2>
-                  <h3 className="card_detail">
-                    {`Aylık ${card.title} Faturası `}
-                  </h3>
-                  <p className="card_p">
-                    Aylık ortalama <b>{card.averagePrice} ₺</b>
-                  </p>
+              <Row className="card_head_row">
+                <Col className="card_head_col">
+                  <span className={`card_icon icon_${card.id + 1}`}>
+                    {card.icon}
+                  </span>
+                  <h2 className="card_title">{card.title}</h2>
                 </Col>
-                <Col flex={1.5}>
+                <Col className="card_head">
+                  <h1 className="card_price">{card.thisMonth} ₺</h1>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="card_body"></Col>
+              </Row>
+              <Row>
+                <Col className="card_body">
+                  <span>
+                    Aylık ortalama <b>{card.averagePrice} ₺</b>
+                  </span>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="card_body">
                   {card.percantage > 0 ? (
-                    <h2 className="card_percantage negative">
-                      <CaretUpOutlined />
-                      {card.percantage}%
-                    </h2>
+                    <span>
+                      Ortalamalara göre{" "}
+                      <b style={{ color: "red" }}>{card.percantage}% artış</b>
+                    </span>
                   ) : (
-                    <h2 className="card_percantage positive">
-                      <CaretDownOutlined />
-                      {card.percantage}%
-                    </h2>
+                    <span>
+                      Ortalamalara göre{" "}
+                      <b style={{ color: "darkcyan" }}>
+                        {card.percantage}% düşüş
+                      </b>
+                    </span>
                   )}
                 </Col>
               </Row>

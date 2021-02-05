@@ -24,6 +24,7 @@ export const BillsProvider = (props) => {
   // FOR CHARTS //
   const avarageForCharts = (dt) => {
     let data = [];
+    let totalPayment = 0;
     if (dt) {
       const allMonthBills = Object.values(dt);
 
@@ -34,14 +35,15 @@ export const BillsProvider = (props) => {
         return 0;
       });
 
-      allMonthBills.forEach((d) =>
+      allMonthBills.forEach((d) => {
         data.push({
           title: moment(d.date?.seconds * 1000).format("YYYY-MM"),
           price: d.price,
-        })
-      );
+        });
+        totalPayment += d.price;
+      });
     }
-    return data;
+    return { data, totalPayment };
   };
 
   const averagePriceForCharts = (count) => {
