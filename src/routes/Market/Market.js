@@ -122,7 +122,7 @@ function Market() {
   ));
 
   const productList = productItems.map((product, index) => (
-    <Col xl={4} lg={8} md={8} sm={12} xs={16} key={index}>
+    <Col xxl={4} xl={6} lg={8} md={8} sm={12} xs={16} key={index}>
       <Card
         className="card_market_product"
         hoverable
