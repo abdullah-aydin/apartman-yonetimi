@@ -149,11 +149,23 @@
   color: "#3b4cb8";
 }
 
-.announcement_list_item > div > svg {
+.announcement_list_item {
+  cursor: pointer;
+}
+
+.announcement_list_item:hover {
+  background-color: #fafafa;
+}
+
+.announcement_list_item_meta > div > svg {
   height: 30px;
   width: 30px;
 }
 
-.announcement_list_item > div {
+.announcement_list_item_meta > div {
+  margin: auto 16px auto auto;
+}
+
+.announcement_list_item_meta > div {
   margin: auto 16px auto auto;
 }

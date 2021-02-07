@@ -1,21 +1,21 @@
 import { Modal } from "antd";
+//moment
+import moment from "moment";
 
-function AnnoModal({ modalVisible, modalIsVisible }) {
+function AnnoModal({ modalVisible, modalIsVisible, item }) {
   return (
     <Modal
-      title="Vertically centered modal dialog"
+      title={item.title}
       centered
-      getContainer={false}
       visible={modalVisible}
       zIndex={1001}
-      cancelText="Kapat"
+      footer={null}
       onCancel={() => {
         modalIsVisible(!modalVisible);
       }}
     >
-      <p>some contents...</p>
-      <p>some contents...</p>
-      <p>some contents...</p>
+      <p>{item.desc}</p>
+      <em>{moment(item?.date?.seconds * 1000).format("DD.MM.YYYY")}</em>
     </Modal>
   );
 }

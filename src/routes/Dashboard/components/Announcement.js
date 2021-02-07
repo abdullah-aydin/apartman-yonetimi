@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 //ant design
 import "antd/dist/antd.css";
 import { List, Card, Col, Row } from "antd";
@@ -7,39 +7,24 @@ import "../Dashboard.css";
 //icons
 import { IoMdNotificationsOutline } from "react-icons/io";
 import AnnoModal from "../../../components/AnnoModal";
+// db
+import db from "../../../config/firebase";
+//moment
+import moment from "moment";
 
 function Announcement() {
+  const [anno, setAnno] = useState([]);
+  const [item, setItem] = useState({});
+
   // confirm modal
   const [modalVisible, setModalVisible] = useState(false);
   const modalIsVisible = () => setModalVisible(!modalVisible);
 
-  const data = [
-    {
-      title: "Ant Design Title 1",
-    },
-    {
-      title: "Ant Design Title 2",
-    },
-    {
-      title: "Ant Design Title 3",
-    },
-    {
-      title: "Ant Design Title 4",
-    },
-    {
-      title:
-        "Ant Design Title 1Ant Design Title 1Ant Design Title 1Ant Design Title 1Ant Design Title 1",
-    },
-    {
-      title: "Ant Design Title 2",
-    },
-    {
-      title: "Ant Design Title 3",
-    },
-    {
-      title: "Ant Design Title 4",
-    },
-  ];
+  useEffect(() => {
+    db.collection("announcements").onSnapshot((snapshot) =>
+      snapshot.docs.map((doc) => setAnno((anno) => [doc.data(), ...anno]))
+    );
+  }, []);
 
   return (
     <>
@@ -59,14 +44,22 @@ function Announcement() {
               <Col style={{ height: "500px", overflowY: "auto" }}>
                 <List
                   itemLayout="horizontal"
-                  dataSource={data}
+                  dataSource={anno}
                   renderItem={(item) => (
-                    <List.Item onClick={() => modalIsVisible(true)}>
+                    <List.Item
+                      className="announcement_list_item"
+                      onClick={() => {
+                        modalIsVisible(true);
+                        setItem(item);
+                      }}
+                    >
                       <List.Item.Meta
-                        className="announcement_list_item"
+                        className="announcement_list_item_meta"
                         avatar={<IoMdNotificationsOutline />}
                         title={<b>{item.title}</b>}
-                        description="11.01.2021"
+                        description={moment(item?.date?.seconds * 1000).format(
+                          "DD.MM.YYYY"
+                        )}
                       />
                     </List.Item>
                   )}
@@ -76,7 +69,11 @@ function Announcement() {
           </Col>
         </Row>
       </div>
-      <AnnoModal modalVisible={modalVisible} modalIsVisible={modalIsVisible} />
+      <AnnoModal
+        modalVisible={modalVisible}
+        modalIsVisible={modalIsVisible}
+        item={item}
+      />
     </>
   );
 }
