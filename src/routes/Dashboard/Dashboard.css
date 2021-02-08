@@ -93,7 +93,13 @@
 }
 .card_head_col {
   display: flex;
+  min-width: 152px;
 }
+
+.card_head {
+  min-width: 90px;
+}
+
 .card_icon > svg {
   height: 40px;
   width: 40px;
@@ -168,4 +174,41 @@
 
 .announcement_list_item_meta > div {
   margin: auto 16px auto auto;
+}
+
+.today_weather > p,
+h3,
+h5 {
+  margin: 0;
+}
+
+.today_weather_max_min {
+  margin: 0px 10px;
+}
+
+.threeDays_weather {
+  display: flex;
+}
+.threeDays_weather > h3,
+h4,
+p {
+  margin: 0;
+}
+
+.threeDays_date,
+.threeDays_temp {
+  margin: auto;
+}
+
+.dashboard_col {
+  display: grid;
+  margin-bottom: 16px;
+}
+
+/* 1529 */
+
+@media screen and (min-device-width: 991px) and (max-device-width: 1529px) {
+  .card_head_row > div:nth-child(2) {
+    text-align: center;
+  }
 }

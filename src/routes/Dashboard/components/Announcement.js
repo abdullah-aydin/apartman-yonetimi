@@ -28,7 +28,7 @@ function Announcement() {
 
   return (
     <>
-      <Col xxl={6} xl={8} lg={12} md={12} sm={24} xs={24}>
+      <Col xxl={6} xl={8} lg={12} md={12} sm={24} xs={24} className="dashboard_col">
         <Card bordered={true} className="card">
           <h2
             style={{
@@ -40,7 +40,7 @@ function Announcement() {
           >
             Duyurular
           </h2>
-          <Col style={{ height: "500px", overflowY: "auto" }}>
+          <Col style={{ overflowY: "auto" }}>
             <List
               itemLayout="horizontal"
               dataSource={anno}

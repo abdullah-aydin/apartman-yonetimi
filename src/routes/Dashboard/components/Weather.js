@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 //ant design
-import "antd/dist/antd.css";
 import { Card, Col, Row, Spin } from "antd";
 //styles
 import "../Dashboard.css";
@@ -25,14 +24,24 @@ function Weather() {
     ]);
   }, [forecasts]);
 
-  console.log(threeDays);
+  const icons1x = (iconID) => {
+    return `${iconBase}/${iconID}.png`;
+  };
 
-  const icons = (iconID) => {
+  const icons2x = (iconID) => {
     return `${iconBase}/${iconID}@2x.png`;
   };
 
   return (
-    <Col xxl={6} xl={8} lg={12} md={12} sm={24} xs={24}>
+    <Col
+      xxl={6}
+      xl={8}
+      lg={12}
+      md={12}
+      sm={24}
+      xs={24}
+      className="dashboard_col"
+    >
       <Card bordered={true} className="card">
         <h2
           style={{
@@ -48,7 +57,6 @@ function Weather() {
         <Row>
           <Col
             style={{
-              height: "500px",
               width: "100%",
               overflowY: "auto",
               textAlign: "center",
@@ -56,43 +64,37 @@ function Weather() {
           >
             {today !== undefined ? (
               <>
-                <div>
+                <div className="today_weather">
                   <h3>{moment(today.dt * 1000).format("DD.MM.YYYY")}</h3>
                   <p>{moment(today.dt * 1000).format("dddd")}</p>
-                  <img src={icons(today.weather[0].icon)} alt="icon" />
-                  <h1>{`${today?.temp.day} ºC`}</h1>
-                  <div>{`${today.weather[0].description}`.toUpperCase()}</div>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      padding: "10px",
-                    }}
-                  >
-                    <div>
-                      <h5>En düşük sıcaklık</h5>
-                      <h5>
-                        <b>{`${today.temp.min} ºC`}</b>
-                      </h5>
-                    </div>
-                    <div>
-                      <h5>En yüksek sıcaklık</h5>
-                      <h5>
-                        <b>{`${today.temp.max} ºC`}</b>
-                      </h5>
-                    </div>
-                  </div>
+                  <img src={icons2x(today.weather[0].icon)} alt="icon" />
+                  <h3>
+                    <b>{`${today?.temp.day} ºC`}</b>
+                  </h3>
+                  <p>{`${today.weather[0].description}`.toUpperCase()}</p>
+
+                  <hr />
                 </div>
-                {/* <div>
-                  {threeDays.map((day) => (
-                    <div key={day.dt}>
-                      <h1>{`${day?.temp.day} ºC`}</h1>
-                      <p>Sıcaklık</p>
-                      <img src={icons(day.weather[0].icon)} alt="icon" />
-                      <div>{`${day.weather[0].description}`.toUpperCase()}</div>
-                    </div>
+                <div>
+                  {threeDays.map((day, index) => (
+                    <Row key={day.dt} className="threeDays_weather">
+                      <Col xxl={8} xs={8} className="threeDays_date">
+                        <h3>{moment(day.dt * 1000).format("DD.MM.YYYY")}</h3>
+                        <p>{moment(day.dt * 1000).format("dddd")}</p>
+                      </Col>
+                      <Col xxl={8} xs={8}>
+                        <img src={icons1x(day.weather[0].icon)} alt="icon" />
+                        <p>{`${day.weather[0].description}`.toUpperCase()}</p>
+                      </Col>
+                      <Col xxl={8} xs={8} className="threeDays_temp">
+                        <h4>
+                          <b>{`${day?.temp.day} ºC`}</b>
+                        </h4>
+                      </Col>
+                      {index !== 2 && <hr style={{ width: "100%" }} />}
+                    </Row>
                   ))}
-                </div> */}
+                </div>
               </>
             ) : (
               <div>
