@@ -100,7 +100,7 @@ function Cards() {
             className="card_col"
             key={card.id}
           >
-            <Card bordered={true} className={`card ${card.className}`}>
+            <Card bordered={true} className={`card headCard ${card.className}`}>
               <Row className="card_head_row">
                 <Col className="card_head_col">
                   <span className={`card_icon icon_${card.id + 1}`}>
@@ -116,22 +116,22 @@ function Cards() {
                 <Col className="card_body"></Col>
               </Row>
               <Row>
-                <Col className="card_body">
+                <Col className="card_body card_average">
                   <span>
-                    Aylık ortalama <b>{card.averagePrice} ₺</b>
+                    Aylık ortalama <strong>{card.averagePrice} ₺</strong>
                   </span>
                 </Col>
               </Row>
               <Row>
-                <Col className="card_body">
+                <Col className="card_body card_percantage">
                   {card.percantage > 0 ? (
                     <span>
-                      Ortalamalara göre{" "}
+                      <p>Ortalamaya göre</p>
                       <b style={{ color: "red" }}>{card.percantage}% artış</b>
                     </span>
                   ) : (
                     <span>
-                      Ortalamalara göre{" "}
+                      <p>Ortalamaya göre</p>
                       <b style={{ color: "darkcyan" }}>
                         {card.percantage !== "NaN" ? card.percantage : 0}% düşüş
                       </b>

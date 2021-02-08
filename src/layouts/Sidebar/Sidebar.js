@@ -14,7 +14,7 @@ function Sidebar() {
   return (
     <>
       <Sider
-        breakpoint="lg"
+        breakpoint="xl"
         collapsedWidth="0"
         onBreakpoint={(broken) => {
           // console.log(broken);

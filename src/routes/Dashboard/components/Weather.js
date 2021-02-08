@@ -72,12 +72,16 @@ function Weather() {
                     <b>{`${today?.temp.day} ºC`}</b>
                   </h3>
                   <p>{`${today.weather[0].description}`.toUpperCase()}</p>
-
-                  <hr />
                 </div>
                 <div>
                   {threeDays.map((day, index) => (
-                    <Row key={day.dt} className="threeDays_weather">
+                    <Row
+                      key={day.dt}
+                      className="threeDays_weather"
+                      style={
+                        index !== 2 && { borderBottom: "1px solid #f0f0f0" }
+                      }
+                    >
                       <Col xxl={8} xs={8} className="threeDays_date">
                         <h3>{moment(day.dt * 1000).format("DD.MM.YYYY")}</h3>
                         <p>{moment(day.dt * 1000).format("dddd")}</p>
@@ -91,7 +95,6 @@ function Weather() {
                           <b>{`${day?.temp.day} ºC`}</b>
                         </h4>
                       </Col>
-                      {index !== 2 && <hr style={{ width: "100%" }} />}
                     </Row>
                   ))}
                 </div>

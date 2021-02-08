@@ -176,6 +176,9 @@
   margin: auto 16px auto auto;
 }
 
+.today_weather {
+  border-bottom: 1px solid #f0f0f0;
+}
 .today_weather > p,
 h3,
 h5 {
@@ -205,10 +208,38 @@ p {
   margin-bottom: 16px;
 }
 
-/* 1529 */
+.card_percantage > span {
+  text-align: center;
+}
 
-@media screen and (min-device-width: 991px) and (max-device-width: 1529px) {
-  .card_head_row > div:nth-child(2) {
+@media screen and (min-width: 991px) and (max-width: 1529px) {
+  .card_head {
+    width: 100%;
+    text-align: center;
+  }
+  .card_percantage {
+    text-align: center;
+  }
+
+  .card_average > span {
+    min-width: 169px;
+  }
+  .card_head_row {
+    display: flex;
+    justify-content: center;
+  }
+  .card_head_col {
+    text-align: center;
+    justify-content: center;
+  }
+  .headCard > div:first-child {
+    padding: 16px;
+  }
+}
+
+@media screen and (max-width: 664px) {
+  .card_head {
+    width: 100%;
     text-align: center;
   }
 }
