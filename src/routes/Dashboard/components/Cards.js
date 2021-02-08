@@ -33,7 +33,7 @@ function Cards() {
       title: "Su",
       className: "cardOne",
       icon: <IoWater />,
-      thisMonth: thisMonthPriceForCards(2),
+      thisMonth: thisMonthPriceForCards(2) ? thisMonthPriceForCards(2) : 0,
       averagePrice: averagePriceForCards(2),
       percantage: percantageForCards(2),
     },
@@ -43,7 +43,7 @@ function Cards() {
       title: "Doğalgaz",
       className: "cardTwo",
       icon: <RiFireFill />,
-      thisMonth: thisMonthPriceForCards(1),
+      thisMonth: thisMonthPriceForCards(1) ? thisMonthPriceForCards(1) : 0,
       averagePrice: averagePriceForCards(1),
       percantage: percantageForCards(1),
     },
@@ -52,7 +52,7 @@ function Cards() {
       title: "Elektrik",
       className: "cardThree",
       icon: <GiElectric />,
-      thisMonth: thisMonthPriceForCards(0),
+      thisMonth: thisMonthPriceForCards(0) ? thisMonthPriceForCards(0) : 0,
       averagePrice: averagePriceForCards(0),
       percantage: percantageForCards(0),
     },
@@ -61,9 +61,11 @@ function Cards() {
       title: "Market",
       className: "cardFour",
       icon: <AiOutlineShoppingCart />,
-      thisMonth: market.currentMonthMarketPrice,
-      averagePrice: market.average,
-      percantage: market.percantage,
+      thisMonth: market.currentMonthMarketPrice
+        ? market.currentMonthMarketPrice
+        : 0,
+      averagePrice: market.average !== "NaN" ? market.average : 0,
+      percantage: market.percantage ? market.percantage : 0,
     },
   ];
 
@@ -131,7 +133,7 @@ function Cards() {
                     <span>
                       Ortalamalara göre{" "}
                       <b style={{ color: "darkcyan" }}>
-                        {card.percantage}% düşüş
+                        {card.percantage !== "NaN" ? card.percantage : 0}% düşüş
                       </b>
                     </span>
                   )}

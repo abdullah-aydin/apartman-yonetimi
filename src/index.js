@@ -6,12 +6,15 @@ import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
 import { MarketProvider } from "./context/MarketContext";
 import { BillsProvider } from "./context/BillsContext";
+import { WeatherProvider } from "./context/WeatherContext";
 
 ReactDOM.render(
   <AuthProvider>
     <BillsProvider>
       <MarketProvider>
-        <App />
+        <WeatherProvider>
+          <App />
+        </WeatherProvider>
       </MarketProvider>
     </BillsProvider>
   </AuthProvider>,
