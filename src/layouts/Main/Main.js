@@ -11,9 +11,8 @@ const { Content } = Layout;
 
 function Main() {
   return (
-    <Content style={{ margin: "24px 16px 0" }}>
+    <Content className="main-content">
       <Switch>
-        
         <Redirect exact from="/" to="/dashboard" />
 
         {routes.map((route) => (
@@ -21,7 +20,7 @@ function Main() {
             <div className="site-layout-background">
               {route.id < 6 && (
                 <>
-                  {route.title}
+                  <h1>{route.title}</h1>
                   <hr />
                 </>
               )}
@@ -29,7 +28,6 @@ function Main() {
             </div>
           </Route>
         ))}
-
       </Switch>
     </Content>
   );

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 //ant design
 import "antd/dist/antd.css";
-import { List, Card, Col, Row } from "antd";
+import { List, Card, Col } from "antd";
 //styles
 import "../Dashboard.css";
 //icons

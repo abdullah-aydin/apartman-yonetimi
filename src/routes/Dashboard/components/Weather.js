@@ -4,8 +4,6 @@ import "antd/dist/antd.css";
 import { Card, Col, Row, Spin } from "antd";
 //styles
 import "../Dashboard.css";
-//icons
-// import { IoMdNotificationsOutline } from "react-icons/io";
 // context
 import WeatherContext from "../../../context/WeatherContext";
 //moment
@@ -59,12 +57,33 @@ function Weather() {
             {today !== undefined ? (
               <>
                 <div>
-                  <h1>{`${today?.temp.day} ºC`}</h1>
-                  <p>Sıcaklık</p>
+                  <h3>{moment(today.dt * 1000).format("DD.MM.YYYY")}</h3>
+                  <p>{moment(today.dt * 1000).format("dddd")}</p>
                   <img src={icons(today.weather[0].icon)} alt="icon" />
+                  <h1>{`${today?.temp.day} ºC`}</h1>
                   <div>{`${today.weather[0].description}`.toUpperCase()}</div>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                      padding: "10px",
+                    }}
+                  >
+                    <div>
+                      <h5>En düşük sıcaklık</h5>
+                      <h5>
+                        <b>{`${today.temp.min} ºC`}</b>
+                      </h5>
+                    </div>
+                    <div>
+                      <h5>En yüksek sıcaklık</h5>
+                      <h5>
+                        <b>{`${today.temp.max} ºC`}</b>
+                      </h5>
+                    </div>
+                  </div>
                 </div>
-                <div>
+                {/* <div>
                   {threeDays.map((day) => (
                     <div key={day.dt}>
                       <h1>{`${day?.temp.day} ºC`}</h1>
@@ -73,7 +92,7 @@ function Weather() {
                       <div>{`${day.weather[0].description}`.toUpperCase()}</div>
                     </div>
                   ))}
-                </div>
+                </div> */}
               </>
             ) : (
               <div>
