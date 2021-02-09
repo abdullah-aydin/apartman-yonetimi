@@ -22,13 +22,21 @@ function Announcement() {
 
   useEffect(() => {
     db.collection("announcements").onSnapshot((snapshot) =>
-      snapshot.docs.map((doc) => setAnno((anno) => [doc.data(), ...anno]))
+      setAnno(snapshot.docs.map((doc) => doc.data()))
     );
   }, []);
 
   return (
     <>
-      <Col xxl={6} xl={8} lg={12} md={12} sm={24} xs={24} className="dashboard_col">
+      <Col
+        xxl={6}
+        xl={8}
+        lg={12}
+        md={12}
+        sm={24}
+        xs={24}
+        className="dashboard_col"
+      >
         <Card bordered={true} className="card">
           <h2
             style={{

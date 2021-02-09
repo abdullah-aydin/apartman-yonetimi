@@ -12,6 +12,7 @@ function ConfirmModal({
     <Modal
       getContainer={false}
       title={title}
+      centered
       visible={modalVisible}
       zIndex={1001}
       onOk={confirmFunction}

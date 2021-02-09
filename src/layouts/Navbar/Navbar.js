@@ -1,20 +1,27 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 // ant design style
-import { Layout, Button, Tooltip } from "antd";
-import { LogoutOutlined } from "@ant-design/icons";
+import { Layout, Button, Tooltip, Modal } from "antd";
+import { LogoutOutlined, ExclamationCircleOutlined } from "@ant-design/icons";
 //style
 import "./Navbar.css";
-// component
-import ConfirmModal from "../../components/ConfirmModal";
 
 const { Header } = Layout;
 
 function Navbar() {
   const { signOut } = useContext(AuthContext);
-  // confirm modal
-  const [modalVisible, setModalVisible] = useState(false);
-  const modalIsVisible = () => setModalVisible(!modalVisible);
+
+  function confirmModal() {
+    Modal.confirm({
+      title: "Çıkış Yap",
+      icon: <ExclamationCircleOutlined />,
+      content: "Gerçekten çıkış yapmak istiyor musunuz?",
+      okText: "Evet",
+      cancelText: "Hayır",
+      centered: true,
+      onOk: signOut,
+    });
+  }
 
   return (
     <>
@@ -29,18 +36,11 @@ function Navbar() {
               icon={<LogoutOutlined />}
               size="large "
               className="logout_btn"
-              onClick={() => modalIsVisible(true)}
+              onClick={() => confirmModal()}
             />
           </Tooltip>
         </div>
       </Header>
-      <ConfirmModal
-        modalVisible={modalVisible}
-        modalIsVisible={modalIsVisible}
-        confirmFunction={() => signOut()}
-        title={"Gerçekten çıkış yapmak istiyor musunuz"}
-        // subtitle={`Toplam ${itemCount} ürün ve bu ürünlerin toplam fiyatı ${totalPrice} ₺`}
-      />
     </>
   );
 }
