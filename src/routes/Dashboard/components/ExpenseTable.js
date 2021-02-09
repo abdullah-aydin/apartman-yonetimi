@@ -1,89 +1,22 @@
 import { useState, useEffect } from "react";
 //ant design
 import "antd/dist/antd.css";
-import { Card, Col, Table, Tag, Button, Tooltip } from "antd";
+import { Card, Col, Table } from "antd";
 //styles
 import "../Dashboard.css";
-//icons
-import { DeleteOutlined } from "@ant-design/icons";
 // db
 import db from "../../../config/firebase";
 //moment
 import moment from "moment";
 
 function ExpenseTable() {
-  const expense = [
-    {
-      key: 0,
-      date: 1610544661,
-      title: "Apartman Temizliği",
-      price: 100,
-      explanation: "asdasd",
-    },
-    {
-      key: 1,
-      date: 1610544309,
-      title: "asdasd",
-      price: 120,
-      explanation: "asdasd",
-    },
-    {
-      key: 2,
-      date: 1610544661,
-      title: "Apartman Temizliği",
-      price: 100,
-      explanation: "asdasd",
-    },
-    {
-      key: 3,
-      date: 1610544309,
-      title: "asdasd",
-      price: 120,
-      explanation: "asdasd",
-    },
-    {
-      key: 4,
-      date: 1610544661,
-      title: "Apartman Temizliği",
-      price: 100,
-      explanation: "asdasd",
-    },
-    {
-      key: 5,
-      date: 1610544661,
-      title: "Apartman Temizliği",
-      price: 100,
-      explanation: "asdasd",
-    },
-    {
-      key: 6,
-      date: 1610544309,
-      title: "asdasd",
-      price: 120,
-      explanation: "asdasd",
-    },
-    {
-      key: 7,
-      date: 1610544661,
-      title: "Apartman Temizliği",
-      price: 100,
-      explanation: "asdasd",
-    },
-    {
-      key: 8,
-      date: 1610544309,
-      title: "asdasd",
-      price: 120,
-      explanation: "asdasd",
-    },
-    {
-      key: 9,
-      date: 1610544661,
-      title: "Apartman Temizliği",
-      price: 100,
-      explanation: "asdasd",
-    },
-  ];
+  const [expense, setExpense] = useState([]);
+
+  useEffect(() => {
+    db.collection("expense").onSnapshot((snapshot) =>
+      setExpense(snapshot.docs.map((doc) => doc.data()))
+    );
+  }, []);
 
   const columns = [
     {
