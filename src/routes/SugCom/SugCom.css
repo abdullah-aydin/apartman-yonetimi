@@ -32,3 +32,12 @@ tr.ant-table-expanded-row.ant-table-expanded-row-level-1 > td {
   background-color: aliceblue;
   padding: 20px 4rem;
 }
+
+.sug_com_row {
+  justify-content: center;
+  overflow-x: auto;
+}
+
+.ant-table-wrapper > .ant-spin-nested-loading {
+  min-width: fit-content;
+}
