@@ -5,7 +5,11 @@ import {
   LineChartOutlined,
   CommentOutlined,
   ExclamationCircleOutlined,
+  ApartmentOutlined
+
+
 } from "@ant-design/icons";
+
 
 export const sidebarMenu = [
   {
@@ -37,5 +41,11 @@ export const sidebarMenu = [
     name: "Market",
     url: "/market",
     icon: <ShoppingCartOutlined />,
+  },
+   {
+    id: 5,
+    name: "Hizmetler",
+    url: "/services",
+    icon: <ApartmentOutlined  />,
   },
 ];

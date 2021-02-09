@@ -3,7 +3,7 @@ import TableSugCom from "./components/TableSugCom";
 //router
 import { useHistory } from "react-router-dom";
 // ant design
-import { Card, Col, Row, Button } from "antd";
+import {  Col, Row, Button } from "antd";
 
 function SugCom() {
   const history = useHistory();

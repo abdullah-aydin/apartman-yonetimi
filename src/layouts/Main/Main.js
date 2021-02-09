@@ -18,7 +18,7 @@ function Main() {
         {routes.map((route) => (
           <Route path={route.path} key={route.id}>
             <div className="site-layout-background">
-              {route.id < 6 && (
+              {route.id < 7 && (
                 <>
                   <h1>{route.title}</h1>
                   <hr />

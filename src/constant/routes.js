@@ -6,6 +6,7 @@ import SugCom from "../routes/SugCom";
 import FormSugCom from "../routes/SugCom/components/FormSugCom";
 import Market from "../routes/Market/Market";
 import ShoppingList from "../routes/Market/components/ShoppingList";
+import Services from "../routes/Services"
 
 export const routes = [
   {
@@ -46,12 +47,19 @@ export const routes = [
   },
   {
     id: 6,
+    path: "/services",
+    title: "Hizmetler",
+    components: <Services />,
+  },
+  {
+    id: 7,
     path: "/market",
     components: <Market />,
   },
   {
-    id: 7,
+    id: 8,
     path: "/shopping-list",
     components: <ShoppingList />,
   },
+
 ];
