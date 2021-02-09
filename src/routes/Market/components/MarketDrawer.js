@@ -116,22 +116,26 @@ function MarketDrawer({ visible, setVisible, onClose, items, setItems }) {
               <Row>
                 <Col span={16}></Col>
                 <Col span={8}>{`Fiyat: ${item.count * item.price} ₺`}</Col>
+                
               </Row>
-              <hr />
+             <hr className="market_hr"/>
             </div>
           ))}
         </>
         {items.length > 0 && (
           <>
-            <Row>
+            
+            <Row className="Market_total">
+            
               <Col span={16}>
-                <h4>{`Toplam ${itemCount} ürün`}</h4>
+                <h4 className="market_fiyat">{`Toplam Ürün: ${itemCount} `}</h4>
               </Col>
               <Col span={8}>
-                <h4>{`Fiyat: ${totalPrice} ₺`}</h4>
+                <h4 className="market_fiyat" >{`Fiyat: ${totalPrice} ₺`}</h4>
               </Col>
             </Row>
             <Row className="marketdrawer_button">
+         
               <Col span={24}>
                 <Button
                   type="ghost"

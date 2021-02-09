@@ -113,6 +113,7 @@
 .marketdrawer_count {
   display: flex;
   justify-content: space-between;
+
 }
 
 .marketdrawer_p {
@@ -126,7 +127,7 @@
 
 .shoppinglist_row {
   justify-content: center;
-  overflow-x: scroll;
+  overflow-x: auto;
 }
 
 .market_container .ant-row {
@@ -136,4 +137,11 @@
 .marketdrawer_button {
   text-align: center;
   margin-top: 15px;
+}
+
+.market_hr{
+  margin-top: 9%;
+}
+.market_fiyat{
+  font-size: 18px;
 }

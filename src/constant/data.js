@@ -85,13 +85,37 @@ export const products = [
     count:1,
     title: "Fanta",
     categoryId: 1,
-    price:3,
+    price:7,
     img:
       "https://cdn.shopify.com/s/files/1/0516/5423/0205/products/36888053-3195-428d-8f47-db43deb47653_400x.png?v=1608069649"
   },
-
-
-
+  {
+    id: 24,
+    count:1,
+    title: "Nestea Şeftali 1.5 LT",
+    categoryId: 1,
+    price:8,
+    img:
+      "https://cdn.shopify.com/s/files/1/0516/5423/0205/products/image_cd464af1-91aa-4e10-979b-b9d0fe087281_500x.png?v=1609265075"
+  },
+  {
+    id: 25,
+    count:1,
+    title: "San Pellegrino",
+    categoryId: 1,
+    price:19,
+    img:
+      "https://cdn.shopify.com/s/files/1/0516/5423/0205/products/40bf64df-e4e3-4d26-b0c2-4e9145472f0c_500x.png?v=1608075580"
+  },
+  {
+    id: 26,
+    count:1,
+    title: "Sprite",
+    categoryId: 1,
+    price:5,
+    img:
+      "https://cdn.shopify.com/s/files/1/0516/5423/0205/products/eba90443-f600-4046-b44e-7e317c2489e4_500x.png?v=1608076627"
+  },
   {
     id: 31,
     count:1,
@@ -100,6 +124,51 @@ export const products = [
     price:10,
     img:
       "https://cdn.shopify.com/s/files/1/0516/5423/0205/products/f75934ab-2ec9-409d-bcbf-1161426643a0_500x.png?v=1608069196"
+  },
+  {
+    id: 32,
+    count:1,
+    title: "Heinz Ketçap",
+    categoryId: 2,
+    price:12,
+    img:
+      "https://cdn.shopify.com/s/files/1/0516/5423/0205/products/0c6066b2-6301-415f-96d5-a2b735ac48e1_500x.png?v=1608073244"
+  },
+  {
+    id: 33,
+    count:1,
+    title: "Tereyağı",
+    categoryId: 2,
+    price:9,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/12010203/sutas-tereyagi-125-gr-4f4e46.jpg"
+  },
+  {
+    id: 34,
+    count:1,
+    title: "15'li Yumurta",
+    categoryId: 2,
+    price:12.50,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/20001975/20001975-cdebd9.jpg"
+  },
+  {
+    id: 35,
+    count:1,
+    title: "Baldo Pirinç",
+    categoryId: 2,
+    price:11.90,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/01011179/01011179-ff1326.jpg"
+  },
+  {
+    id: 36,
+    count:1,
+    title: "Yoğurt",
+    categoryId: 2,
+    price:8.50,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/12500380/sutas-kaymaksiz-yogurt-1000-gr-66b353.jpg"
   },
   {
     id: 41,
@@ -111,6 +180,51 @@ export const products = [
       "https://cdn.shopify.com/s/files/1/0516/5423/0205/products/9af89352-70ee-446a-a295-5746492c00b9_500x.png?v=1608075034"
   },
   {
+    id: 42,
+    count:1,
+    title: "Finish Çift Etkili Makine Temizleyici",
+    categoryId: 3,
+    price:47.5,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/30980296/30980296-2d2ce5.jpg"
+  },
+  {
+    id: 43,
+    count:1,
+    title: "Vanish Oxi",
+    categoryId: 3,
+    price:23.90,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/30569745/30569745-101912.png"
+  },
+  {
+    id: 44,
+    count:1,
+    title: "Cif Sprey Ultra",
+    categoryId: 3,
+    price:11.95,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/30733218/30733218-728b3b.jpg"
+  },
+  {
+    id: 45,
+    count:1,
+    title: "Vernel",
+    categoryId: 3,
+    price:16.25,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/30570126/30570126-b8caec.jpg"
+  },
+  {
+    id: 46,
+    count:1,
+    title: "Marc Banyo Sprey",
+    categoryId: 3,
+    price:11.95,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/30731805/30731805-434276.png"
+  },
+  {
     id: 51,
     count:1,
     title: "Pampers Premium 6-10kg",
@@ -120,6 +234,51 @@ export const products = [
       "https://cdn.shopify.com/s/files/1/0516/5423/0205/products/3372563a-8cb1-44e3-ba34-aeeb7c0ad68c_500x.png?v=1608073451"
   },
   {
+    id: 52,
+    count:1,
+    title: "Chicco Diş Fırçası",
+    categoryId: 4,
+    price:32.83,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/34040570/chicco-dis-fircasi-6m-pembe-f3f27a.jpg"
+  },
+  {
+    id: 53,
+    count:1,
+    title: "Nivea Bebek Yağı",
+    categoryId: 4,
+    price:32.83,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/35390401/35390401-261ddd.jpg"
+  },
+  {
+    id: 54,
+    count:1,
+    title: "Bebek Pudrası",
+    categoryId: 4,
+    price:5.90,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/35440601/johnson-s-baby-johnson-s-bebek-pudrasi-200-gr-c4ef0c.jpg"
+  },
+  {
+    id: 55,
+    count:1,
+    title: "Biberon 150 Ml",
+    categoryId: 4,
+    price:13.4,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/31600055/31600055-a95ce5.jpg"
+  },
+  {
+    id: 56,
+    count:1,
+    title: "Armut Püresi",
+    categoryId: 4,
+    price:7.30,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/05046976/05046976-824566.jpg"
+  },
+  {
     id: 61,
     count:1,
     title: "Whiskas",
@@ -127,6 +286,42 @@ export const products = [
     price:4,
     img:
       "https://cdn.shopify.com/s/files/1/0516/5423/0205/products/e962d0f4-4c07-4f2a-b151-c6c56bbfe95b_500x.png?v=1608071738"
+  },
+  {
+    id: 62,
+    count:1,
+    title: "Gourment Gold",
+    categoryId: 5,
+    price:7.25,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/41025295/41025295-182f7c.jpg"
+  },
+  {
+    id: 63,
+    count:1,
+    title: "Flex Somonlu",
+    categoryId: 5,
+    price:4.95,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/41025153/41025153-efc7bf.jpg"
+  },
+  {
+    id: 64,
+    count:1,
+    title: "Gizmo",
+    categoryId: 5,
+    price:9.90,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/41991907/41991907-15aaf0.jpg"
+  },
+  {
+    id: 65,
+    count:1,
+    title: "Sheba Etli Çeşitler",
+    categoryId: 5,
+    price:19.95,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/41025203/41025203-e22539.jpg"
   },
   {
     id: 71,
@@ -147,6 +342,43 @@ export const products = [
       "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/14309015/migros-antrikot-pastirma-kg-1b3d10.jpg"
   },
   {
+    id: 72,
+    count:1,
+    title: "Soslu Kuzu Kaburga",
+    categoryId: 6,
+    price:60.95,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/24010074/24010074-f560aa.jpg"
+  },
+  {
+    id: 73,
+    count:1,
+    title: "Sebzeli Dana Şiş Kg",
+    categoryId: 6,
+    price:77.95,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/25010100/25010100-7e89ef.jpg"
+  },
+  {
+    id: 74,
+    count:1,
+    title: "Kuzu But Kg",
+    categoryId: 6,
+    price:90,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/24010002/migros-et-kuzu-but-kg-kemikli-butun-but-67204e.jpg"
+  },
+  {
+    id: 75,
+    count:1,
+    title: "Jumbo Karides Kg",
+    categoryId: 6,
+    price:225,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/21000080/21000080-ecdf27.jpg"
+  },
+
+  {
     id: 81,
     count:1,
     title: "Simit",
@@ -154,7 +386,52 @@ export const products = [
     price:1,
     img:
       "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/05120101/05120101-b0b92d.jpg"
-  }
+  },
+  {
+    id: 82,
+    count:1,
+    title: "Çadarlı Ekmek 300 G",
+    categoryId: 7,
+    price:4.95,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/05120021/05120021-71c260.jpg"
+  },
+  {
+    id: 83,
+    count:1,
+    title: "Mini Sade Ekmek 360 G",
+    categoryId: 7,
+    price:14.70,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/05111608/05111608-701418.jpg"
+  },
+  {
+    id: 84,
+    count:1,
+    title: "Ekşi Mayalı Ekmek 450 G",
+    categoryId: 7,
+    price:9.45,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/05057081/05057081-a87ba8.jpg"
+  },
+  {
+    id: 85,
+    count:1,
+    title: "Wasa Susamlı ve Deniz Tulu Gevrek",
+    categoryId: 7,
+    price:12.30,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/05052819/05052819-8d88e8.jpg"
+  },
+  {
+    id: 86,
+    count:1,
+    title: "Tost Ekmeği",
+    categoryId: 7,
+    price:5.50,
+    img:
+      "https://migros-dali-storage-prod.global.ssl.fastly.net/sanalmarket/product/05057074/05057074-a290cb.jpg"
+  },
 ]
 
 
