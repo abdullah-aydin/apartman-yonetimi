@@ -35,8 +35,8 @@ function Weather() {
   return (
     <Col
       xxl={6}
-      xl={8}
-      lg={12}
+      xl={24}
+      lg={24}
       md={12}
       sm={24}
       xs={24}
@@ -53,7 +53,6 @@ function Weather() {
         >
           Hava Durumu
         </h2>
-
         <Row>
           <Col
             style={{
@@ -63,8 +62,16 @@ function Weather() {
             }}
           >
             {today !== undefined ? (
-              <>
-                <div className="today_weather">
+              <Row>
+                <Col
+                  xxl={24}
+                  xl={12}
+                  lg={12}
+                  md={24}
+                  sm={12}
+                  xs={24}
+                  className="today_weather"
+                >
                   <h3>{moment(today.dt * 1000).format("DD.MM.YYYY")}</h3>
                   <p>{moment(today.dt * 1000).format("dddd")}</p>
                   <img src={icons2x(today.weather[0].icon)} alt="icon" />
@@ -72,8 +79,8 @@ function Weather() {
                     <b>{`${today?.temp.day} ºC`}</b>
                   </h3>
                   <p>{`${today.weather[0].description}`.toUpperCase()}</p>
-                </div>
-                <div>
+                </Col>
+                <Col xxl={24} xl={12} lg={12} md={24} sm={12} xs={24}>
                   {threeDays.map((day, index) => (
                     <Row
                       key={day.dt}
@@ -97,8 +104,8 @@ function Weather() {
                       </Col>
                     </Row>
                   ))}
-                </div>
-              </>
+                </Col>
+              </Row>
             ) : (
               <div>
                 <Spin />
