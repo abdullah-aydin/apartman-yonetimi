@@ -62,7 +62,6 @@ function TableSugCom() {
     );
   };
 
-
   const columns = [
     {
       title: "Tarih",
