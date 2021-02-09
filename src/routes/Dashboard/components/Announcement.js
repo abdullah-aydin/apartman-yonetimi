@@ -48,7 +48,7 @@ function Announcement() {
           >
             Duyurular
           </h2>
-          <Col style={{ overflowY: "auto" }}>
+          <Col style={{ overflowY: "auto", maxHeight: "435px" }}>
             <List
               itemLayout="horizontal"
               dataSource={anno}
