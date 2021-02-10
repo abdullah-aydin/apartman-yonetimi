@@ -25,9 +25,7 @@ function TableSugCom() {
 
   // delete sug-com from firebase
   const deleteSugCom = (docID) => {
-    db.collection("users")
-      .doc("903rfcO6sbX7hJISg1ND")
-      .collection("sugcom")
+    db.collection("sugcom")
       .doc(docID)
       .delete()
       .then(() => {
@@ -42,8 +40,9 @@ function TableSugCom() {
   const expandedRow = (data) => {
     return (
       <>
+        
         <h3>Yöneticiden Gelen Cevap</h3>
-        <h4>{data.title}</h4>
+        <h4>{data.answer}</h4>
 
         <hr />
 
