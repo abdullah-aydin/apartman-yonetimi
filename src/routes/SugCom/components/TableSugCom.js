@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 // ant design
 import { Table, Tag, Button, Tooltip } from "antd";
 // ant design icon
@@ -7,21 +7,21 @@ import { DeleteOutlined } from "@ant-design/icons";
 import db from "../../../config/firebase";
 // moment
 import moment from "moment";
+//context
+import { AuthContext } from "../../../context/AuthContext";
 
 function TableSugCom() {
   const [sugCom, setSugCom] = useState([]);
 
-  //TODO: dynamic user id
-  // messages data fetch from firebase
+  const { userState } = useContext(AuthContext);
+
   useEffect(() => {
-    db.collection("users")
-      .doc("903rfcO6sbX7hJISg1ND")
-      .collection("sugcom")
-      .orderBy("date", "desc")
+    db.collection("sugcom")
+      .where("userID", "==", userState.uid)
       .onSnapshot((snapshot) =>
         setSugCom(snapshot.docs.map((doc) => ({ ...doc.data(), key: doc.id })))
       );
-  }, []);
+  }, [userState.uid]);
 
   // delete sug-com from firebase
   const deleteSugCom = (docID) => {
@@ -42,19 +42,13 @@ function TableSugCom() {
   const expandedRow = (data) => {
     return (
       <>
-        <h3>
-          <em>Yöneticiden Gelen Cevap</em>
-        </h3>
-        <h4>{`Cevap: ${data.title}`}</h4>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore
-          pariatur, quas vero consequatur odit, consectetur sit laboriosam
-          mollitia necessitatibus aperiam praesentium corrupti, ea esse facilis
-          sint id ex corporis placeat.
-        </p>
+        <h3>Yöneticiden Gelen Cevap</h3>
+        <h4>{data.title}</h4>
+
         <hr />
+
         <h3>
-          <em>Sizin yazınız</em>
+          Sizin Gönderdiğiniz {data.sugOrCom === "sug" ? "İstek" : "Şikayet"}
         </h3>
         <h4>{data.title}</h4>
         <p style={{ margin: 0 }}>{data.message}</p>
@@ -131,6 +125,13 @@ function TableSugCom() {
       ),
     },
   ];
+
+  // sugCom sorting new to old
+  sugCom.sort(function (a, b) {
+    if (a.date.seconds > b.date.seconds) return -1;
+    if (a.date.seconds < b.date.seconds) return 1;
+    return 0;
+  });
 
   return (
     <Table

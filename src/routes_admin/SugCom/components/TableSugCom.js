@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // ant design
-import { Table, Tag, Button, Tooltip, Input} from "antd";
+import { Table, Tag, Button, Tooltip, Input } from "antd";
 // ant design icon
 import { DeleteOutlined } from "@ant-design/icons";
 //firebase
@@ -14,15 +14,13 @@ const { TextArea } = Input;
 
 function TableSugCom() {
   const [sugCom, setSugCom] = useState([]);
-  const { handleSubmit, control } = useForm()
+  const { handleSubmit, control } = useForm();
 
-  //TODO: dynamic user id
   // messages data fetch from firebase
   useEffect(() => {
-    db.collection("sugcom").where("userID", "==", "903rfcO6sbX7hJISg1ND")//where kısmı adminde olmayacak
-      .onSnapshot((snapshot) =>
-        setSugCom(snapshot.docs.map((doc) => ({ ...doc.data(), key: doc.id })))
-      );
+    db.collection("sugcom").onSnapshot((snapshot) =>
+      setSugCom(snapshot.docs.map((doc) => ({ ...doc.data(), key: doc.id })))
+    );
   }, []);
 
   // delete sug-com from firebase
@@ -38,80 +36,71 @@ function TableSugCom() {
       });
   };
 
-  
-
   // expanded row menu
   const expandedRow = (data) => {
-
-    const submit = ({ answer}) => {
-      
-      db.collection("sugcom").doc(data.key).update({ answer:answer, status: [false], })
-      .then(() => {
-        console.log("Başarıyla eklendi");
-      })
+    const submit = ({ answer }) => {
+      db.collection("sugcom")
+        .doc(data.key)
+        .update({ answer: answer, status: [false] })
+        .then(() => {
+          console.log("Başarıyla eklendi");
+        })
         .catch((error) => {
           // The document probably doesn't exist.
           console.error("Error updating document: ", error);
         });
     };
-    
+
     return (
       <>
         <h3>
-          <em>Kullanıcıdan Gelen {data.sugOrCom==="sug"?"İstek":"Şikayet"}</em>
+          Kullanıcıdan Gelen {data.sugOrCom === "sug" ? "İstek" : "Şikayet"}
         </h3>
         <h4>{data.title}</h4>
         <p style={{ margin: 0 }}>{data.message}</p>
         <hr />
 
-        {(data.status[0]===false)?(
+        {data.status[0] === false ? (
           <>
-            <h3>
-              <em>Sizin Verdiğiniz Cevap</em>
-            </h3>
+            <h3>Sizin Verdiğiniz Cevap</h3>
             <h4>{`Cevap: ${data.title}`}</h4>
-            <p>
-              {data.answer}
-            </p>
+            <p>{data.answer}</p>
           </>
-        ):(
-            <h3>
-              <form onSubmit={handleSubmit(submit)}>
+        ) : (
+          <h3>
+            <form onSubmit={handleSubmit(submit)}>
+              <div className="form_section">
                 <div className="form_section">
-                  <div className="form_section">
-                    <label>Mesajınızı Yazınız</label>
-                    <Controller
-                      placeholder="mesajınızı yazınız..."
-                      as={TextArea}
-                      rows={6}
-                      required
-                      defaultValue={""}
-                      control={control}
-                      name="answer"
-                    />
-                  </div>
-                  <div className="form_buttons">
-                    <Button
-                      type="primary"
-                      shape="round"
-                      size="large"
-                      htmlType="submit"
-                      className="form_button"
-                    > GÖNDER
-                    </Button>
-                  </div>
+                  <label>Mesajınızı Yazınız</label>
+                  <Controller
+                    placeholder="mesajınızı yazınız..."
+                    as={TextArea}
+                    rows={6}
+                    required
+                    defaultValue={""}
+                    control={control}
+                    name="answer"
+                  />
                 </div>
-              </form>
-            </h3>
+                <div className="form_buttons">
+                  <Button
+                    type="primary"
+                    shape="round"
+                    size="large"
+                    htmlType="submit"
+                    className="form_button"
+                  >
+                    {" "}
+                    GÖNDER
+                  </Button>
+                </div>
+              </div>
+            </form>
+          </h3>
         )}
-
-        
-
-
       </>
     );
   };
-
 
   const columns = [
     {
@@ -182,6 +171,13 @@ function TableSugCom() {
       ),
     },
   ];
+
+  // sugCom sorting new to old
+  sugCom.sort(function (a, b) {
+    if (a.date.seconds > b.date.seconds) return -1;
+    if (a.date.seconds < b.date.seconds) return 1;
+    return 0;
+  });
 
   return (
     <Table

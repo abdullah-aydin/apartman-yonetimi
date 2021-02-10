@@ -1,3 +1,4 @@
+import { useContext } from "react";
 //hook-form
 import { useForm, Controller } from "react-hook-form";
 // router
@@ -8,6 +9,8 @@ import { Card, Col, Row, Button, Input, Select } from "antd";
 import "../SugCom.css";
 //firebase
 import db from "../../../config/firebase";
+//context
+import { AuthContext } from "../../../context/AuthContext";
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -15,6 +18,7 @@ const { TextArea } = Input;
 function FormSugCom() {
   const { handleSubmit, control } = useForm();
 
+  const { userState } = useContext(AuthContext);
   const history = useHistory();
 
   const backSugCom = () => {
@@ -24,11 +28,9 @@ function FormSugCom() {
   // TODO: USERID'Yİ DİNAMİK YAP
 
   const submit = (e) => {
-    db.collection("users")
-      .doc("903rfcO6sbX7hJISg1ND")
-      .collection("sugcom")
+    db.collection("sugcom")
       .add({
-        userID: "903rfcO6sbX7hJISg1ND",
+        userID: userState.uid,
         title: e.title,
         message: e.message,
         sugOrCom: e.sugcom,
