@@ -1,19 +1,20 @@
 // ant design
-import { Avatar, Image } from "antd";
+import { Avatar } from "antd";
 // moment
 import moment from "moment";
 
-function MessageOthers({msg}) {
+function MessageOthers({ msg }) {
   return (
     <>
       <Avatar
         className="message_avatar"
-        src={
-          <Image src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-        }
-      />
+        style={{ color: "#3b4cb8", fontWeight: "bold" }}
+      >
+        {msg.flatNumber === "0" ? "Y" : msg.flatNumber}
+      </Avatar>
+
       <p className="message">
-        <strong style={{ display: "flex" }}>{msg.userName}</strong>
+        <strong style={{ display: "flex" }}>{msg.userName} </strong>
         {msg.message}
         <span className="message_date">
           {moment(msg.date?.seconds * 1000).format("LT")}

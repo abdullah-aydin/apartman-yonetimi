@@ -1,4 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
+//context
+import { AuthContext } from "../../../context/AuthContext";
 //input emoji
 import InputEmoji from "react-input-emoji";
 // ant design
@@ -20,6 +22,15 @@ function ChatBody({ room }) {
   const messageRef = useRef();
   const numberRoom = parseInt(room);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState({});
+
+  const { userState } = useContext(AuthContext);
+
+  useEffect(() => {
+    db.collection("users")
+      .doc(userState.uid)
+      .onSnapshot((snapshot) => setUser(snapshot.data()));
+  }, [userState.uid]);
 
   // messages data fetch from firebase
   useEffect(() => {
@@ -47,13 +58,13 @@ function ChatBody({ room }) {
       .doc(numberRoom === 1 ? "chat" : "meeting")
       .collection("messages")
       .add({
-        userName: "abdullah",
+        userName: user.userName,
+        flatNumber: user.flatNumber,
         message: text,
-        owner: true,
         date: new Date(),
         numberRoom,
       })
-      .then((e) => console.log("mesaj eklendi"))
+      .then()
       .catch((e) => console.error(e));
 
     setText("");
@@ -100,8 +111,12 @@ function ChatBody({ room }) {
                       key={index}
                       ref={messageRef}
                     >
-                      {msg.owner && <MessageOwner msg={msg} />}
-                      {!msg.owner && <MessageOthers msg={msg} />}
+                      {msg.userName === user.userName && (
+                        <MessageOwner msg={msg} />
+                      )}
+                      {msg.userName !== user.userName && (
+                        <MessageOthers msg={msg} />
+                      )}
                     </div>
                   )
                 )}
