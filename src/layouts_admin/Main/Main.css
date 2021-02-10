@@ -1,0 +1,9 @@
+.site-layout-background {
+  background: none;
+  padding: 24px;
+  min-height: 360px;
+}
+
+.main-content {
+  margin: 24px 16px 0;
+}

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // ant design style
 import { Layout, Menu } from "antd";
 // paths
-import { sidebarMenu } from "../../constant/paths";
+import { sidebarMenu } from "../../constant/paths_admin";
 //style
 import "./Sidebar.css";
 //logo
@@ -13,7 +13,7 @@ const { Sider } = Layout;
 function Sidebar() {
   return (
     <>
-      <Sider breakpoint="xl" collapsedWidth="0">
+      <Sider breakpoint="lg" collapsedWidth="0">
         <div className="logo">
           <img src={logo} alt="" />
         </div>

@@ -1,0 +1,34 @@
+.sug_com_body > div {
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+.new_sug_com_button {
+  display: flex;
+  margin: 20px auto;
+}
+.sugcom_section {
+  padding: 0;
+}
+.new_sug_com {
+  margin: auto;
+  max-width: 700px;
+}
+.form_section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 15px;
+}
+.form_buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.form_button {
+  margin: 5px;
+}
+tr.ant-table-expanded-row.ant-table-expanded-row-level-1 > td {
+  background-color: aliceblue;
+  padding: 20px 4rem;
+}

@@ -1,0 +1,125 @@
+.ant-layout-sider,
+.ant-menu {
+  background: #f6f6f6;
+}
+
+.ant-layout-sider-children {
+  position: fixed;
+  width: inherit;
+  overflow-y: auto;
+}
+
+.ant-menu-item a {
+  color: #7e7e7e;
+  font-size: 15px;
+}
+
+.ant-menu-item .ant-menu-item-icon {
+  display: block;
+  font-size: 2.2rem;
+  color: #7e7e7e;
+  margin: 0;
+}
+
+.ant-menu-inline .ant-menu-item {
+  height: auto;
+  text-align: center;
+  padding: 1em 0 !important;
+  position: relative;
+}
+
+.ant-menu-inline .ant-menu-item:before {
+  content: "";
+  height: 75px;
+  width: 0;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translatey(-50%);
+  background: #3b4cb8;
+  border-radius: 0 0.75rem 0.75rem 0;
+  -webkit-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.ant-menu-inline .ant-menu-item:hover:before {
+  width: 10px;
+}
+
+.ant-menu-inline .ant-menu-item:hover {
+  background: -moz-linear-gradient(
+    left,
+    #e0e0e4 0%,
+    rgba(125, 185, 232, 0) 100%
+  );
+  background: -webkit-linear-gradient(
+    left,
+    #e0e0e4 0%,
+    rgba(125, 185, 232, 0) 100%
+  );
+  background: linear-gradient(
+    to right,
+    #e0e0e4 0%,
+    rgba(125, 185, 232, 0) 100%
+  );
+}
+
+.ant-menu-inline .ant-menu-item:hover span,
+.ant-menu-inline .ant-menu-item:hover a {
+  color: #3b4cb8;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background: -moz-linear-gradient(
+    left,
+    #e0e0e4 0%,
+    rgba(125, 185, 232, 0) 100%
+  );
+  background: -webkit-linear-gradient(
+    left,
+    #e0e0e4 0%,
+    rgba(125, 185, 232, 0) 100%
+  );
+  background: linear-gradient(
+    to right,
+    #e0e0e4 0%,
+    rgba(125, 185, 232, 0) 100%
+  );
+  position: relative;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected a {
+  color: #3b4cb8;
+}
+
+.ant-menu:not(.ant-menu-horizontal)
+  .ant-menu-item-selected
+  .ant-menu-item-icon {
+  color: #3b4cb8;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected:before {
+  content: "";
+  height: 75px;
+  width: 10px;
+  position: absolute;
+  top: 50%;
+  transform: translatey(-50%);
+  background: #3b4cb8;
+  border-radius: 0 0.75rem 0.75rem 0;
+  -webkit-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.ant-menu-inline .ant-menu-item::after {
+  display: none;
+}
+
+.ant-layout-sider-zero-width-trigger {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: #3b4cb8;
+  top: 20px;
+}

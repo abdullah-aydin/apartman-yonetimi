@@ -5,7 +5,7 @@ import { Layout } from "antd";
 //style
 import "./Main.css";
 //routes
-import { routes } from "../../constant/routes";
+import { routes } from "../../constant/routes_admin";
 
 const { Content } = Layout;
 
@@ -13,17 +13,11 @@ function Main() {
   return (
     <Content className="main-content">
       <Switch>
-        <Redirect exact from="/login" to="/dashboard" />
+        <Redirect exact from="/login" to="/sug-com" />
 
         {routes.map((route) => (
           <Route path={route.path} key={route.id}>
             <div className="site-layout-background">
-              {route.id < 7 && (
-                <>
-                  <h1>{route.title}</h1>
-                  <hr />
-                </>
-              )}
               {route.components}
             </div>
           </Route>

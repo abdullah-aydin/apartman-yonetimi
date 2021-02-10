@@ -6,7 +6,7 @@ import SugCom from "../routes/SugCom";
 import FormSugCom from "../routes/SugCom/components/FormSugCom";
 import Market from "../routes/Market/Market";
 import ShoppingList from "../routes/Market/components/ShoppingList";
-import Services from "../routes/Services"
+import Services from "../routes/Services";
 
 export const routes = [
   {
@@ -61,5 +61,4 @@ export const routes = [
     path: "/shopping-list",
     components: <ShoppingList />,
   },
-
 ];
