@@ -5,11 +5,10 @@ import {
   CommentOutlined,
   ExclamationCircleOutlined,
   LineChartOutlined,
-  UserOutlined
+  UserOutlined,
 } from "@ant-design/icons";
 
 export const sidebarMenu = [
-
   {
     id: 0,
     name: "Şikayet ve İstek",
@@ -24,26 +23,26 @@ export const sidebarMenu = [
   },
   {
     id: 2,
-    name: "Sohbet Odası",
-    url: "/chat",
-    icon: <CommentOutlined />,
-  },
-  {
-    id: 3,
-    name: "Faturalar",
-    url: "/bills",
-    icon: <FormOutlined />,
-  },
-  {
-    id: 4,
     name: "Apartman Giderleri",
     url: "/expense",
     icon: <LineChartOutlined />,
   },
   {
-    id: 5,
+    id: 3,
+    name: "Sohbet Odası",
+    url: "/chat",
+    icon: <CommentOutlined />,
+  },
+  {
+    id: 4,
     name: "Üyeler",
     url: "/users",
     icon: <UserOutlined />,
+  },
+  {
+    id: 5,
+    name: "Faturalar",
+    url: "/bills",
+    icon: <FormOutlined />,
   },
 ];

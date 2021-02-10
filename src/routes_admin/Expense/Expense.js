@@ -3,7 +3,7 @@ import TableExpense from "./components/TableExpense";
 //router
 import { useHistory } from "react-router-dom";
 // ant design
-import { Card, Col, Row, Button } from "antd";
+import { Col, Row, Button } from "antd";
 
 function Expense() {
   const history = useHistory();
@@ -14,32 +14,22 @@ function Expense() {
   };
 
   return (
-    <Row>
-      <Col xl={24} lg={24} md={24} sm={24} xs={24}>
-        <Card bordered={true} className="sug_com_body">
-          <Col
-            xl={24}
-            lg={24}
-            md={24}
-            sm={24}
-            xs={24}
-            className="sugcom_section"
-          >
-            <TableExpense />
-
-            <Button
-            className="new_sug_com_button"
-              type="primary"
-              shape="round"
-              size="large"
-              onClick={newExpense}
-            >
-              GİDER EKLE
-            </Button>
-          </Col>
-        </Card>
-      </Col>
-    </Row>
+    <>
+      <Row className="sug_com_row">
+        <Col xl={16} lg={18} md={24} sm={24} xs={24}>
+          <TableExpense />
+        </Col>
+      </Row>
+      <Button
+        className="new_sug_com_button"
+        type="primary"
+        shape="round"
+        size="large"
+        onClick={newExpense}
+      >
+        YENİ GİDER EKLE
+      </Button>
+    </>
   );
 }
 
