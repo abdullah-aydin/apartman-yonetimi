@@ -14,8 +14,9 @@ function AnnoModal({ modalVisible, modalIsVisible, item }) {
         modalIsVisible(!modalVisible);
       }}
     >
-      <p>{item.desc}</p>
-      <em>{moment(item?.date?.seconds * 1000).format("DD.MM.YYYY")}</em>
+      <p>{item.message}</p>
+      <br/><br/>
+      <p>{moment(item?.date?.seconds * 1000).format("DD.MM.YYYY")}</p>
     </Modal>
   );
 }
