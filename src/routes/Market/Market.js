@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
-import "./Market.css";
-import { Button, Card, Col, Row, Badge } from "antd";
+import { useContext, useEffect, useState } from "react";
+//route
 import { useHistory } from "react-router-dom";
+//context
+import { MarketContext } from "../../context/MarketContext";
+//style
+import "./Market.css";
+// antdesign
+import { Button, Card, Col, Row, Badge } from "antd";
 // ant desgin icons
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { products, categorys } from "../../constant/data";
-
+//components
 import MarketDrawer from "./components/MarketDrawer";
-// firebase
-// import db from "../../firebase";
 
 const { Meta } = Card;
 
@@ -17,7 +20,10 @@ function Market() {
   const [select, setSelect] = useState(0);
   const [visible, setVisible] = useState(false);
   const [title, setTitle] = useState("Atıştırmalık");
-  const [items, setItems] = useState([]);
+
+  const { items, setItems } = useContext(MarketContext);
+
+  const history = useHistory();
 
   const onClose = () => {
     setVisible(false);
@@ -141,8 +147,6 @@ function Market() {
       </Card>
     </Col>
   ));
-
-  const history = useHistory();
 
   // go to new-sug-com page
   const newshoppinglist = () => {

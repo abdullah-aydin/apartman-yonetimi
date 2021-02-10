@@ -9,7 +9,7 @@ export const MarketProvider = (props) => {
   const [orders, setOrders] = useState([]);
   const [ordersPrice, setOrdersPrice] = useState([]);
   const [previousOrders, setPreviousOrders] = useState([]);
-
+  const [items, setItems] = useState([]);
   const currentMonth = moment().format("YYYY-MM");
 
   const totalPayment = ordersPrice.reduce((a, b) => a + b.price, 0);
@@ -53,6 +53,8 @@ export const MarketProvider = (props) => {
         ordersPrice,
         totalPayment,
         previousOrders,
+        items,
+        setItems,
       }}
     >
       {props.children}
