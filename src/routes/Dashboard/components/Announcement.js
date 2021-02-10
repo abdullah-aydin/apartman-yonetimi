@@ -5,7 +5,7 @@ import { List, Card, Col } from "antd";
 //styles
 import "../Dashboard.css";
 //icons
-import { IoMdNotificationsOutline } from "react-icons/io";
+import { AiOutlineSound } from "react-icons/ai";
 import AnnoModal from "../../../components/AnnoModal";
 // db
 import db from "../../../config/firebase";
@@ -62,7 +62,7 @@ function Announcement() {
                 >
                   <List.Item.Meta
                     className="announcement_list_item_meta"
-                    avatar={<IoMdNotificationsOutline />}
+                    avatar={<AiOutlineSound />}
                     title={<b>{item.title}</b>}
                     description={moment(item?.date?.seconds * 1000).format(
                       "DD.MM.YYYY"

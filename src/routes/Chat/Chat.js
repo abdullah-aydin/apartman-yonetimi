@@ -2,7 +2,7 @@ import { useState } from "react";
 // ant design
 import { Tabs } from "antd";
 // ant design icons
-import { AppleOutlined, AndroidOutlined } from "@ant-design/icons";
+import { MessageOutlined, BookOutlined } from "@ant-design/icons";
 //styles
 import "./Chat.css";
 import ChatBody from "./components/ChatBody";
@@ -10,8 +10,8 @@ import ChatBody from "./components/ChatBody";
 const { TabPane } = Tabs;
 
 const tabPaneInfo = [
-  { id: 1, roomName: "Sohbet Odası", icon: <AppleOutlined /> },
-  { id: 2, roomName: "Toplantı Odası", icon: <AndroidOutlined /> },
+  { id: 1, roomName: "Sohbet Odası", icon: <MessageOutlined /> },
+  { id: 2, roomName: "Toplantı Odası", icon: <BookOutlined /> },
 ];
 
 function Chat() {

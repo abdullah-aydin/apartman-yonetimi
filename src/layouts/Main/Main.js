@@ -13,6 +13,7 @@ function Main() {
   return (
     <Content className="main-content">
       <Switch>
+        <Redirect exact from="/" to="/dashboard" />
         <Redirect exact from="/login" to="/dashboard" />
 
         {routes.map((route) => (
